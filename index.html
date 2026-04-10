@@ -2,1013 +2,919 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Speaku — Learn any language, in your language</title>
-<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=Satoshi:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Speaku — Language Tutor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg: #f7f4ee;
-  --ink: #1a1814;
-  --card: #ffffff;
-  --accent: #e84a2f;
-  --accent2: #2f7ee8;
-  --muted: #7a7570;
-  --border: #e2ddd6;
-  --surface: #f0ece4;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: 'Satoshi', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #111b21;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-/* ─── LANDING PAGE ─── */
-#landingPage {
-  min-height: 100vh;
+.phone {
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  max-height: 900px;
+  background: #111b21;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
-  border-bottom: 1px solid var(--border);
-}
-
-.logo {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.5px;
-}
-
-.logo span { color: var(--accent); }
-
-.nav-links {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-.nav-link {
-  font-size: 14px;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.nav-link:hover { color: var(--ink); }
-
-.nav-cta {
-  background: var(--ink);
-  color: white;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.15s;
-  cursor: pointer;
-  border: none;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.nav-cta:hover { background: var(--accent); }
-
-/* Hero */
-.hero {
+/* ── ONBOARDING ── */
+#onboarding {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 40px;
+  background: #111b21;
+  overflow-y: auto;
+}
+
+.ob-header {
+  background: #202c33;
+  padding: 20px 20px 24px;
   text-align: center;
-  position: relative;
 }
 
-/* Decorative circles */
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+.ob-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e9edef;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+.ob-logo span { color: #00a884; }
+
+.ob-tagline {
+  font-size: 13px;
+  color: #8696a0;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
+.ob-section {
+  padding: 20px 16px 0;
 }
 
-.badge-dot {
-  width: 6px; height: 6px;
-  background: #22c55e;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.3); }
-}
-
-h1 {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: clamp(42px, 7vw, 80px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  max-width: 800px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-h1 em {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 800;
-}
-
-.hero-sub {
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 480px;
-  line-height: 1.6;
-  margin-bottom: 48px;
-  font-weight: 300;
-  position: relative;
-  z-index: 1;
-}
-
-/* Language Selector Card */
-.selector-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px;
-  width: 100%;
-  max-width: 520px;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.06);
-  position: relative;
-  z-index: 1;
-}
-
-.selector-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.selector-group { display: flex; flex-direction: column; gap: 6px; }
-
-.selector-label {
+.ob-label {
   font-size: 11px;
+  font-weight: 600;
+  color: #00a884;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
+.lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.lang-btn {
+  background: #202c33;
+  border: 1.5px solid #2a3942;
   border-radius: 10px;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--ink);
-  background: var(--bg);
+  padding: 11px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7570' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 32px;
+  transition: all 0.15s;
+  font-size: 13px;
+  color: #e9edef;
+  font-family: 'Inter', sans-serif;
 }
 
-select:focus { border-color: var(--accent); }
-
-.swap-btn {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: white;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  transition: all 0.2s;
-  margin-top: 20px;
-  flex-shrink: 0;
+.lang-btn:hover { background: #2a3942; }
+.lang-btn.selected {
+  border-color: #00a884;
+  background: rgba(0,168,132,0.1);
+  color: #00a884;
 }
 
-.swap-btn:hover { border-color: var(--accent); transform: rotate(180deg); }
+.lang-flag { font-size: 18px; }
+.lang-name { font-weight: 500; }
+
+.name-section {
+  padding: 16px 16px 0;
+}
 
 .name-input {
   width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
+  background: #202c33;
+  border: 1.5px solid #2a3942;
   border-radius: 10px;
-  font-family: 'Satoshi', sans-serif;
+  padding: 13px 14px;
   font-size: 14px;
-  color: var(--ink);
-  background: var(--bg);
+  color: #e9edef;
+  font-family: 'Inter', sans-serif;
   outline: none;
   transition: border-color 0.2s;
-  margin-bottom: 16px;
 }
 
-.name-input:focus { border-color: var(--accent); }
-.name-input::placeholder { color: #b0aba4; }
+.name-input:focus { border-color: #00a884; }
+.name-input::placeholder { color: #8696a0; }
+
+/* Level selector */
+.level-section { padding: 16px 16px 0; }
+
+.level-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.level-card {
+  background: #202c33;
+  border: 1.5px solid #2a3942;
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.level-card:hover { background: #2a3942; }
+.level-card.selected {
+  border-color: #00a884;
+  background: rgba(0,168,132,0.1);
+}
+
+.level-emoji { font-size: 24px; margin-bottom: 6px; }
+.level-name { font-size: 12px; font-weight: 600; color: #e9edef; }
+.level-desc { font-size: 10px; color: #8696a0; margin-top: 2px; }
+.level-card.selected .level-name { color: #00a884; }
+
+.start-section { padding: 20px 16px 24px; }
 
 .start-btn {
   width: 100%;
-  background: var(--accent);
-  color: white;
+  background: #00a884;
   border: none;
   border-radius: 12px;
-  padding: 16px;
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
+  font-family: 'Inter', sans-serif;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  letter-spacing: -0.3px;
 }
 
-.start-btn:hover { background: #c93d25; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,74,47,0.3); }
-.start-btn:active { transform: translateY(0); }
+.start-btn:hover { background: #017a62; }
+.start-btn:disabled { background: #2a3942; color: #8696a0; cursor: not-allowed; }
 
 .free-note {
   text-align: center;
   font-size: 12px;
-  color: var(--muted);
-  margin-top: 12px;
+  color: #8696a0;
+  margin-top: 10px;
 }
 
-/* Language flags row */
-.lang-flags {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.lang-flag {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--muted);
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 5px 12px;
-}
-
-/* ─── CHAT PAGE ─── */
-#chatPage {
+/* ── CHAT ── */
+#chatScreen {
   display: none;
-  height: 100vh;
   flex-direction: column;
-  background: var(--bg);
+  height: 100%;
 }
 
-.chat-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--border);
-  background: white;
-}
-
-.chat-nav-left {
+/* WhatsApp header */
+.wa-header {
+  background: #202c33;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
+  border-bottom: 1px solid #2a3942;
+  flex-shrink: 0;
 }
 
-.back-btn {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: transparent;
+.wa-back {
+  color: #aebac1;
+  font-size: 20px;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  transition: all 0.15s;
+  padding: 4px;
 }
 
-.back-btn:hover { background: var(--surface); }
-
-.session-info { display: flex; flex-direction: column; }
-.session-title {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-}
-.session-sub { font-size: 12px; color: var(--muted); }
-
-.session-badge {
-  background: #dcfce7;
-  color: #16a34a;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 20px;
+.tutor-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00a884, #017a62);
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-/* Messages */
-.messages {
+.tutor-info { flex: 1; }
+
+.tutor-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e9edef;
+}
+
+.tutor-status {
+  font-size: 12px;
+  color: #8696a0;
+  margin-top: 1px;
+}
+
+.tutor-status.typing { color: #00a884; }
+
+.wa-actions {
+  display: flex;
+  gap: 16px;
+  color: #aebac1;
+  font-size: 18px;
+}
+
+/* Chat background */
+.wa-bg {
   flex: 1;
   overflow-y: auto;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  padding: 10px 12px;
+  background-color: #0b141a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23182229' stroke-width='1'%3E%3Cpath d='M20 20c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10S20 25.5 20 20z'/%3E%3Cpath d='M60 20c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10S60 25.5 60 20z'/%3E%3Cpath d='M20 60c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10S20 65.5 20 60z'/%3E%3Cpath d='M60 60c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10S60 65.5 60 60z'/%3E%3C/g%3E%3C/svg%3E");
+  position: relative;
   scroll-behavior: smooth;
 }
 
-.messages::-webkit-scrollbar { width: 4px; }
-.messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.wa-bg::-webkit-scrollbar { width: 3px; }
+.wa-bg::-webkit-scrollbar-thumb { background: #2a3942; border-radius: 3px; }
 
-.msg { display: flex; flex-direction: column; gap: 4px; animation: msgIn 0.3s ease both; }
-
-@keyframes msgIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Date pill */
+.date-pill {
+  text-align: center;
+  margin: 8px 0;
 }
 
-.msg-label {
+.date-pill span {
+  background: #182229;
+  color: #8696a0;
   font-size: 11px;
-  color: var(--muted);
+  padding: 4px 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Message bubbles */
+.msg-row {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 4px;
+  margin-bottom: 3px;
+  animation: msgPop 0.2s ease both;
 }
 
-.msg-avatar {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
+@keyframes msgPop {
+  from { opacity: 0; transform: scale(0.97) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.avatar-ai { background: #fef3c7; color: #d97706; }
-.avatar-user { background: #ede9fe; color: #7c3aed; }
+.msg-row.incoming { justify-content: flex-start; }
+.msg-row.outgoing { justify-content: flex-end; }
 
 .bubble {
   max-width: 75%;
-  padding: 14px 18px;
-  border-radius: 16px;
-  font-size: 14.5px;
-  line-height: 1.75;
-}
-
-.bubble-ai {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 4px 16px 16px 16px;
-  color: var(--ink);
-  align-self: flex-start;
-}
-
-.bubble-user {
-  background: var(--ink);
-  color: white;
-  border-radius: 16px 16px 4px 16px;
-  align-self: flex-end;
-}
-
-.msg.user-msg { align-items: flex-end; }
-.msg.ai-msg { align-items: flex-start; }
-
-/* Typing indicator */
-.typing {
-  display: none;
-  align-items: center;
-  gap: 4px;
-  padding: 12px 16px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 4px 16px 16px 16px;
-  width: fit-content;
-}
-
-.typing.visible { display: flex; }
-
-.typing-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--muted);
-  animation: bounce 1.2s infinite;
-}
-
-.typing-dot:nth-child(2) { animation-delay: 0.15s; }
-.typing-dot:nth-child(3) { animation-delay: 0.3s; }
-
-@keyframes bounce {
-  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-5px); opacity: 1; }
-}
-
-/* Input */
-.input-area {
-  padding: 16px 24px 20px;
-  border-top: 1px solid var(--border);
-  background: white;
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
-}
-
-#msgInput {
-  flex: 1;
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 14px;
-  color: var(--ink);
-  background: var(--bg);
-  outline: none;
-  resize: none;
-  min-height: 46px;
-  max-height: 120px;
-  transition: border-color 0.2s;
+  padding: 7px 9px 7px 9px;
+  border-radius: 8px;
+  position: relative;
+  word-break: break-word;
   line-height: 1.5;
 }
 
-#msgInput:focus { border-color: var(--accent); }
-#msgInput::placeholder { color: #b0aba4; }
-
-.send-btn {
-  width: 46px; height: 46px;
-  background: var(--accent);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  transition: all 0.15s;
-  flex-shrink: 0;
-  color: white;
+.bubble.incoming {
+  background: #202c33;
+  border-top-left-radius: 2px;
+  color: #e9edef;
 }
 
-.send-btn:hover { background: #c93d25; }
-.send-btn:disabled { background: var(--border); cursor: not-allowed; }
-
-/* ─── PAYWALL ─── */
-#paywallPage {
-  display: none;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: var(--bg);
+.bubble.outgoing {
+  background: #005c4b;
+  border-top-right-radius: 2px;
+  color: #e9edef;
 }
 
-.paywall-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 48px 40px;
-  max-width: 480px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+/* Bubble tails */
+.bubble.incoming::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -8px;
+  border: 8px solid transparent;
+  border-top-color: #202c33;
+  border-right-color: #202c33;
+  border-radius: 2px 0 0 0;
 }
 
-.paywall-icon { font-size: 48px; margin-bottom: 20px; }
-
-.paywall-card h2 {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  margin-bottom: 10px;
+.bubble.outgoing::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -8px;
+  border: 8px solid transparent;
+  border-top-color: #005c4b;
+  border-left-color: #005c4b;
+  border-radius: 0 2px 0 0;
 }
 
-.paywall-card p {
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 32px;
+.bubble-text {
+  font-size: 14px;
+  padding-right: 44px;
+  min-width: 80px;
 }
 
-.plans { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-
-.plan {
-  border: 2px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
+.bubble-meta {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 3px;
+  font-size: 11px;
+  color: #8696a0;
+  white-space: nowrap;
+}
+
+.bubble.outgoing .bubble-meta { color: #8696a0; }
+
+.ticks { font-size: 12px; color: #53bdeb; }
+
+/* Typing indicator */
+.typing-bubble {
+  background: #202c33;
+  border-radius: 8px;
+  border-top-left-radius: 2px;
+  padding: 10px 14px;
+  display: none;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  margin-bottom: 3px;
+  position: relative;
+}
+
+.typing-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -8px;
+  border: 8px solid transparent;
+  border-top-color: #202c33;
+  border-right-color: #202c33;
+}
+
+.typing-bubble.visible { display: flex; }
+
+.td {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #8696a0;
+  animation: tdBounce 1.2s infinite;
+}
+.td:nth-child(2) { animation-delay: 0.2s; }
+.td:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes tdBounce {
+  0%,60%,100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Scroll anchor */
+#scrollAnchor { height: 1px; }
+
+/* Input bar */
+.wa-input-bar {
+  background: #202c33;
+  padding: 8px 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.wa-input-wrap {
+  flex: 1;
+  background: #2a3942;
+  border-radius: 24px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.wa-emoji { color: #8696a0; font-size: 20px; cursor: pointer; flex-shrink: 0; margin-bottom: 2px; }
+
+#msgInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #e9edef;
+  font-family: 'Inter', sans-serif;
+  resize: none;
+  max-height: 100px;
+  line-height: 1.4;
+  padding: 0;
+}
+
+#msgInput::placeholder { color: #8696a0; }
+
+.wa-attach { color: #8696a0; font-size: 20px; cursor: pointer; flex-shrink: 0; margin-bottom: 2px; }
+
+.send-btn {
+  width: 44px; height: 44px;
+  background: #00a884;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  font-size: 18px;
+  color: white;
+}
+
+.send-btn:hover { background: #017a62; }
+.send-btn:disabled { background: #2a3942; cursor: not-allowed; }
+
+/* Messages left badge */
+.msgs-left-bar {
+  background: #182229;
+  text-align: center;
+  padding: 5px;
+  font-size: 11px;
+  color: #8696a0;
+  flex-shrink: 0;
+}
+
+.msgs-left-bar span { color: #00a884; font-weight: 600; }
+
+/* Paywall overlay */
+#paywallOverlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 100;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#paywallOverlay.visible { display: flex; }
+
+.paywall-sheet {
+  background: #202c33;
+  border-radius: 20px 20px 0 0;
+  padding: 28px 24px 36px;
+  width: 100%;
+  text-align: center;
+}
+
+.pw-icon { font-size: 44px; margin-bottom: 14px; }
+.pw-title { font-size: 20px; font-weight: 700; color: #e9edef; margin-bottom: 8px; }
+.pw-sub { font-size: 13px; color: #8696a0; line-height: 1.5; margin-bottom: 24px; }
+
+.pw-plans { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.pw-plan {
+  flex: 1;
+  background: #2a3942;
+  border: 1.5px solid #3a4a52;
+  border-radius: 14px;
+  padding: 16px 10px;
   cursor: pointer;
   transition: all 0.15s;
-  text-align: left;
 }
 
-.plan:hover, .plan.selected { border-color: var(--accent); background: #fff8f7; }
+.pw-plan.active { border-color: #00a884; background: rgba(0,168,132,0.1); }
 
-.plan-name {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-}
+.pw-plan-name { font-size: 13px; font-weight: 600; color: #e9edef; margin-bottom: 4px; }
+.pw-plan-price { font-size: 20px; font-weight: 700; color: #00a884; }
+.pw-plan-period { font-size: 11px; color: #8696a0; }
+.pw-plan-save { font-size: 10px; background: #00a884; color: white; padding: 2px 6px; border-radius: 8px; display: inline-block; margin-top: 4px; }
 
-.plan-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-.plan-price {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--accent);
-}
-
-.plan-price span { font-size: 12px; font-weight: 400; color: var(--muted); }
-
-.popular-badge {
-  background: var(--accent);
-  color: white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-left: 8px;
-  letter-spacing: 0.5px;
-}
-
-.pay-btn {
+.pw-btn {
   width: 100%;
-  background: var(--accent);
-  color: white;
+  background: #00a884;
   border: none;
   border-radius: 12px;
-  padding: 16px;
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
-  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
   margin-bottom: 12px;
 }
 
-.pay-btn:hover { background: #c93d25; transform: translateY(-1px); }
-
-.continue-free {
+.pw-free {
   font-size: 13px;
-  color: var(--muted);
+  color: #8696a0;
   cursor: pointer;
-  text-decoration: underline;
   background: none;
   border: none;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.continue-free:hover { color: var(--ink); }
-
-/* Responsive */
-@media (max-width: 600px) {
-  nav { padding: 16px 20px; }
-  .nav-links { display: none; }
-  .hero { padding: 40px 20px; }
-  h1 { font-size: 38px; letter-spacing: -1px; }
-  .selector-card { padding: 24px 20px; }
-  .selector-row { grid-template-columns: 1fr; }
-  .swap-btn { display: none; }
-  .messages { padding: 16px; }
-  .bubble { max-width: 90%; }
-  .input-area { padding: 12px 16px 16px; }
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════ LANDING PAGE ══════════════ -->
-<div id="landingPage">
-  <nav>
-    <div class="logo">Speak<span>u</span></div>
-    <div class="nav-links">
-      <a class="nav-link" href="#">How it works</a>
-      <a class="nav-link" href="#">Languages</a>
-      <a class="nav-link" href="#">Pricing</a>
-      <button class="nav-cta" onclick="scrollToStart()">Start Free</button>
+<div class="phone">
+
+<!-- ═══════════ ONBOARDING ═══════════ -->
+<div id="onboarding">
+  <div class="ob-header">
+    <div class="ob-logo">Speak<span>u</span> 🌍</div>
+    <div class="ob-tagline">Learn any language, like chatting with a friend</div>
+  </div>
+
+  <!-- Mother tongue -->
+  <div class="ob-section">
+    <div class="ob-label">I speak</div>
+    <div class="lang-grid" id="motherGrid">
+      <button class="lang-btn selected" data-lang="Marathi" onclick="selectMother(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Marathi</span></button>
+      <button class="lang-btn" data-lang="Hindi" onclick="selectMother(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Hindi</span></button>
+      <button class="lang-btn" data-lang="Tamil" onclick="selectMother(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Tamil</span></button>
+      <button class="lang-btn" data-lang="Telugu" onclick="selectMother(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Telugu</span></button>
+      <button class="lang-btn" data-lang="English" onclick="selectMother(this)"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span></button>
+      <button class="lang-btn" data-lang="Spanish" onclick="selectMother(this)"><span class="lang-flag">🇪🇸</span><span class="lang-name">Spanish</span></button>
+      <button class="lang-btn" data-lang="French" onclick="selectMother(this)"><span class="lang-flag">🇫🇷</span><span class="lang-name">French</span></button>
+      <button class="lang-btn" data-lang="German" onclick="selectMother(this)"><span class="lang-flag">🇩🇪</span><span class="lang-name">German</span></button>
     </div>
-  </nav>
+  </div>
 
-  <div class="hero">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      AI Language Tutor · Free to try
+  <!-- Target language -->
+  <div class="ob-section" style="margin-top:16px">
+    <div class="ob-label">I want to learn</div>
+    <div class="lang-grid" id="targetGrid">
+      <button class="lang-btn selected" data-lang="English" onclick="selectTarget(this)"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span></button>
+      <button class="lang-btn" data-lang="Spanish" onclick="selectTarget(this)"><span class="lang-flag">🇪🇸</span><span class="lang-name">Spanish</span></button>
+      <button class="lang-btn" data-lang="French" onclick="selectTarget(this)"><span class="lang-flag">🇫🇷</span><span class="lang-name">French</span></button>
+      <button class="lang-btn" data-lang="Japanese" onclick="selectTarget(this)"><span class="lang-flag">🇯🇵</span><span class="lang-name">Japanese</span></button>
+      <button class="lang-btn" data-lang="German" onclick="selectTarget(this)"><span class="lang-flag">🇩🇪</span><span class="lang-name">German</span></button>
+      <button class="lang-btn" data-lang="Korean" onclick="selectTarget(this)"><span class="lang-flag">🇰🇷</span><span class="lang-name">Korean</span></button>
+      <button class="lang-btn" data-lang="Hindi" onclick="selectTarget(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Hindi</span></button>
+      <button class="lang-btn" data-lang="Marathi" onclick="selectTarget(this)"><span class="lang-flag">🇮🇳</span><span class="lang-name">Marathi</span></button>
     </div>
+  </div>
 
-    <h1>Learn any language,<br><em>in your language</em></h1>
-
-    <p class="hero-sub">Your personal AI tutor that teaches through conversation — not textbooks. Ask questions, make mistakes, actually learn.</p>
-
-    <!-- Selector Card -->
-    <div class="selector-card" id="startCard">
-      <div class="selector-row">
-        <div class="selector-group">
-          <div class="selector-label">I speak</div>
-          <select id="motherTongue">
-            <option value="Marathi">🇮🇳 Marathi</option>
-            <option value="Hindi">🇮🇳 Hindi</option>
-            <option value="Tamil">🇮🇳 Tamil</option>
-            <option value="Telugu">🇮🇳 Telugu</option>
-            <option value="Kannada">🇮🇳 Kannada</option>
-            <option value="Bengali">🇮🇳 Bengali</option>
-            <option value="Gujarati">🇮🇳 Gujarati</option>
-            <option value="Punjabi">🇮🇳 Punjabi</option>
-            <option value="English" selected>🇬🇧 English</option>
-            <option value="Spanish">🇪🇸 Spanish</option>
-            <option value="French">🇫🇷 French</option>
-            <option value="German">🇩🇪 German</option>
-            <option value="Portuguese">🇧🇷 Portuguese</option>
-            <option value="Arabic">🇸🇦 Arabic</option>
-            <option value="Japanese">🇯🇵 Japanese</option>
-            <option value="Chinese">🇨🇳 Chinese</option>
-            <option value="Korean">🇰🇷 Korean</option>
-            <option value="Russian">🇷🇺 Russian</option>
-            <option value="Italian">🇮🇹 Italian</option>
-            <option value="Dutch">🇳🇱 Dutch</option>
-          </select>
-        </div>
-
-        <button class="swap-btn" onclick="swapLanguages()" title="Swap languages">⇄</button>
-
-        <div class="selector-group">
-          <div class="selector-label">I want to learn</div>
-          <select id="targetLang">
-            <option value="English" selected>🇬🇧 English</option>
-            <option value="Spanish">🇪🇸 Spanish</option>
-            <option value="French">🇫🇷 French</option>
-            <option value="German">🇩🇪 German</option>
-            <option value="Japanese">🇯🇵 Japanese</option>
-            <option value="Mandarin Chinese">🇨🇳 Mandarin Chinese</option>
-            <option value="Korean">🇰🇷 Korean</option>
-            <option value="Italian">🇮🇹 Italian</option>
-            <option value="Portuguese">🇧🇷 Portuguese</option>
-            <option value="Arabic">🇸🇦 Arabic</option>
-            <option value="Russian">🇷🇺 Russian</option>
-            <option value="Hindi">🇮🇳 Hindi</option>
-            <option value="Marathi">🇮🇳 Marathi</option>
-            <option value="Tamil">🇮🇳 Tamil</option>
-            <option value="Dutch">🇳🇱 Dutch</option>
-            <option value="Swedish">🇸🇪 Swedish</option>
-            <option value="Turkish">🇹🇷 Turkish</option>
-            <option value="Polish">🇵🇱 Polish</option>
-          </select>
-        </div>
+  <!-- Level -->
+  <div class="level-section" style="margin-top:16px">
+    <div class="ob-label">My current level</div>
+    <div class="level-cards">
+      <div class="level-card" onclick="selectLevel(this,'beginner')">
+        <div class="level-emoji">🌱</div>
+        <div class="level-name">Beginner</div>
+        <div class="level-desc">Just starting</div>
       </div>
-
-      <input type="text" class="name-input" id="userName" placeholder="Your first name (so your tutor can address you)" maxlength="30"/>
-
-      <button class="start-btn" onclick="startSession()">
-        Start Free Session →
-      </button>
-      <div class="free-note">✓ No signup required &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ First session free</div>
+      <div class="level-card selected" onclick="selectLevel(this,'intermediate')">
+        <div class="level-emoji">🌿</div>
+        <div class="level-name">Some basics</div>
+        <div class="level-desc">Know a little</div>
+      </div>
+      <div class="level-card" onclick="selectLevel(this,'advanced')">
+        <div class="level-emoji">🌳</div>
+        <div class="level-name">Conversational</div>
+        <div class="level-desc">Can hold basic talk</div>
+      </div>
     </div>
+  </div>
 
-    <div class="lang-flags">
-      <div class="lang-flag">🇮🇳 Hindi</div>
-      <div class="lang-flag">🇪🇸 Spanish</div>
-      <div class="lang-flag">🇫🇷 French</div>
-      <div class="lang-flag">🇯🇵 Japanese</div>
-      <div class="lang-flag">🇩🇪 German</div>
-      <div class="lang-flag">🇰🇷 Korean</div>
-      <div class="lang-flag">+12 more</div>
-    </div>
+  <!-- Name -->
+  <div class="name-section" style="margin-top:16px">
+    <div class="ob-label">Your name</div>
+    <input type="text" class="name-input" id="nameInput" placeholder="So your tutor can address you..." maxlength="20"/>
+  </div>
+
+  <!-- Start -->
+  <div class="start-section">
+    <button class="start-btn" id="startBtn" onclick="startChat()">
+      Start Learning 🚀
+    </button>
+    <div class="free-note">✓ Free to try · No signup needed · 20 free messages</div>
   </div>
 </div>
 
-<!-- ══════════════ CHAT PAGE ══════════════ -->
-<div id="chatPage">
-  <div class="chat-nav">
-    <div class="chat-nav-left">
-      <button class="back-btn" onclick="goBack()">←</button>
-      <div class="session-info">
-        <div class="session-title" id="chatTitle">Learning Session</div>
-        <div class="session-sub" id="chatSub">Session 1 · Free</div>
-      </div>
+<!-- ═══════════ CHAT SCREEN ═══════════ -->
+<div id="chatScreen">
+  <!-- Header -->
+  <div class="wa-header">
+    <div class="wa-back" onclick="goBack()">←</div>
+    <div class="tutor-avatar">🎓</div>
+    <div class="tutor-info">
+      <div class="tutor-name" id="tutorName">Speaku Tutor</div>
+      <div class="tutor-status" id="tutorStatus">online</div>
     </div>
-    <div class="session-badge">
-      <div class="badge-dot"></div>
-      Live
-    </div>
-  </div>
-
-  <div class="messages" id="messages">
-    <div class="typing" id="typing">
-      <div class="typing-dot"></div>
-      <div class="typing-dot"></div>
-      <div class="typing-dot"></div>
+    <div class="wa-actions">
+      <span>📞</span>
+      <span>⋮</span>
     </div>
   </div>
 
-  <div class="input-area">
-    <textarea id="msgInput" placeholder="Type your answer..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+  <div class="msgs-left-bar">Free session · <span id="msgsLeft">20</span> messages left</div>
+
+  <!-- Chat bg -->
+  <div class="wa-bg" id="chatBg">
+    <div class="date-pill"><span>Today</span></div>
+    <div class="typing-bubble" id="typingBubble">
+      <div class="td"></div>
+      <div class="td"></div>
+      <div class="td"></div>
+    </div>
+    <div id="scrollAnchor"></div>
+  </div>
+
+  <!-- Input -->
+  <div class="wa-input-bar">
+    <div class="wa-input-wrap">
+      <span class="wa-emoji">😊</span>
+      <textarea id="msgInput" placeholder="Type a message..." rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <span class="wa-attach">📎</span>
+    </div>
     <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
   </div>
-</div>
 
-<!-- ══════════════ PAYWALL PAGE ══════════════ -->
-<div id="paywallPage">
-  <div class="paywall-card">
-    <div class="paywall-icon">🎓</div>
-    <h2>You're making great progress!</h2>
-    <p>You've used your free session. Upgrade to Pro to continue learning with unlimited sessions, progress tracking, and daily lessons.</p>
-
-    <div class="plans">
-      <div class="plan selected" id="plan-monthly" onclick="selectPlan('monthly')">
-        <div>
-          <div class="plan-name">Monthly Pro</div>
-          <div class="plan-desc">Unlimited sessions · All languages</div>
+  <!-- Paywall -->
+  <div id="paywallOverlay">
+    <div class="paywall-sheet">
+      <div class="pw-icon">🎓</div>
+      <div class="pw-title">You're doing great!</div>
+      <div class="pw-sub">Free session ended. Upgrade to keep learning with unlimited sessions in any language.</div>
+      <div class="pw-plans">
+        <div class="pw-plan active" id="plan1" onclick="selectPlan(1)">
+          <div class="pw-plan-name">Monthly</div>
+          <div class="pw-plan-price">$4.99</div>
+          <div class="pw-plan-period">per month</div>
         </div>
-        <div class="plan-price">$4.99<span>/mo</span></div>
-      </div>
-
-      <div class="plan" id="plan-yearly" onclick="selectPlan('yearly')">
-        <div>
-          <div class="plan-name">Yearly Pro <span class="popular-badge">SAVE 35%</span></div>
-          <div class="plan-desc">Best value · $3.25/month billed yearly</div>
+        <div class="pw-plan" id="plan2" onclick="selectPlan(2)">
+          <div class="pw-plan-name">Yearly</div>
+          <div class="pw-plan-price">$39</div>
+          <div class="pw-plan-period">per year</div>
+          <div class="pw-plan-save">SAVE 35%</div>
         </div>
-        <div class="plan-price">$39<span>/yr</span></div>
       </div>
+      <button class="pw-btn">Continue Learning →</button>
+      <button class="pw-free" onclick="dismissPaywall()">Continue with free (3 more messages)</button>
     </div>
-
-    <button class="pay-btn" onclick="handlePayment()">Continue Learning →</button>
-    <button class="continue-free" onclick="continueFree()">Continue with free (3 msg limit)</button>
   </div>
 </div>
 
+</div><!-- .phone -->
+
 <script>
-// ─── STATE ───
-let sessionState = {
-  motherTongue: 'English',
+const WORKER_URL = 'https://speaku-api.nilesh53333.workers.dev';
+const MAX_FREE = 20;
+
+let state = {
+  motherTongue: 'Marathi',
   targetLang: 'English',
+  level: 'intermediate',
   userName: '',
-  messageCount: 0,
-  maxFreeMessages: 20,
-  isLoading: false,
-  conversationHistory: [],
-  selectedPlan: 'monthly'
+  msgCount: 0,
+  history: [],
+  loading: false
 };
 
-// ─── LANDING ───
-function scrollToStart() {
-  document.getElementById('startCard').scrollIntoView({ behavior: 'smooth' });
+// ── ONBOARDING ──
+function selectMother(el) {
+  document.querySelectorAll('#motherGrid .lang-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  state.motherTongue = el.dataset.lang;
 }
 
-function swapLanguages() {
-  const m = document.getElementById('motherTongue');
-  const t = document.getElementById('targetLang');
-  const temp = m.value;
-  // Try to set mother tongue to target
-  const mOptions = Array.from(m.options).map(o => o.value);
-  const tOptions = Array.from(t.options).map(o => o.value);
-  if (mOptions.includes(t.value)) m.value = t.value;
-  if (tOptions.includes(temp)) t.value = temp;
+function selectTarget(el) {
+  document.querySelectorAll('#targetGrid .lang-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  state.targetLang = el.dataset.lang;
 }
 
-function startSession() {
-  const mother = document.getElementById('motherTongue').value;
-  const target = document.getElementById('targetLang').value;
-  const name = document.getElementById('userName').value.trim() || 'there';
+function selectLevel(el, level) {
+  document.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.level = level;
+}
 
-  if (mother === target) {
+function selectPlan(n) {
+  document.getElementById('plan1').classList.toggle('active', n === 1);
+  document.getElementById('plan2').classList.toggle('active', n === 2);
+}
+
+function dismissPaywall() {
+  state.msgCount = 0;
+  document.getElementById('msgsLeft').textContent = 3;
+  document.getElementById('paywallOverlay').classList.remove('visible');
+}
+
+// ── START CHAT ──
+function startChat() {
+  if (state.motherTongue === state.targetLang) {
     alert('Please select different languages!');
     return;
   }
 
-  sessionState.motherTongue = mother;
-  sessionState.targetLang = target;
-  sessionState.userName = name;
-  sessionState.messageCount = 0;
-  sessionState.conversationHistory = [];
+  state.userName = document.getElementById('nameInput').value.trim() || 'there';
 
-  // Update chat header
-  document.getElementById('chatTitle').textContent = `${mother} → ${target}`;
-  document.getElementById('chatSub').textContent = `Session 1 · Free (${sessionState.maxFreeMessages} messages)`;
+  // Update header
+  const langFlags = { English:'🇬🇧', Spanish:'🇪🇸', French:'🇫🇷', German:'🇩🇪', Japanese:'🇯🇵', Korean:'🇰🇷', Hindi:'🇮🇳', Marathi:'🇮🇳', Tamil:'🇮🇳', Telugu:'🇮🇳' };
+  document.getElementById('tutorName').textContent = `${langFlags[state.targetLang] || '🌍'} ${state.targetLang} Tutor`;
 
-  // Show chat page
-  document.getElementById('landingPage').style.display = 'none';
-  document.getElementById('chatPage').style.display = 'flex';
-  document.getElementById('paywallPage').style.display = 'none';
+  document.getElementById('onboarding').style.display = 'none';
+  document.getElementById('chatScreen').style.display = 'flex';
+  document.getElementById('chatScreen').style.flexDirection = 'column';
+  document.getElementById('chatScreen').style.height = '100%';
+  document.getElementById('chatScreen').style.position = 'relative';
 
-  // Clear messages except typing indicator
-  const msgs = document.getElementById('messages');
-  msgs.innerHTML = '<div class="typing" id="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-
-  // Start with AI greeting
-  setTimeout(() => startConversation(), 500);
+  setTimeout(() => initSession(), 400);
 }
 
-// ─── CHAT ───
-function getSystemPrompt() {
-  return `You are Speaku, a warm and patient language tutor. 
-
-The student's name is ${sessionState.userName}.
-Their mother tongue is: ${sessionState.motherTongue}
-They want to learn: ${sessionState.targetLang}
-
-CRITICAL RULES:
-1. ALWAYS communicate with the student in their mother tongue (${sessionState.motherTongue}). Never switch to ${sessionState.targetLang} for your explanations — only use ${sessionState.targetLang} for examples and practice.
-2. Never give long explanations. Ask ONE question at a time.
-3. Wait for the student to answer before moving forward.
-4. Start by understanding their current level naturally through 2-3 friendly questions.
-5. Teach Socratically — make them think, guess, and discover answers themselves.
-6. Correct mistakes gently and encouragingly.
-7. Feel like a brilliant friend who knows the language, not a textbook.
-8. Keep responses SHORT — 3-5 sentences maximum.
-9. Always end with a question or a small task for the student.
-10. Use emojis occasionally to feel warm and encouraging.`;
+function goBack() {
+  document.getElementById('chatScreen').style.display = 'none';
+  document.getElementById('onboarding').style.display = 'flex';
+  document.getElementById('onboarding').style.flexDirection = 'column';
+  // Clear chat
+  const bg = document.getElementById('chatBg');
+  bg.innerHTML = '<div class="date-pill"><span>Today</span></div><div class="typing-bubble" id="typingBubble"><div class="td"></div><div class="td"></div><div class="td"></div></div><div id="scrollAnchor"></div>';
+  state.history = [];
+  state.msgCount = 0;
 }
 
-async function startConversation() {
+// ── SYSTEM PROMPT ──
+function getSystem() {
+  const levelMap = {
+    beginner: 'complete beginner — knows almost nothing',
+    intermediate: 'knows some basics — can understand simple words',
+    advanced: 'conversational — can hold basic conversations'
+  };
+  return `You are a warm, patient ${state.targetLang} language tutor on Speaku.
+
+Student: ${state.userName}
+Their mother tongue: ${state.motherTongue}
+Learning: ${state.targetLang}
+Current level: ${levelMap[state.level]}
+
+STRICT RULES:
+1. ALWAYS respond in ${state.motherTongue} — NEVER in ${state.targetLang} for explanations.
+2. Only use ${state.targetLang} for example words/phrases to practice.
+3. Keep messages SHORT — max 3-4 sentences.
+4. Always end with ONE question or a small practice task.
+5. Teach one concept at a time. Never overwhelm.
+6. Correct mistakes very gently and encouragingly.
+7. Feel like a friendly WhatsApp contact, not a teacher.
+8. Use emojis naturally like in WhatsApp chats.
+9. Since level is ${state.level}, ${state.level === 'beginner' ? 'start from absolute basics' : state.level === 'intermediate' ? 'build on what they know' : 'focus on fluency and natural conversation'}.`;
+}
+
+// ── INIT SESSION ──
+async function initSession() {
   showTyping();
-  sessionState.isLoading = true;
+  setStatus('typing...', true);
 
   try {
-    const response = await fetch('https://speaku-api.nilesh53333.workers.dev', {
+    const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        system: getSystemPrompt(),
+        system: getSystem(),
         messages: [{
           role: 'user',
-          content: `Start the session. Greet me, introduce yourself as Speaku tutor, and ask your first question to understand my current level in ${sessionState.targetLang}. Remember: speak ONLY in ${sessionState.motherTongue}.`
+          content: `Start our session. Greet me warmly in ${state.motherTongue}, tell me what we'll learn today, and give me the first small practice task based on my ${state.level} level. Keep it short and friendly like WhatsApp.`
         }]
       })
     });
-
-    const data = await response.json();
-    const openingMessage = data.content?.map(b => b.text || '').join('') || `नमस्ते ${sessionState.userName}! मी तुमचा Speaku tutor आहे.`;
-
+    const data = await res.json();
+    const reply = data.content?.map(b => b.text || '').join('') || `नमस्ते ${state.userName}! 😊`;
     hideTyping();
-    addMessage('ai', openingMessage);
-
-    // Store only the assistant reply in history (not the trigger message)
-    sessionState.conversationHistory.push({
-      role: 'assistant',
-      content: openingMessage
-    });
-
-  } catch (err) {
+    setStatus('online', false);
+    addBubble('incoming', reply);
+    state.history.push({ role: 'assistant', content: reply });
+  } catch(e) {
     hideTyping();
-    addMessage('ai', `नमस्ते ${sessionState.userName}! मी तुमचा Speaku tutor आहे. चला सुरुवात करूया! 😊`);
-  } finally {
-    sessionState.isLoading = false;
+    setStatus('online', false);
+    addBubble('incoming', `नमस्ते ${state.userName}! 😊 मी तुमचा ${state.targetLang} tutor आहे. चला सुरुवात करूया!`);
   }
 }
 
+// ── SEND MESSAGE ──
 async function sendMessage() {
   const input = document.getElementById('msgInput');
   const text = input.value.trim();
-  if (!text || sessionState.isLoading) return;
+  if (!text || state.loading) return;
 
-  // Check free limit
-  if (sessionState.messageCount >= sessionState.maxFreeMessages) {
-    showPaywall();
+  const remaining = MAX_FREE - state.msgCount;
+  if (remaining <= 0) {
+    document.getElementById('paywallOverlay').classList.add('visible');
     return;
   }
 
   input.value = '';
   input.style.height = 'auto';
 
-  addMessage('user', text);
-  sessionState.conversationHistory.push({ role: 'user', content: text });
-  sessionState.messageCount++;
+  addBubble('outgoing', text);
+  state.history.push({ role: 'user', content: text });
+  state.msgCount++;
 
-  // Update counter in header
-  const remaining = sessionState.maxFreeMessages - sessionState.messageCount;
-  document.getElementById('chatSub').textContent = `Session 1 · ${remaining} messages left`;
+  const left = MAX_FREE - state.msgCount;
+  document.getElementById('msgsLeft').textContent = left;
 
-  sessionState.isLoading = true;
+  state.loading = true;
   document.getElementById('sendBtn').disabled = true;
   showTyping();
+  setStatus('typing...', true);
 
   try {
-    const response = await fetch('https://speaku-api.nilesh53333.workers.dev', {
+    const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        system: getSystemPrompt(),
-        messages: sessionState.conversationHistory
+        system: getSystem(),
+        messages: state.history
       })
     });
-
-    const data = await response.json();
-    const reply = data.content?.map(b => b.text || '').join('') || 'Something went wrong. Please try again.';
-
+    const data = await res.json();
+    const reply = data.content?.map(b => b.text || '').join('') || 'काहीतरी चूक झाली. पुन्हा प्रयत्न करा.';
     hideTyping();
-    addMessage('ai', reply);
-    sessionState.conversationHistory.push({ role: 'assistant', content: reply });
+    setStatus('online', false);
+    addBubble('incoming', reply);
+    state.history.push({ role: 'assistant', content: reply });
 
-    // Show paywall after limit
-    if (sessionState.messageCount >= sessionState.maxFreeMessages) {
-      setTimeout(() => showPaywall(), 2000);
-    }
+    if (left <= 0) setTimeout(() => {
+      document.getElementById('paywallOverlay').classList.add('visible');
+    }, 1500);
 
-  } catch (err) {
+  } catch(e) {
     hideTyping();
-    addMessage('ai', 'Sorry, something went wrong. Please check your connection and try again.');
+    setStatus('online', false);
+    addBubble('incoming', 'काहीतरी चूक झाली. पुन्हा प्रयत्न करा. 🙏');
   } finally {
-    sessionState.isLoading = false;
+    state.loading = false;
     document.getElementById('sendBtn').disabled = false;
     document.getElementById('msgInput').focus();
   }
 }
 
-function addMessage(role, text) {
-  const msgs = document.getElementById('messages');
-  const typing = document.getElementById('typing');
+// ── UI HELPERS ──
+function addBubble(dir, text) {
+  const bg = document.getElementById('chatBg');
+  const anchor = document.getElementById('scrollAnchor');
+  const typing = document.getElementById('typingBubble');
 
-  const div = document.createElement('div');
-  div.className = `msg ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
 
-  const label = role === 'user' ? sessionState.userName : 'Speaku';
-  const avatarClass = role === 'user' ? 'avatar-user' : 'avatar-ai';
-  const avatarText = role === 'user' ? sessionState.userName[0].toUpperCase() : 'S';
-  const bubbleClass = role === 'user' ? 'bubble-user' : 'bubble-ai';
+  const row = document.createElement('div');
+  row.className = `msg-row ${dir}`;
 
-  div.innerHTML = `
-    <div class="msg-label">
-      <div class="msg-avatar ${avatarClass}">${avatarText}</div>
-      ${label}
-    </div>
-    <div class="bubble ${bubbleClass}">${text.replace(/\n/g, '<br>')}</div>
-  `;
+  const bubble = document.createElement('div');
+  bubble.className = `bubble ${dir}`;
+  bubble.innerHTML = `
+    <div class="bubble-text">${text.replace(/\n/g,'<br>')}</div>
+    <div class="bubble-meta">
+      ${time}
+      ${dir === 'outgoing' ? '<span class="ticks">✓✓</span>' : ''}
+    </div>`;
 
-  msgs.insertBefore(div, typing);
-  msgs.scrollTop = msgs.scrollHeight;
+  row.appendChild(bubble);
+  bg.insertBefore(row, anchor);
+  anchor.scrollIntoView({ behavior: 'smooth' });
 }
 
 function showTyping() {
-  const t = document.getElementById('typing');
+  const t = document.getElementById('typingBubble');
   t.classList.add('visible');
-  document.getElementById('messages').scrollTop = 999999;
+  document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' });
 }
 
 function hideTyping() {
-  document.getElementById('typing').classList.remove('visible');
+  document.getElementById('typingBubble').classList.remove('visible');
+}
+
+function setStatus(text, isTyping) {
+  const el = document.getElementById('tutorStatus');
+  el.textContent = text;
+  el.className = 'tutor-status' + (isTyping ? ' typing' : '');
 }
 
 function handleKey(e) {
@@ -1020,41 +926,8 @@ function handleKey(e) {
 
 function autoResize(el) {
   el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
 }
-
-// ─── PAYWALL ───
-function showPaywall() {
-  document.getElementById('chatPage').style.display = 'none';
-  document.getElementById('paywallPage').style.display = 'flex';
-}
-
-function selectPlan(plan) {
-  sessionState.selectedPlan = plan;
-  document.getElementById('plan-monthly').classList.toggle('selected', plan === 'monthly');
-  document.getElementById('plan-yearly').classList.toggle('selected', plan === 'yearly');
-}
-
-function handlePayment() {
-  // In production: integrate Stripe here
-  alert(`Redirecting to payment for ${sessionState.selectedPlan === 'yearly' ? '$39/year' : '$4.99/month'} plan...\n\n(Connect Stripe to activate payments)`);
-}
-
-function continueFree() {
-  // Give 3 more messages
-  sessionState.maxFreeMessages += 3;
-  document.getElementById('chatPage').style.display = 'flex';
-  document.getElementById('paywallPage').style.display = 'none';
-  addMessage('ai', `Welcome back ${sessionState.userName}! You have 3 more free messages. Let's continue where we left off! 😊`);
-}
-
-// ─── NAVIGATION ───
-function goBack() {
-  document.getElementById('chatPage').style.display = 'none';
-  document.getElementById('landingPage').style.display = 'flex';
-}
-
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 </script>
 </body>
 </html>

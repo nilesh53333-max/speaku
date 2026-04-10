@@ -576,24 +576,14 @@ body {
     </div>
   </div>
 
-  <!-- Level -->
-  <div class="level-section" style="margin-top:16px">
-    <div class="ob-label">My current level</div>
-    <div class="level-cards">
-      <div class="level-card" onclick="selectLevel(this,'beginner')">
-        <div class="level-emoji">🌱</div>
-        <div class="level-name">Beginner</div>
-        <div class="level-desc">Just starting</div>
-      </div>
-      <div class="level-card selected" onclick="selectLevel(this,'intermediate')">
-        <div class="level-emoji">🌿</div>
-        <div class="level-name">Some basics</div>
-        <div class="level-desc">Know a little</div>
-      </div>
-      <div class="level-card" onclick="selectLevel(this,'advanced')">
-        <div class="level-emoji">🌳</div>
-        <div class="level-name">Conversational</div>
-        <div class="level-desc">Can hold basic talk</div>
+  <!-- Level auto detect -->
+  <div style="padding:16px 16px 0">
+    <div class="ob-label">Level check</div>
+    <div style="background:#202c33;border:1.5px solid #00a884;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="font-size:26px">🎯</div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#e9edef;margin-bottom:3px">Auto-detected in chat</div>
+        <div style="font-size:12px;color:#8696a0;line-height:1.4">We'll ask you 3 quick questions inside the chat and figure out your exact level — no guessing!</div>
       </div>
     </div>
   </div>
@@ -687,7 +677,7 @@ const MAX_FREE = 20;
 let state = {
   motherTongue: 'Marathi',
   targetLang: 'English',
-  level: 'intermediate',
+  level: 'unknown',
   userName: '',
   msgCount: 0,
   history: [],
@@ -759,28 +749,24 @@ function goBack() {
 
 // ── SYSTEM PROMPT ──
 function getSystem() {
-  const levelMap = {
-    beginner: 'complete beginner — knows almost nothing',
-    intermediate: 'knows some basics — can understand simple words',
-    advanced: 'conversational — can hold basic conversations'
-  };
-  return `You are a warm, patient ${state.targetLang} language tutor on Speaku.
+  return `You are a warm friendly ${state.targetLang} tutor on Speaku.
 
-Student: ${state.userName}
-Their mother tongue: ${state.motherTongue}
-Learning: ${state.targetLang}
-Current level: ${levelMap[state.level]}
+Student: ${state.userName} | Mother tongue: ${state.motherTongue} | Learning: ${state.targetLang}
 
-STRICT RULES:
-1. ALWAYS respond in ${state.motherTongue} — NEVER in ${state.targetLang} for explanations.
-2. Only use ${state.targetLang} for example words/phrases to practice.
-3. Keep messages SHORT — max 3-4 sentences.
-4. Always end with ONE question or a small practice task.
-5. Teach one concept at a time. Never overwhelm.
-6. Correct mistakes very gently and encouragingly.
-7. Feel like a friendly WhatsApp contact, not a teacher.
-8. Use emojis naturally like in WhatsApp chats.
-9. Since level is ${state.level}, ${state.level === 'beginner' ? 'start from absolute basics' : state.level === 'intermediate' ? 'build on what they know' : 'focus on fluency and natural conversation'}.`;
+RULES:
+1. ALWAYS respond in ${state.motherTongue} only. Never explain in ${state.targetLang}.
+2. Use ${state.targetLang} only for example words or practice sentences.
+3. Keep messages SHORT — 3-4 sentences max, like WhatsApp chat.
+4. Always end with ONE question or task.
+5. Feel like a friendly WhatsApp tutor, not a formal teacher. Use emojis 😊
+6. Correct mistakes very gently.
+
+PLACEMENT TEST (do this first — 3 questions):
+Q1: Ask them to write a simple sentence in ${state.targetLang} — like "tell me your name and where you are from in ${state.targetLang}"
+Q2 (after their answer): Ask something medium — describe what they did yesterday in ${state.targetLang}
+Q3 (after their answer): Ask something harder — express an opinion or a hypothetical situation
+
+After Q3: Silently assess their level based on grammar, vocabulary and confidence. Tell them their result warmly in ${state.motherTongue} (Beginner/Intermediate/Advanced). Then immediately start teaching from that level using Socratic method — one concept at a time, make them discover answers themselves.`;
 }
 
 // ── INIT SESSION ──
@@ -798,7 +784,7 @@ async function initSession() {
         system: getSystem(),
         messages: [{
           role: 'user',
-          content: `Start our session. Greet me warmly in ${state.motherTongue}, tell me what we'll learn today, and give me the first small practice task based on my ${state.level} level. Keep it short and friendly like WhatsApp.`
+          content: `Start with a placement test. In ${state.motherTongue}, tell ${state.userName} warmly that before we start, you want to check their ${state.targetLang} level with 3 quick questions. Keep it casual and friendly like WhatsApp. Then ask the FIRST test question — make it simple: ask them to write something basic in ${state.targetLang} like introducing themselves. After all 3 questions, you will tell them their level and start teaching. Ask only question 1 now.`
         }]
       })
     });

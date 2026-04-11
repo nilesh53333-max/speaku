@@ -656,7 +656,7 @@ async function callGemini(userMsg) {
     },
     contents,
     generationConfig: {                      // ✅ FIX 2: correct camelCase for Gemini
-      maxOutputTokens: 300,
+      maxOutputTokens: 500,
       temperature: 0.9
     }
   };
@@ -678,7 +678,7 @@ async function callGemini(userMsg) {
 async function initSession() {
   showTyping(); setStatus('typing...', true);
   try {
-    const reply = await callGemini(`Start a casual conversation with ${S.name}. In ${S.mother}, say one warm sentence that today we are just going to chat in ${S.target} — no studying, no pressure, just talking. Then immediately ask them one easy question about their day in ${S.target}.`);
+    const reply = await callGemini(`Start a casual conversation with ${S.name}. In ${S.mother}, say one warm complete sentence that today we are just going to chat in ${S.target} — no studying, no pressure, just talking. Then immediately ask them one easy question about their day in ${S.target}. You MUST end with an English question. Never cut off mid sentence.`);
     hideTyping(); setStatus('online', false);
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
@@ -829,6 +829,9 @@ function setupVoice() {
     if (e.results[e.results.length - 1].isFinal) {
       stopMic();
       input.focus();
+      // Force UI update on mobile
+      document.getElementById('sendBtn').classList.toggle('show', input.value.trim().length > 0);
+      document.getElementById('micBtn').style.display = input.value.trim().length > 0 ? 'none' : 'flex';
     }
   };
 

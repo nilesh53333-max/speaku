@@ -521,14 +521,14 @@ body {
       <div class="pw-plans">
         <div class="pw-plan active" id="plan1" onclick="selPlan(1)">
           <div class="pw-pname">Monthly</div>
-          <div class="pw-price">$4.99</div>
+          <div class="pw-price">₹49</div>
           <div class="pw-period">per month</div>
         </div>
         <div class="pw-plan" id="plan2" onclick="selPlan(2)">
           <div class="pw-pname">Yearly</div>
-          <div class="pw-price">$39</div>
+          <div class="pw-price">₹399</div>
           <div class="pw-period">per year</div>
-          <div class="pw-save">SAVE 35%</div>
+          <div class="pw-save">SAVE 32%</div>
         </div>
       </div>
       <button class="pw-btn">Continue Learning →</button>
@@ -656,7 +656,7 @@ async function callGemini(userMsg) {
     },
     contents,
     generationConfig: {                      // ✅ FIX 2: correct camelCase for Gemini
-      maxOutputTokens: 500,
+      maxOutputTokens: 300,
       temperature: 0.9
     }
   };
@@ -719,8 +719,8 @@ async function sendMessage(text) {
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
     if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
-    // Show summary when 5 messages left ✅
-    if (MAX_FREE - S.count === 5) setTimeout(showSessionSummary, 1000);
+    // Show summary when 6 messages left ✅
+    if (MAX_FREE - S.count === 6) setTimeout(showSessionSummary, 1000);
   } catch(e) {
     hideTyping(); setStatus('online', false);
     addBubble('incoming', 'Something went wrong. Please try again. 🙏');

@@ -604,23 +604,30 @@ function goBack() {
 }
 
 // ══════════════════════════
-// SYSTEM PROMPT
+// SYSTEM PROMPT — optimized
 // ══════════════════════════
 function getSystem() {
-  return `You are a speaking practice partner helping ${S.name} get comfortable speaking ${S.target}. They speak ${S.mother}.
+  return `Chat coach for ${S.name}. Mother tongue: ${S.mother}. Target: ${S.target}.
+Rules: 2-3 sentences max. Ask 1 follow-up question. No corrections mid-chat. No lessons. No word lists.
+If they write in ${S.mother} — reply only "Try saying that in ${S.target}!" and wait.
+Goal: fluency and confidence, not perfection.`;
+}
 
-YOUR ONLY JOB: Keep the conversation flowing naturally. Make them speak. That is it.
+function getSummaryPrompt() {
+  return `You are an encouraging English coach. The user just finished a chat session.
+Review the conversation and give a short session summary in this exact format:
 
-HOW TO DO IT:
-- Chat about their real life — today, food, work, friends, hobbies, plans, opinions
-- React naturally to what they say and ask ONE follow-up question
-- Keep your messages to 2-3 sentences MAX — like WhatsApp
-- SILENT CORRECTION RULE — this is the most important rule: When the user makes ANY grammar mistake, you MUST use the correct version of their exact sentence naturally in your reply. NEVER skip this. Example: user says "I am going gym for 6 months" → you reply "You've been going to the gym for 6 months — that's amazing!" The correction must feel natural, never like a lesson.
-- If they get stuck on a word — give them ONLY that one word in ${S.target}, nothing else, then continue
-- If they write in ${S.mother} — gently say "Try saying that in ${S.target}!" and wait
-- Use ${S.mother} only for a short encouraging word occasionally — keep conversation mostly in ${S.target}
-- Never explicitly teach grammar. Never list words. Never give explanations.
-- Goal: fluency and confidence — not perfection`;
+🌟 Great effort today, ${S.name}!
+
+What you did well:
+• [1-2 specific things they did well]
+
+tiny things to remember:
+• [2-3 gentle grammar corrections from the actual conversation, format: "say X" not "Y"]
+
+Keep going — you're improving every day! 💪
+
+Keep it warm, short, and encouraging. Max 8 lines total.`;
 }
 
 // ══════════════════════════
@@ -629,8 +636,8 @@ HOW TO DO IT:
 async function callGemini(userMsg) {
   const contents = [];
 
-  // Add history
-  S.history.forEach(m => {
+  // Add last 10 messages only — saves tokens ✅
+  S.history.slice(-10).forEach(m => {
     contents.push({
       role: m.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: m.content }]
@@ -712,6 +719,8 @@ async function sendMessage(text) {
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
     if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
+    // Show summary when 5 messages left ✅
+    if (MAX_FREE - S.count === 5) setTimeout(showSessionSummary, 1000);
   } catch(e) {
     hideTyping(); setStatus('online', false);
     addBubble('incoming', 'Something went wrong. Please try again. 🙏');
@@ -889,6 +898,50 @@ function toggleSpeaker() {
   S.speakerOn = !S.speakerOn;
   document.getElementById('speakerBtn').textContent = S.speakerOn ? '🔊' : '🔇';
   if (!S.speakerOn) cancelTTS();
+}
+
+// ══════════════════════════
+// SESSION SUMMARY ✅
+// ══════════════════════════
+async function showSessionSummary() {
+  showTyping(); setStatus('reviewing your session...', true);
+  try {
+    const contents = S.history.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
+    contents.push({ role: 'user', parts: [{ text: 'Give me a session summary now.' }] });
+
+    const body = {
+      system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] },
+      contents,
+      generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
+    };
+
+    const res = await fetch(GEMINI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    const summary = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    hideTyping(); setStatus('online', false);
+    if (summary) addSummaryCard(summary);
+  } catch(e) {
+    hideTyping(); setStatus('online', false);
+    console.error(e);
+  }
+}
+
+function addSummaryCard(text) {
+  const bg = document.getElementById('chatBg');
+  const anchor = document.getElementById('scrollAnchor');
+  const typingRow = document.getElementById('typingRow');
+  const card = document.createElement('div');
+  card.style.cssText = 'background:linear-gradient(135deg,#1a3a2a,#0d2318);border:1px solid #00a884;border-radius:12px;padding:16px;margin:10px 0;animation:msgIn 0.3s ease both;';
+  card.innerHTML = `<div style="font-size:13px;color:#e9edef;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`;
+  bg.insertBefore(card, typingRow);
+  anchor.scrollIntoView({ behavior: 'smooth' });
 }
 
 // ══════════════════════════

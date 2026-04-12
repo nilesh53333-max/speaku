@@ -1046,19 +1046,24 @@ HOW TO DO IT:
 }
 
 function getSummaryPrompt() {
-  return `You are an encouraging English coach. Review this conversation and give a short session summary:
+  return `You are an encouraging English coach. Review this conversation and give a session summary in this exact format:
 
-🌟 Great effort today, ${S.name}!
+🌟 Session Summary for ${S.name}!
 
-What you did well:
-• [1-2 specific things]
+📊 Overall Level: [One line assessment — Beginner / Intermediate / Advanced, with one sentence explanation]
 
-Things to remember:
-• [2-3 gentle corrections from actual conversation, format: "say X" not "Y"]
+✅ What you did well:
+• [Specific thing 1 from actual conversation]
+• [Specific thing 2 from actual conversation]
 
-Keep going — you're improving! 💪
+🔧 Mistakes to remember:
+• [Correction 1: "You said X → say Y instead"]
+• [Correction 2: "You said X → say Y instead"]
+• [Correction 3 if applicable]
 
-Keep it warm, short, max 8 lines.`;
+💡 Focus for next session: [One specific thing they should practice next time]
+
+Keep it warm, encouraging, and based ONLY on what actually happened in this conversation. Max 12 lines.`;
 }
 
 // ── GEMINI API ──
@@ -1122,7 +1127,7 @@ async function sendMessage(text) {
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
     if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
-    if (MAX_FREE - S.count === 6) setTimeout(showSessionSummary, 1000);
+    if (S.count === 10) setTimeout(showSessionSummary, 1000);
   } catch(e) {
     hideTyping(); setStatus('online', false);
     addBubble('incoming', 'Something went wrong. Please try again. 🙏');

@@ -2,64 +2,332 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Speaku — Speak English Confidently</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Englisho — English बोलायला शिका, आपल्या भाषेत. Learn to speak English confidently through conversation."/>
+<title>Englisho — Speak English Confidently</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
+:root {
+  --green: #00a884;
+  --dark-green: #017a62;
+  --bg: #f0f2f5;
+  --white: #ffffff;
+  --dark: #111b21;
+  --chat-bg: #efeae2;
+  --incoming: #ffffff;
+  --outgoing: #d9fdd3;
+  --text: #111b21;
+  --muted: #667781;
+  --border: #e9edef;
+  --header: #008069;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: #111b21;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
 }
 
-.phone {
-  width: 100%;
-  max-width: 430px;
-  height: 100vh;
+/* ══ NAV ══ */
+.nav {
+  background: var(--header);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: #a8e6cf; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-link:hover { color: white; }
+
+/* ══ LANDING ══ */
+#landingPage {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0 80px;
+}
+
+.hero-left {}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--dark-green);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hero h1 span { color: var(--header); }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.hero-features {
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
+  gap: 10px;
+  margin-bottom: 32px;
 }
 
-/* ══ ONBOARDING ══ */
-#onboarding {
-  flex: 1;
+.feature-item {
   display: flex;
-  flex-direction: column;
-  background: #111b21;
-  overflow-y: auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
 }
 
-.ob-header {
-  background: #202c33;
-  padding: 24px 20px;
-  text-align: center;
+.feature-icon {
+  width: 24px; height: 24px;
+  background: #e8f5e9;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
   flex-shrink: 0;
 }
 
-.ob-logo {
-  font-size: 30px;
-  font-weight: 700;
-  color: #e9edef;
-  letter-spacing: -1px;
-  margin-bottom: 4px;
+.hero-cta {
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.ob-logo span { color: #00a884; }
-.ob-tagline { font-size: 13px; color: #8696a0; line-height: 1.4; }
+.hero-cta:hover { background: var(--dark-green); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,168,132,0.3); }
 
-.ob-section { padding: 16px 16px 0; }
+.hero-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+/* Phone mockup */
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 280px;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  overflow: hidden;
+  border: 6px solid #222;
+}
+
+.mock-header {
+  background: var(--header);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mock-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+.mock-name { font-size: 13px; font-weight: 600; color: white; }
+.mock-status { font-size: 11px; color: rgba(255,255,255,0.7); }
+
+.mock-chat {
+  background: var(--chat-bg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 300px;
+}
+
+.mock-bubble {
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.mock-bubble.in {
+  background: white;
+  border-top-left-radius: 2px;
+  align-self: flex-start;
+  color: #111;
+}
+
+.mock-bubble.out {
+  background: #d9fdd3;
+  border-top-right-radius: 2px;
+  align-self: flex-end;
+  color: #111;
+}
+
+.mock-time { font-size: 10px; color: #8696a0; margin-top: 3px; text-align: right; }
+
+/* Features section */
+.features-section {
+  background: white;
+  padding: 60px 0;
+  margin-top: 20px;
+}
+
+.features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.section-sub {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.feature-card-icon { font-size: 32px; margin-bottom: 14px; }
+.feature-card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.feature-card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* Onboarding panel */
+#onboardingPage {
+  display: none;
+  min-height: calc(100vh - 56px);
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.ob-panel {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.ob-panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.ob-panel-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
 
 .ob-label {
   font-size: 11px;
   font-weight: 600;
-  color: #00a884;
+  color: var(--header);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -69,128 +337,181 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  margin-bottom: 20px;
 }
 
 .lang-btn {
-  background: #202c33;
-  border: 1.5px solid #2a3942;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
   border-radius: 10px;
-  padding: 11px 10px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   font-size: 13px;
-  color: #e9edef;
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   transition: all 0.15s;
 }
 
 .lang-btn.selected {
-  border-color: #00a884;
-  background: rgba(0,168,132,0.12);
-  color: #00a884;
+  border-color: var(--green);
+  background: #e8f5e9;
+  color: var(--dark-green);
 }
+
+.english-box {
+  background: #e8f5e9;
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.english-box .flag { font-size: 24px; }
+.english-box .info { flex: 1; }
+.english-box .lang-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.english-box .lang-desc { font-size: 12px; color: var(--muted); }
+.english-box .check { color: var(--green); font-size: 18px; }
 
 .name-input {
   width: 100%;
-  background: #202c33;
-  border: 1.5px solid #2a3942;
+  border: 1.5px solid var(--border);
   border-radius: 10px;
-  padding: 13px 14px;
+  padding: 12px 14px;
   font-size: 14px;
-  color: #e9edef;
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   outline: none;
+  margin-bottom: 20px;
+  background: var(--bg);
+  transition: border-color 0.2s;
 }
 
-.name-input:focus { border-color: #00a884; }
-.name-input::placeholder { color: #8696a0; }
+.name-input:focus { border-color: var(--green); background: white; }
+.name-input::placeholder { color: #aaa; }
 
 .start-btn {
   width: 100%;
-  background: #00a884;
+  background: var(--green);
   border: none;
   border-radius: 12px;
-  padding: 15px;
+  padding: 14px;
   font-size: 16px;
   font-weight: 600;
   color: white;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
 }
 
-.free-note { text-align: center; font-size: 12px; color: #8696a0; margin-top: 10px; }
+.start-btn:hover { background: var(--dark-green); }
 
-/* ══ CHAT ══ */
-#chatScreen {
+.free-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* ══ CHAT PAGE ══ */
+#chatPage {
   display: none;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
+  height: calc(100vh - 56px);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 24px;
 }
 
-.wa-header {
-  background: #202c33;
-  padding: 10px 16px;
+.chat-container {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+.chat-header {
+  background: var(--header);
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid #2a3942;
   flex-shrink: 0;
 }
 
-.wa-back { color: #aebac1; font-size: 22px; cursor: pointer; padding: 4px 6px 4px 0; }
-
-.tutor-avatar {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00a884, #017a62);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
+.chat-back {
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px 4px 0;
+  transition: color 0.15s;
 }
 
-.tutor-info { flex: 1; min-width: 0; }
-.tutor-name { font-size: 15px; font-weight: 600; color: #e9edef; }
-.tutor-status { font-size: 12px; color: #8696a0; margin-top: 1px; }
-.tutor-status.typing { color: #00a884; }
-.tutor-status.recording { color: #f44336; }
+.chat-back:hover { color: white; }
 
-.header-actions { display: flex; gap: 16px; color: #aebac1; font-size: 20px; align-items: center; }
-.header-actions span { cursor: pointer; }
+.chat-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chat-info { flex: 1; }
+.chat-name { font-size: 15px; font-weight: 600; color: white; }
+.chat-status { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 1px; }
+.chat-status.typing { color: #a8e6cf; }
+.chat-status.recording { color: #ffcdd2; }
+
+.chat-actions { display: flex; gap: 16px; color: rgba(255,255,255,0.8); font-size: 20px; }
+.chat-actions span { cursor: pointer; transition: color 0.15s; }
+.chat-actions span:hover { color: white; }
 
 .msgs-bar {
-  background: #182229;
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
   text-align: center;
   padding: 5px;
-  font-size: 11px;
-  color: #8696a0;
+  font-size: 12px;
+  color: var(--muted);
   flex-shrink: 0;
 }
-.msgs-bar b { color: #00a884; }
 
-/* Chat bg */
+.msgs-bar b { color: var(--green); }
+
 .wa-bg {
   flex: 1;
   overflow-y: auto;
-  padding: 10px 12px 6px;
-  background-color: #0b141a;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23182229' stroke-width='1'/%3E%3C/svg%3E");
+  padding: 16px 20px;
+  background-color: var(--chat-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 10 L50 30 L70 30 L55 45 L60 65 L40 52 L20 65 L25 45 L10 30 L30 30 Z' fill='none' stroke='%23ddd5c8' stroke-width='0.5'/%3E%3C/svg%3E");
   scroll-behavior: smooth;
 }
 
-.wa-bg::-webkit-scrollbar { width: 3px; }
-.wa-bg::-webkit-scrollbar-thumb { background: #2a3942; border-radius: 3px; }
+.wa-bg::-webkit-scrollbar { width: 4px; }
+.wa-bg::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
-.date-pill { text-align: center; margin: 6px 0 10px; }
+.date-pill { text-align: center; margin: 4px 0 12px; }
 .date-pill span {
-  background: #182229; color: #8696a0;
-  font-size: 11px; padding: 4px 10px;
-  border-radius: 8px; display: inline-block;
+  background: rgba(255,255,255,0.85);
+  color: var(--muted);
+  font-size: 11.5px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
 
-/* Messages */
 .msg-row {
   display: flex;
   margin-bottom: 2px;
@@ -206,31 +527,32 @@ body {
 .msg-row.outgoing { justify-content: flex-end; }
 
 .bubble {
-  max-width: 78%;
+  max-width: 65%;
   padding: 7px 10px 22px;
   border-radius: 8px;
   position: relative;
   word-break: break-word;
   line-height: 1.55;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
 
 .bubble.incoming {
-  background: #202c33;
+  background: var(--incoming);
   border-top-left-radius: 2px;
-  color: #e9edef;
+  color: var(--text);
 }
 
 .bubble.outgoing {
-  background: #005c4b;
+  background: var(--outgoing);
   border-top-right-radius: 2px;
-  color: #e9edef;
+  color: var(--text);
 }
 
 .bubble.incoming::before {
   content: '';
   position: absolute;
   top: 0; left: -7px;
-  border-top: 8px solid #202c33;
+  border-top: 8px solid var(--incoming);
   border-left: 8px solid transparent;
 }
 
@@ -238,7 +560,7 @@ body {
   content: '';
   position: absolute;
   top: 0; right: -7px;
-  border-top: 8px solid #005c4b;
+  border-top: 8px solid var(--outgoing);
   border-right: 8px solid transparent;
 }
 
@@ -248,12 +570,11 @@ body {
   position: absolute;
   bottom: 4px; right: 8px;
   display: flex; align-items: center; gap: 3px;
-  font-size: 11px; color: #8696a0; white-space: nowrap;
+  font-size: 11px; color: var(--muted); white-space: nowrap;
 }
 
-.ticks { color: #53bdeb; font-size: 12px; }
+.ticks { color: #4fc3f7; font-size: 12px; }
 
-/* Typing indicator */
 .typing-row {
   display: none;
   justify-content: flex-start;
@@ -263,7 +584,7 @@ body {
 .typing-row.visible { display: flex; }
 
 .typing-bubble {
-  background: #202c33;
+  background: white;
   border-radius: 8px;
   border-top-left-radius: 2px;
   padding: 10px 14px;
@@ -271,20 +592,21 @@ body {
   align-items: center;
   gap: 4px;
   position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
 
 .typing-bubble::before {
   content: '';
   position: absolute;
   top: 0; left: -7px;
-  border-top: 8px solid #202c33;
+  border-top: 8px solid white;
   border-left: 8px solid transparent;
 }
 
 .td {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: #8696a0;
+  background: #aaa;
   animation: tdB 1.2s infinite;
 }
 .td:nth-child(2) { animation-delay: 0.2s; }
@@ -297,25 +619,26 @@ body {
 
 #scrollAnchor { height: 4px; }
 
-/* Input bar */
-.wa-input-bar {
-  background: #202c33;
-  padding: 8px 10px;
+.chat-input-bar {
+  background: #f0f2f5;
+  padding: 10px 16px;
   display: flex;
   align-items: flex-end;
-  gap: 8px;
+  gap: 10px;
+  border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
 
-.wa-input-wrap {
+.chat-input-wrap {
   flex: 1;
-  background: #2a3942;
+  background: white;
   border-radius: 24px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   display: flex;
   align-items: flex-end;
   gap: 8px;
   min-height: 44px;
+  border: 1px solid var(--border);
 }
 
 #msgInput {
@@ -324,7 +647,7 @@ body {
   border: none;
   outline: none;
   font-size: 15px;
-  color: #e9edef;
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   resize: none;
   max-height: 100px;
@@ -332,11 +655,11 @@ body {
   padding: 2px 0;
 }
 
-#msgInput::placeholder { color: #8696a0; }
+#msgInput::placeholder { color: #aaa; }
 
 .mic-btn {
   width: 44px; height: 44px;
-  background: #00a884;
+  background: var(--green);
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -356,11 +679,11 @@ body {
   50% { box-shadow: 0 0 0 10px rgba(244,67,54,0); }
 }
 
-.mic-btn:disabled { background: #2a3942; cursor: not-allowed; animation: none; }
+.mic-btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
 
 .send-btn {
   width: 44px; height: 44px;
-  background: #00a884;
+  background: var(--green);
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -368,149 +691,261 @@ body {
   align-items: center; justify-content: center;
   font-size: 18px; color: white;
   flex-shrink: 0;
+  transition: all 0.2s;
 }
 
+.send-btn:hover { background: var(--dark-green); }
 .send-btn.show { display: flex; }
 
 /* Paywall */
 #paywallOverlay {
   display: none;
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 100;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 200;
   align-items: flex-end;
+  justify-content: center;
 }
 
 #paywallOverlay.visible { display: flex; }
 
 .pw-sheet {
-  background: #202c33;
+  background: white;
   border-radius: 20px 20px 0 0;
   padding: 28px 24px 36px;
   width: 100%;
+  max-width: 480px;
   text-align: center;
 }
 
 .pw-icon { font-size: 44px; margin-bottom: 14px; }
-.pw-title { font-size: 20px; font-weight: 700; color: #e9edef; margin-bottom: 8px; }
-.pw-sub { font-size: 13px; color: #8696a0; line-height: 1.5; margin-bottom: 24px; }
+.pw-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.pw-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 24px; }
 
 .pw-plans { display: flex; gap: 10px; margin-bottom: 20px; }
 
 .pw-plan {
-  flex: 1; background: #2a3942;
-  border: 1.5px solid #3a4a52;
+  flex: 1; background: var(--bg);
+  border: 1.5px solid var(--border);
   border-radius: 14px; padding: 16px 10px;
   cursor: pointer; transition: all 0.15s;
 }
 
-.pw-plan.active { border-color: #00a884; background: rgba(0,168,132,0.1); }
-.pw-pname { font-size: 13px; font-weight: 600; color: #e9edef; margin-bottom: 4px; }
-.pw-price { font-size: 20px; font-weight: 700; color: #00a884; }
-.pw-period { font-size: 11px; color: #8696a0; }
-.pw-save { font-size: 10px; background: #00a884; color: white; padding: 2px 6px; border-radius: 8px; display: inline-block; margin-top: 4px; }
+.pw-plan.active { border-color: var(--green); background: #e8f5e9; }
+.pw-pname { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pw-price { font-size: 22px; font-weight: 700; color: var(--green); }
+.pw-period { font-size: 11px; color: var(--muted); }
+.pw-save { font-size: 10px; background: var(--green); color: white; padding: 2px 6px; border-radius: 8px; display: inline-block; margin-top: 4px; }
 
 .pw-btn {
-  width: 100%; background: #00a884; border: none;
+  width: 100%; background: var(--green); border: none;
   border-radius: 12px; padding: 15px;
   font-size: 16px; font-weight: 600; color: white;
   cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 12px;
+  transition: all 0.2s;
 }
 
+.pw-btn:hover { background: var(--dark-green); }
+
 .pw-free {
-  font-size: 13px; color: #8696a0; cursor: pointer;
+  font-size: 13px; color: var(--muted); cursor: pointer;
   background: none; border: none; font-family: 'Inter', sans-serif; text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 60px; }
+  .hero-right { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  #chatPage { padding: 0; border-radius: 0; }
+  .chat-container { border-radius: 0; height: calc(100vh - 56px); }
+  .bubble { max-width: 80%; }
+  .nav { padding: 14px 16px; }
 }
 </style>
 </head>
 <body>
-<div class="phone">
 
-<!-- ══ ONBOARDING ══ -->
-<div id="onboarding">
-  <div class="ob-header">
-    <div class="ob-logo">Speak<span>u</span> 🌍</div>
-    <div class="ob-tagline">Practice speaking English like chatting with a friend.<br>No grammar lessons. Just real conversation.</div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Englis<span>ho</span> 🇬🇧</div>
+  <div class="nav-right">
+    <a class="nav-link" href="#features">How it works</a>
+    <a class="nav-link" href="#" onclick="showOnboarding()">Try Free</a>
   </div>
+</nav>
 
-  <div class="ob-section">
-    <div class="ob-label">I speak</div>
-    <div class="lang-grid" id="motherGrid">
-      <button class="lang-btn selected" data-lang="Marathi" onclick="sel('mother',this)">🇮🇳 Marathi</button>
-      <button class="lang-btn" data-lang="Hindi" onclick="sel('mother',this)">🇮🇳 Hindi</button>
-      <button class="lang-btn" data-lang="Tamil" onclick="sel('mother',this)">🇮🇳 Tamil</button>
-      <button class="lang-btn" data-lang="Telugu" onclick="sel('mother',this)">🇮🇳 Telugu</button>
-      <button class="lang-btn" data-lang="Gujarati" onclick="sel('mother',this)">🇮🇳 Gujarati</button>
-      <button class="lang-btn" data-lang="Punjabi" onclick="sel('mother',this)">🇮🇳 Punjabi</button>
-      <button class="lang-btn" data-lang="English" onclick="sel('mother',this)">🇬🇧 English</button>
-      <button class="lang-btn" data-lang="Spanish" onclick="sel('mother',this)">🇪🇸 Spanish</button>
+<!-- ══ LANDING PAGE ══ -->
+<div id="landingPage">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Free to try · No signup needed
+      </div>
+      <h1>English बोलायला शिका,<br><span>आपल्या भाषेत</span></h1>
+      <p class="hero-sub">WhatsApp सारख्या chat मध्ये English practice करा. Grammar lessons नाही — फक्त real conversation. तुमच्या tutor ला तुमच्या भाषेत बोलता येतं!</p>
+
+      <div class="hero-features">
+        <div class="feature-item">
+          <div class="feature-icon">🗣️</div>
+          Voice + text दोन्ही प्रकारे बोलता येतं
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✅</div>
+          Silent correction — चुका automatically fix होतात
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🇮🇳</div>
+          Marathi, Hindi, Tamil, Telugu मध्ये explain होतं
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          फक्त ₹49/month — कोणत्याही coaching पेक्षा स्वस्त
+        </div>
+      </div>
+
+      <button class="hero-cta" onclick="showOnboarding()">
+        🎤 Start Talking Free
+      </button>
+      <div class="hero-note">✓ 20 free messages · No credit card</div>
+    </div>
+
+    <div class="hero-right">
+      <div class="phone-mockup">
+        <div class="mock-header">
+          <div class="mock-avatar">🎓</div>
+          <div>
+            <div class="mock-name">🇬🇧 English Tutor</div>
+            <div class="mock-status">online</div>
+          </div>
+        </div>
+        <div class="mock-chat">
+          <div class="mock-bubble in">
+            नमस्ते Priya! 😊 आज आपण English मध्ये गप्पा मारूया. How was your day today?
+            <div class="mock-time">9:41</div>
+          </div>
+          <div class="mock-bubble out">
+            i go to market today
+            <div class="mock-time">9:42 ✓✓</div>
+          </div>
+          <div class="mock-bubble in">
+            Oh nice! You went to the market today 🛒 What did you buy there?
+            <div class="mock-time">9:42</div>
+          </div>
+          <div class="mock-bubble out">
+            i buyed vegetables and fruits
+            <div class="mock-time">9:43 ✓✓</div>
+          </div>
+          <div class="mock-bubble in">
+            Great! You bought vegetables and fruits 🥦🍎 Healthy choice! Do you cook at home or does someone else cook?
+            <div class="mock-time">9:43</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="ob-section" style="margin-top:14px">
-    <div class="ob-label">I want to learn</div>
-    <div class="lang-grid" id="targetGrid">
-      <button class="lang-btn selected" data-lang="English" data-voice="en-US" onclick="sel('target',this)">🇬🇧 English</button>
-      <button class="lang-btn" data-lang="Spanish" data-voice="es-ES" onclick="sel('target',this)">🇪🇸 Spanish</button>
-      <button class="lang-btn" data-lang="French" data-voice="fr-FR" onclick="sel('target',this)">🇫🇷 French</button>
-      <button class="lang-btn" data-lang="German" data-voice="de-DE" onclick="sel('target',this)">🇩🇪 German</button>
-      <button class="lang-btn" data-lang="Japanese" data-voice="ja-JP" onclick="sel('target',this)">🇯🇵 Japanese</button>
-      <button class="lang-btn" data-lang="Korean" data-voice="ko-KR" onclick="sel('target',this)">🇰🇷 Korean</button>
-      <button class="lang-btn" data-lang="Hindi" data-voice="hi-IN" onclick="sel('target',this)">🇮🇳 Hindi</button>
-      <button class="lang-btn" data-lang="Marathi" data-voice="mr-IN" onclick="sel('target',this)">🇮🇳 Marathi</button>
-    </div>
-  </div>
+  <!-- Features -->
+  <div class="features-section" id="features">
+    <div class="features-inner">
+      <div class="section-title">English शिकणं आता सोपं झालं</div>
+      <div class="section-sub">Coaching class नाही, app download नाही — फक्त chat करा आणि शिका</div>
 
-  <div class="ob-section" style="margin-top:14px">
-    <div class="ob-label">Your name</div>
-    <input type="text" class="name-input" id="nameInput" placeholder="So your tutor knows what to call you..." maxlength="20"/>
-  </div>
-
-  <div style="padding:20px 16px 28px">
-    <button class="start-btn" onclick="startChat()">Start Talking 🎤</button>
-    <div class="free-note">✓ Free to try · No signup · 20 free messages</div>
-    <div style="text-align:center;margin-top:14px;padding-bottom:4px">
-      <a href="privacy.html" style="font-size:11px;color:#8696a0;margin:0 10px;text-decoration:none">Privacy Policy</a>
-      <a href="terms.html" style="font-size:11px;color:#8696a0;margin:0 10px;text-decoration:none">Terms of Service</a>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon">💬</div>
+          <div class="feature-card-title">Real Conversation Practice</div>
+          <div class="feature-card-desc">WhatsApp सारख्या chat मध्ये English बोला. AI tutor तुमच्याशी natural conversation करतो — boring lessons नाही.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🤫</div>
+          <div class="feature-card-title">Silent Correction</div>
+          <div class="feature-card-desc">चूक झाली तर directly correct करत नाही — reply मध्येच बरोबर sentence वापरतो. तुम्हाला embarrass नाही होत.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🎤</div>
+          <div class="feature-card-title">Mic ने बोला</div>
+          <div class="feature-card-desc">Type करायचं नाही? Mic button दाबा आणि English मध्ये बोला. Speaking confidence build होते.</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══ CHAT ══ -->
-<div id="chatScreen">
-  <div class="wa-header">
-    <div class="wa-back" onclick="goBack()">←</div>
-    <div class="tutor-avatar">🎓</div>
-    <div class="tutor-info">
-      <div class="tutor-name" id="tutorName">English Tutor</div>
-      <div class="tutor-status" id="tutorStatus">online</div>
+<!-- ══ ONBOARDING PAGE ══ -->
+<div id="onboardingPage" style="display:none;min-height:calc(100vh - 56px);display:none;align-items:center;justify-content:center;padding:40px 24px;">
+  <div class="ob-panel">
+    <div class="ob-panel-title">चला सुरुवात करूया! 🚀</div>
+    <div class="ob-panel-sub">तुमची भाषा निवडा आणि English practice सुरू करा</div>
+
+    <div class="ob-label">I speak</div>
+    <div class="lang-grid" id="motherGrid">
+      <button class="lang-btn selected" data-lang="Marathi" onclick="sel(this)">🇮🇳 Marathi</button>
+      <button class="lang-btn" data-lang="Hindi" onclick="sel(this)">🇮🇳 Hindi</button>
+      <button class="lang-btn" data-lang="Tamil" onclick="sel(this)">🇮🇳 Tamil</button>
+      <button class="lang-btn" data-lang="Telugu" onclick="sel(this)">🇮🇳 Telugu</button>
+      <button class="lang-btn" data-lang="Gujarati" onclick="sel(this)">🇮🇳 Gujarati</button>
+      <button class="lang-btn" data-lang="Punjabi" onclick="sel(this)">🇮🇳 Punjabi</button>
+      <button class="lang-btn" data-lang="Kannada" onclick="sel(this)">🇮🇳 Kannada</button>
+      <button class="lang-btn" data-lang="Bengali" onclick="sel(this)">🇮🇳 Bengali</button>
     </div>
-    <div class="header-actions">
-      <span id="speakerBtn" onclick="toggleSpeaker()" title="Toggle voice">🔊</span>
-      <span>⋮</span>
+
+    <div class="ob-label">I want to learn</div>
+    <div class="english-box">
+      <div class="flag">🇬🇧</div>
+      <div class="info">
+        <div class="lang-name">English</div>
+        <div class="lang-desc">Speak confidently in real life</div>
+      </div>
+      <div class="check">✅</div>
     </div>
+
+    <div class="ob-label">Your name</div>
+    <input type="text" class="name-input" id="nameInput" placeholder="So your tutor knows what to call you..." maxlength="20"/>
+
+    <button class="start-btn" onclick="startChat()">Start Talking 🎤</button>
+    <div class="free-note">✓ Free to try · No signup · 20 free messages</div>
   </div>
+</div>
 
-  <div class="msgs-bar">Free session · <b id="msgsLeft">20</b> messages left</div>
-
-  <div class="wa-bg" id="chatBg">
-    <div class="date-pill"><span id="dateLabel">Today</span></div>
-    <div class="typing-row" id="typingRow">
-      <div class="typing-bubble">
-        <div class="td"></div><div class="td"></div><div class="td"></div>
+<!-- ══ CHAT PAGE ══ -->
+<div id="chatPage">
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-back" onclick="goBack()">←</div>
+      <div class="chat-avatar">🎓</div>
+      <div class="chat-info">
+        <div class="chat-name">🇬🇧 English Tutor</div>
+        <div class="chat-status" id="tutorStatus">online</div>
+      </div>
+      <div class="chat-actions">
+        <span id="speakerBtn" onclick="toggleSpeaker()" title="Toggle voice">🔊</span>
+        <span>⋮</span>
       </div>
     </div>
-    <div id="scrollAnchor"></div>
-  </div>
 
-  <div class="wa-input-bar">
-    <div class="wa-input-wrap">
-      <textarea id="msgInput" placeholder="Type a message..." rows="1"
-        onkeydown="handleKey(event)"
-        oninput="onType(this)"></textarea>
+    <div class="msgs-bar">Free session · <b id="msgsLeft">20</b> messages left</div>
+
+    <div class="wa-bg" id="chatBg">
+      <div class="date-pill"><span id="dateLabel">Today</span></div>
+      <div class="typing-row" id="typingRow">
+        <div class="typing-bubble">
+          <div class="td"></div><div class="td"></div><div class="td"></div>
+        </div>
+      </div>
+      <div id="scrollAnchor"></div>
     </div>
-    <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
-    <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+
+    <div class="chat-input-bar">
+      <div class="chat-input-wrap">
+        <textarea id="msgInput" placeholder="Type a message..." rows="1"
+          onkeydown="handleKey(event)"
+          oninput="onType(this)"></textarea>
+      </div>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
+      <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+    </div>
   </div>
 
   <div id="paywallOverlay">
@@ -537,172 +972,138 @@ body {
   </div>
 </div>
 
-</div>
-
 <script>
-// ══════════════════════════
-// CONFIG
-// ══════════════════════════
 const GEMINI_URL = 'https://speaku-api.nilesh53333.workers.dev/gemini';
 const MAX_FREE = 20;
 
-// ══════════════════════════
-// STATE
-// ══════════════════════════
 const S = {
   mother: 'Marathi',
-  target: 'English',
-  voiceLang: 'en-US',
   name: 'there',
   count: 0,
   history: [],
   loading: false,
   speakerOn: true,
   recognition: null,
-  recording: false
+  recording: false,
+  voiceLang: 'en-US'
 };
 
-// ══════════════════════════
-// ONBOARDING
-// ══════════════════════════
-function sel(type, el) {
-  const grid = type === 'mother' ? 'motherGrid' : 'targetGrid';
-  document.querySelectorAll(`#${grid} .lang-btn`).forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  if (type === 'mother') S.mother = el.dataset.lang;
-  else { S.target = el.dataset.lang; S.voiceLang = el.dataset.voice || 'en-US'; }
-}
-
-function startChat() {
-  if (S.mother === S.target) { alert('Please select different languages!'); return; }
-  S.name = document.getElementById('nameInput').value.trim() || 'there';
-
-  const flags = {English:'🇬🇧',Spanish:'🇪🇸',French:'🇫🇷',German:'🇩🇪',Japanese:'🇯🇵',Korean:'🇰🇷',Hindi:'🇮🇳',Marathi:'🇮🇳',Tamil:'🇮🇳',Telugu:'🇮🇳',Gujarati:'🇮🇳',Punjabi:'🇮🇳'};
-  document.getElementById('tutorName').textContent = `${flags[S.target]||'🌍'} ${S.target} Tutor`;
-  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
-
-  document.getElementById('onboarding').style.display = 'none';
-  const cs = document.getElementById('chatScreen');
-  cs.style.cssText = 'display:flex;flex-direction:column;height:100%;position:relative;';
-
-  setupVoice();
-  initTTS();
-  setTimeout(initSession, 400);
+// ── NAVIGATION ──
+function showOnboarding() {
+  document.getElementById('landingPage').style.display = 'none';
+  const ob = document.getElementById('onboardingPage');
+  ob.style.display = 'flex';
+  ob.style.flexDirection = 'column';
+  ob.style.alignItems = 'center';
+  ob.style.justifyContent = 'center';
+  ob.style.minHeight = 'calc(100vh - 56px)';
+  document.getElementById('chatPage').style.display = 'none';
 }
 
 function goBack() {
-  stopMic();
-  cancelTTS();
-  document.getElementById('chatScreen').style.display = 'none';
-  document.getElementById('onboarding').style.cssText = 'flex:1;display:flex;flex-direction:column;background:#111b21;overflow-y:auto;';
+  stopMic(); cancelTTS();
+  document.getElementById('chatPage').style.display = 'none';
+  document.getElementById('landingPage').style.display = 'block';
   S.history = []; S.count = 0; S.loading = false;
   document.getElementById('chatBg').innerHTML = '<div class="date-pill"><span id="dateLabel">Today</span></div><div class="typing-row" id="typingRow"><div class="typing-bubble"><div class="td"></div><div class="td"></div><div class="td"></div></div></div><div id="scrollAnchor"></div>';
   document.getElementById('msgsLeft').textContent = MAX_FREE;
   document.getElementById('msgInput').value = '';
   document.getElementById('sendBtn').classList.remove('show');
-  document.getElementById('micBtn').style.display = 'flex';
 }
 
-// ══════════════════════════
-// SYSTEM PROMPT — optimized
-// ══════════════════════════
+// ── ONBOARDING ──
+function sel(el) {
+  document.querySelectorAll('#motherGrid .lang-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  S.mother = el.dataset.lang;
+}
+
+function startChat() {
+  S.name = document.getElementById('nameInput').value.trim() || 'there';
+  document.getElementById('onboardingPage').style.display = 'none';
+  document.getElementById('chatPage').style.display = 'block';
+  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  setupVoice();
+  initTTS();
+  setTimeout(initSession, 400);
+}
+
+// ── SYSTEM PROMPT ──
 function getSystem() {
-  return `Chat coach for ${S.name}. Mother tongue: ${S.mother}. Target: ${S.target}.
-Rules: 2-3 sentences max. Ask 1 follow-up question. No corrections mid-chat. No lessons. No word lists.
-If they write in ${S.mother} — reply only "Try saying that in ${S.target}!" and wait.
-Goal: fluency and confidence, not perfection.`;
+  return `You are an English speaking coach for ${S.name}. Their mother tongue is ${S.mother}.
+
+YOUR ONLY JOB: Keep the conversation flowing naturally in English. Make them speak. That is it.
+
+HOW TO DO IT:
+- Chat about their real life — today, food, work, friends, hobbies, plans, opinions
+- React naturally and ask ONE follow-up question per reply
+- Keep replies to 2-3 sentences MAX — like WhatsApp chat
+- SILENT CORRECTION — most important rule: when user makes a grammar mistake, use the correct version naturally in your reply. NEVER explicitly say "you made a mistake". Example: user says "I am go to market" → you reply "Oh you went to the market! What did you buy?"
+- If they write in ${S.mother} — gently say "Try saying that in English!" and wait
+- Never teach grammar rules. Never list words. Never give explanations.
+- Never ask "how was your day" repeatedly — vary your questions
+- Goal: fluency and confidence — not perfection`;
 }
 
 function getSummaryPrompt() {
-  return `You are an encouraging English coach. The user just finished a chat session.
-Review the conversation and give a short session summary in this exact format:
+  return `You are an encouraging English coach. Review this conversation and give a short session summary:
 
 🌟 Great effort today, ${S.name}!
 
 What you did well:
-• [1-2 specific things they did well]
+• [1-2 specific things]
 
-tiny things to remember:
-• [2-3 gentle grammar corrections from the actual conversation, format: "say X" not "Y"]
+Things to remember:
+• [2-3 gentle corrections from actual conversation, format: "say X" not "Y"]
 
-Keep going — you're improving every day! 💪
+Keep going — you're improving! 💪
 
-Keep it warm, short, and encouraging. Max 8 lines total.`;
+Keep it warm, short, max 8 lines.`;
 }
 
-// ══════════════════════════
-// GEMINI API CALL — FIXED ✅
-// ══════════════════════════
+// ── GEMINI API ──
 async function callGemini(userMsg) {
   const contents = [];
-
-  // Add last 10 messages only — saves tokens ✅
   S.history.slice(-10).forEach(m => {
-    contents.push({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    });
+    contents.push({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] });
   });
-
-  // Add current user message if passed directly
-  if (userMsg) {
-    contents.push({ role: 'user', parts: [{ text: userMsg }] });
-  }
+  if (userMsg) contents.push({ role: 'user', parts: [{ text: userMsg }] });
 
   const body = {
-    system_instruction: {
-      role: 'user',                          // ✅ FIX 1: Gemini needs role:'user' here
-      parts: [{ text: getSystem() }]
-    },
+    system_instruction: { role: 'user', parts: [{ text: getSystem() }] },
     contents,
-    generationConfig: {                      // ✅ FIX 2: correct camelCase for Gemini
-      maxOutputTokens: 500,
-      temperature: 0.9
-    }
+    generationConfig: { maxOutputTokens: 500, temperature: 0.9 }
   };
 
-  const res = await fetch(GEMINI_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-
+  const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const data = await res.json();
   if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
   return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 }
 
-// ══════════════════════════
-// INIT SESSION
-// ══════════════════════════
+// ── INIT SESSION ──
 async function initSession() {
   showTyping(); setStatus('typing...', true);
   try {
-    const reply = await callGemini(`Start a casual conversation with ${S.name}. In ${S.mother}, say one warm complete sentence that today we are just going to chat in ${S.target} — no studying, no pressure, just talking. Then immediately ask them one easy question about their day in ${S.target}. You MUST end with an English question. Never cut off mid sentence.`);
+    const reply = await callGemini(`Start a casual conversation with ${S.name}. In ${S.mother}, say one warm sentence that today we are just going to chat in English — no studying, no pressure, just talking. Then immediately ask them one easy interesting question in English. Never ask "how was your day" — be more creative.`);
     hideTyping(); setStatus('online', false);
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
   } catch(e) {
     hideTyping(); setStatus('online', false);
-    addBubble('incoming', `नमस्ते ${S.name}! 😊 आज आपण फक्त ${S.target} मध्ये गप्पा मारूया — शिकवणं नाही, tension नको! How was your day today?`);
+    addBubble('incoming', `नमस्ते ${S.name}! 😊 आज आपण फक्त English मध्ये गप्पा मारूया — no tension! Tell me, what's something interesting that happened to you this week?`);
     console.error(e);
   }
 }
 
-// ══════════════════════════
-// SEND MESSAGE
-// ══════════════════════════
+// ── SEND MESSAGE ──
 async function sendMessage(text) {
   const input = document.getElementById('msgInput');
   const msg = (text || input.value).trim();
   if (!msg || S.loading) return;
-
   if (S.count >= MAX_FREE) { document.getElementById('paywallOverlay').classList.add('visible'); return; }
 
-  input.value = '';
-  input.style.height = 'auto';
-  input.blur(); // ✅ force mobile to release
-  setTimeout(() => { input.value = ''; onType(input); }, 50); // ✅ double clear for mobile
+  input.value = ''; input.style.height = 'auto';
   document.getElementById('sendBtn').classList.remove('show');
   document.getElementById('micBtn').style.display = 'flex';
 
@@ -716,12 +1117,11 @@ async function sendMessage(text) {
   showTyping(); setStatus('typing...', true);
 
   try {
-    const reply = await callGemini(null); // history already has the message
+    const reply = await callGemini(null);
     hideTyping(); setStatus('online', false);
     addBubble('incoming', reply);
     S.history.push({ role: 'assistant', content: reply });
     if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
-    // Show summary when 6 messages left ✅
     if (MAX_FREE - S.count === 6) setTimeout(showSessionSummary, 1000);
   } catch(e) {
     hideTyping(); setStatus('online', false);
@@ -734,56 +1134,35 @@ async function sendMessage(text) {
   }
 }
 
-// ══════════════════════════
-// ADD BUBBLE
-// ══════════════════════════
+// ── BUBBLES ──
 function addBubble(dir, text) {
   const bg = document.getElementById('chatBg');
   const anchor = document.getElementById('scrollAnchor');
   const typingRow = document.getElementById('typingRow');
-
   const now = new Date();
   const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-
   const row = document.createElement('div');
   row.className = `msg-row ${dir}`;
-
   const bubble = document.createElement('div');
   bubble.className = `bubble ${dir}`;
   bubble.innerHTML = `<div class="bubble-text">${esc(text).replace(/\n/g,'<br>')}</div><div class="bubble-meta">${time}${dir==='outgoing'?'<span class="ticks">✓✓</span>':''}</div>`;
-
   row.appendChild(bubble);
   bg.insertBefore(row, typingRow);
   anchor.scrollIntoView({ behavior: 'smooth' });
-
   if (dir === 'incoming' && S.speakerOn) speak(text);
 }
 
-function esc(t) {
-  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-// ══════════════════════════
-// TYPING & STATUS
-// ══════════════════════════
-function showTyping() {
-  document.getElementById('typingRow').classList.add('visible');
-  document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' });
-}
-
-function hideTyping() {
-  document.getElementById('typingRow').classList.remove('visible');
-}
-
+function showTyping() { document.getElementById('typingRow').classList.add('visible'); document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' }); }
+function hideTyping() { document.getElementById('typingRow').classList.remove('visible'); }
 function setStatus(text, isTyping) {
   const el = document.getElementById('tutorStatus');
   el.textContent = text;
-  el.className = 'tutor-status' + (isTyping ? ' typing' : '');
+  el.className = 'chat-status' + (isTyping ? ' typing' : '');
 }
 
-// ══════════════════════════
-// INPUT HANDLING
-// ══════════════════════════
+// ── INPUT ──
 function onType(el) {
   el.style.height = 'auto';
   el.style.height = Math.min(el.scrollHeight, 100) + 'px';
@@ -792,85 +1171,46 @@ function onType(el) {
   document.getElementById('micBtn').style.display = has ? 'none' : 'flex';
 }
 
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-}
+function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
 
-// ══════════════════════════
-// VOICE INPUT (MIC)
-// ══════════════════════════
+// ── VOICE INPUT ──
 function setupVoice() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) {
-    document.getElementById('micBtn').style.display = 'none';
-    return;
-  }
-
+  if (!SR) { document.getElementById('micBtn').style.display = 'none'; return; }
   S.recognition = new SR();
-  S.recognition.lang = S.voiceLang;
+  S.recognition.lang = 'en-US';
   S.recognition.continuous = false;
   S.recognition.interimResults = true;
-
   S.recognition.onstart = () => {
-    S.recording = true;
-    cancelTTS();
+    S.recording = true; cancelTTS();
     document.getElementById('micBtn').classList.add('recording');
     document.getElementById('micBtn').textContent = '⏹';
     setStatus('Listening...', false);
-    document.getElementById('tutorStatus').className = 'tutor-status recording';
+    document.getElementById('tutorStatus').className = 'chat-status recording';
   };
-
   S.recognition.onresult = (e) => {
-    let transcript = '';
-    for (let i = e.resultIndex; i < e.results.length; i++) {
-      transcript += e.results[i][0].transcript;
-    }
+    let t = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
     const input = document.getElementById('msgInput');
-    input.value = transcript;
-    onType(input);
-    if (e.results[e.results.length - 1].isFinal) {
-      stopMic();
-      input.focus();
-      // Force UI update on mobile
-      document.getElementById('sendBtn').classList.toggle('show', input.value.trim().length > 0);
-      document.getElementById('micBtn').style.display = input.value.trim().length > 0 ? 'none' : 'flex';
-    }
+    input.value = t; onType(input);
+    if (e.results[e.results.length-1].isFinal) { stopMic(); input.focus(); }
   };
-
-  S.recognition.onerror = (e) => {
-    if (e.error !== 'no-speech' && e.error !== 'aborted') console.warn('Mic error:', e.error);
-    stopMic();
-  };
-
+  S.recognition.onerror = (e) => { if (e.error !== 'no-speech' && e.error !== 'aborted') console.warn(e.error); stopMic(); };
   S.recognition.onend = () => stopMic();
 }
 
-function toggleMic() {
-  if (S.recording) stopMic();
-  else startMic();
-}
-
-function startMic() {
-  if (!S.recognition || S.loading) return;
-  try { S.recognition.lang = S.voiceLang; S.recognition.start(); } catch(e) {}
-}
-
+function toggleMic() { if (S.recording) stopMic(); else startMic(); }
+function startMic() { if (!S.recognition || S.loading) return; try { S.recognition.start(); } catch(e) {} }
 function stopMic() {
-  if (S.recognition && S.recording) {
-    try { S.recognition.stop(); } catch(e) {}
-  }
+  if (S.recognition && S.recording) { try { S.recognition.stop(); } catch(e) {} }
   S.recording = false;
-  const btn = document.getElementById('micBtn');
-  btn.classList.remove('recording');
-  btn.textContent = '🎤';
+  document.getElementById('micBtn').classList.remove('recording');
+  document.getElementById('micBtn').textContent = '🎤';
   setStatus('online', false);
 }
 
-// ══════════════════════════
-// VOICE OUTPUT (TTS)
-// ══════════════════════════
+// ── TTS ──
 let voices = [];
-
 function initTTS() {
   if (!window.speechSynthesis) return;
   voices = window.speechSynthesis.getVoices();
@@ -880,62 +1220,33 @@ function initTTS() {
 function speak(text) {
   if (!window.speechSynthesis || !S.speakerOn) return;
   cancelTTS();
-
   const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.85;
-  u.pitch = 1.0;
-  u.volume = 1.0;
-
-  const langMap = { English:'en', Spanish:'es', French:'fr', German:'de', Japanese:'ja', Korean:'ko', Hindi:'hi', Marathi:'mr' };
-  const langCode = langMap[S.target] || 'en';  // ✅ FIX 3: speak in TARGET language, not mother tongue
-  const match = voices.find(v => v.lang.startsWith(langCode));
-  if (match) u.voice = match;
-  else u.lang = `${langCode}-IN`;
-
+  u.rate = 0.85; u.pitch = 1.0; u.volume = 1.0;
+  const match = voices.find(v => v.lang.startsWith('en'));
+  if (match) u.voice = match; else u.lang = 'en-US';
   window.speechSynthesis.speak(u);
 }
 
-function cancelTTS() {
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
-}
-
+function cancelTTS() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
 function toggleSpeaker() {
   S.speakerOn = !S.speakerOn;
   document.getElementById('speakerBtn').textContent = S.speakerOn ? '🔊' : '🔇';
   if (!S.speakerOn) cancelTTS();
 }
 
-// ══════════════════════════
-// SESSION SUMMARY ✅
-// ══════════════════════════
+// ── SESSION SUMMARY ──
 async function showSessionSummary() {
   showTyping(); setStatus('reviewing your session...', true);
   try {
-    const contents = S.history.map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    }));
+    const contents = S.history.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
     contents.push({ role: 'user', parts: [{ text: 'Give me a session summary now.' }] });
-
-    const body = {
-      system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] },
-      contents,
-      generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
-    };
-
-    const res = await fetch(GEMINI_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
+    const body = { system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] }, contents, generationConfig: { maxOutputTokens: 300, temperature: 0.7 } };
+    const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const data = await res.json();
     const summary = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     hideTyping(); setStatus('online', false);
     if (summary) addSummaryCard(summary);
-  } catch(e) {
-    hideTyping(); setStatus('online', false);
-    console.error(e);
-  }
+  } catch(e) { hideTyping(); setStatus('online', false); }
 }
 
 function addSummaryCard(text) {
@@ -943,15 +1254,13 @@ function addSummaryCard(text) {
   const anchor = document.getElementById('scrollAnchor');
   const typingRow = document.getElementById('typingRow');
   const card = document.createElement('div');
-  card.style.cssText = 'background:linear-gradient(135deg,#1a3a2a,#0d2318);border:1px solid #00a884;border-radius:12px;padding:16px;margin:10px 0;animation:msgIn 0.3s ease both;';
-  card.innerHTML = `<div style="font-size:13px;color:#e9edef;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`;
+  card.style.cssText = 'background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border:1px solid #a5d6a7;border-radius:12px;padding:16px;margin:10px 0;animation:msgIn 0.3s ease both;';
+  card.innerHTML = `<div style="font-size:13px;color:#1b5e20;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`;
   bg.insertBefore(card, typingRow);
   anchor.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ══════════════════════════
-// PAYWALL
-// ══════════════════════════
+// ── PAYWALL ──
 function selPlan(n) {
   document.getElementById('plan1').classList.toggle('active', n===1);
   document.getElementById('plan2').classList.toggle('active', n===2);

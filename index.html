@@ -768,7 +768,7 @@ body {
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">Englis<span>ho</span> 🗣️</div>
+  <div class="nav-logo">English<span>o</span> 🗣️</div>
   <div class="nav-right">
     <a class="nav-link" href="#features">How it works</a>
     <a class="nav-link" href="#" onclick="showOnboarding()">Try Free</a>
@@ -1245,7 +1245,7 @@ async function showSessionSummary() {
   try {
     const contents = S.history.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
     contents.push({ role: 'user', parts: [{ text: 'Give me a session summary now.' }] });
-    const body = { system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] }, contents, generationConfig: { maxOutputTokens: 300, temperature: 0.7 } };
+    const body = { system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] }, contents, generationConfig: { maxOutputTokens: 600, temperature: 0.7 } };
     const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const data = await res.json();
     const summary = data.candidates?.[0]?.content?.parts?.[0]?.text || '';

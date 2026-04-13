@@ -573,6 +573,22 @@ body {
 .footer { text-align: center; font-size: 11px; color: #9ca3af; padding: 20px 0 0; }
 .footer a { color: #00a884; text-decoration: none; }
 
+.lang-opt {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+  text-align: left;
+}
+.lang-opt:hover { border-color: #00a884; background: #f0fdf4; }
+.lang-opt.selected { border-color: #00a884; background: #f0fdf4; color: #00a884; font-weight: 700; }
+
 @media (max-width: 480px) {
   .page-wrap { padding: 16px 12px 40px; }
   .q-text { font-size: 18px; }
@@ -596,7 +612,36 @@ body {
 
 <div class="page-wrap">
 
-  <!-- ══ Q1: A1 Vocabulary ══ -->
+  <!-- ══ INTRO: Name + Language ══ -->
+  <div class="q-card active" id="q0" style="min-height:auto;">
+    <div style="font-size:28px;margin-bottom:12px;">👋</div>
+    <div class="q-text" style="margin-bottom:6px;">Welcome to the Englisho Placement Test</div>
+    <p style="font-size:14px;color:#667781;margin-bottom:22px;line-height:1.6;">17 questions · ~5 minutes · Finds your exact English level (A1 to C1)</p>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;color:#008069;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Your Name</div>
+      <input type="text" id="introName" placeholder="Enter your name..."
+        style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;"
+        onfocus="this.style.borderColor='#00a884'" onblur="this.style.borderColor='#e5e7eb'"
+        oninput="checkIntro()"/>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;color:#008069;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">I Speak</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" id="langGrid">
+        <button class="lang-opt selected" data-lang="Marathi" onclick="pickLang(this)">🇮🇳 Marathi</button>
+        <button class="lang-opt" data-lang="Hindi" onclick="pickLang(this)">🇮🇳 Hindi</button>
+        <button class="lang-opt" data-lang="Tamil" onclick="pickLang(this)">🇮🇳 Tamil</button>
+        <button class="lang-opt" data-lang="Telugu" onclick="pickLang(this)">🇮🇳 Telugu</button>
+        <button class="lang-opt" data-lang="Gujarati" onclick="pickLang(this)">🇮🇳 Gujarati</button>
+        <button class="lang-opt" data-lang="Kannada" onclick="pickLang(this)">🇮🇳 Kannada</button>
+      </div>
+    </div>
+
+    <button class="next-btn enabled" id="startTestBtn" onclick="startTest()" style="max-width:100%;background:linear-gradient(135deg,#00a884,#008069);">
+      Start Test →
+    </button>
+  </div>
   <div class="q-card active" id="q1">
     <div class="level-badge level-A1">A1</div>
     <button class="translate-btn" onclick="toggleTranslate(1)">Translate to Marathi</button>
@@ -944,7 +989,29 @@ let score = 0;
 let answers = {};
 let userName = 'there';
 let userLang = 'Marathi';
-let speechTranscript = ''; // stores speech-to-text result for Gemini eval
+let speechTranscript = '';
+
+// ── INTRO STEP ──
+function pickLang(el) {
+  document.querySelectorAll('.lang-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  userLang = el.dataset.lang;
+}
+
+function checkIntro() {
+  // name input is optional — always allow start
+}
+
+function startTest() {
+  const nameVal = document.getElementById('introName').value.trim();
+  if (nameVal) userName = nameVal;
+  // Hide intro, show Q1
+  document.getElementById('q0').classList.remove('active');
+  document.getElementById('q1').classList.add('active');
+  current = 1;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 // Recording state
 let mediaRecorder = null;
@@ -957,7 +1024,7 @@ let recHasData = false;
 
 // ── PROGRESS ──
 function updateProgress() {
-  const done = current - 1;
+  const done = Math.max(0, current - 1);
   const pct = Math.round((done / TOTAL) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressLabel').textContent = done + ' / ' + TOTAL;

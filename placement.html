@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -607,7 +608,7 @@ body {
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 17</div>
+  <div class="progress-label" id="progressLabel">0 / 15</div>
 </div>
 
 <div class="page-wrap">
@@ -616,7 +617,7 @@ body {
   <div class="q-card active" id="q0" style="min-height:auto;">
     <div style="font-size:28px;margin-bottom:12px;">👋</div>
     <div class="q-text" style="margin-bottom:6px;">Welcome to the Englisho Placement Test</div>
-    <p style="font-size:14px;color:#667781;margin-bottom:22px;line-height:1.6;">17 questions · ~5 minutes · Finds your exact English level (A1 to C1)</p>
+    <p style="font-size:14px;color:#667781;margin-bottom:22px;line-height:1.6;">15 questions · ~5 minutes · Finds your exact English level (A1 to C1)</p>
 
     <div style="margin-bottom:16px;">
       <div style="font-size:11px;font-weight:700;color:#008069;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Your Name</div>
@@ -1065,8 +1066,6 @@ async function submitAssessment() {
   btn.textContent = 'Evaluating... ⏳';
   btn.classList.remove('enabled');
 
-  const totalMCQ = 14;
-  let level = 'A1';
   // Scoring out of 12 MCQs — capped at B2, only writing can push to C1
   const totalMCQ = 12;
   let level = 'A1';

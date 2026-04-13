@@ -75,8 +75,14 @@ body {
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
   display: none;
   animation: fadeUp 0.3s ease both;
+  min-height: 460px;
+  display: none;
+  flex-direction: column;
 }
-.q-card.active { display: block; }
+.q-card.active { display: flex; }
+
+/* Prevent layout shift when answer selected — options take fixed space */
+.options { min-height: 224px; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -810,35 +816,35 @@ body {
       <div class="sentence-item">
         <div class="sentence-num">1</div>
         <div class="sentence-body">
-          <div class="sentence-text">The weather is very nice today.</div>
+          <div class="sentence-text">My name is Rahul and I live in Pune.</div>
           <div class="sentence-level">A1 – Beginner</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">2</div>
         <div class="sentence-body">
-          <div class="sentence-text">We should arrive at the airport two hours before departure.</div>
+          <div class="sentence-text">Every morning I drink tea and read the newspaper before going to work.</div>
           <div class="sentence-level">A2 – Elementary</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">3</div>
         <div class="sentence-body">
-          <div class="sentence-text">Learning a new language opens up opportunities for personal and professional growth.</div>
+          <div class="sentence-text">If you practice speaking English every day, your confidence will improve significantly within a month.</div>
           <div class="sentence-level">B1 – Intermediate</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">4</div>
         <div class="sentence-body">
-          <div class="sentence-text">Despite numerous challenges, successful entrepreneurs demonstrate remarkable resilience.</div>
+          <div class="sentence-text">The government's new policy on digital infrastructure has sparked considerable debate among economists and urban planners.</div>
           <div class="sentence-level">B2 – Upper Intermediate</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">5</div>
         <div class="sentence-body">
-          <div class="sentence-text">The rapid advancement in artificial intelligence has fundamentally transformed contemporary communication methodologies.</div>
+          <div class="sentence-text">Sustained bilingual exposure during formative years has been shown to enhance cognitive flexibility and executive functioning in adolescents.</div>
           <div class="sentence-level">C1 – Advanced</div>
         </div>
       </div>
@@ -916,6 +922,7 @@ body {
     <div style="margin-top:20px;">
       <button class="start-learning-btn" onclick="startLearning()">🎓 Start Learning Now →</button>
     </div>
+    <p style="font-size:12px;color:#9ca3af;margin-top:10px;">You will be taken to WhatsApp to begin your personalized lessons</p>
   </div>
 
   <div class="footer">
@@ -976,8 +983,13 @@ function selectOpt(qn, chosen, correct) {
 
 // ── NEXT Q ──
 function nextQ(qn) {
+  // FIX: Stop any playing audio when leaving speaking section
+  if (recordedAudio) {
+    recordedAudio.pause();
+    recordedAudio.currentTime = 0;
+  }
+
   document.getElementById('q' + qn).classList.remove('active');
-  // Handle speak/write sections which have different ids
   current = qn + 1;
   updateProgress();
 
@@ -985,13 +997,11 @@ function nextQ(qn) {
     const nextCard = document.getElementById('q' + current);
     if (nextCard) {
       nextCard.classList.add('active');
-      nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // FIX: scroll to top of page, not card — prevents layout jump feel
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 }
-
-// ── SPEAKING: next after recording ──
-// next15 is enabled after recording completes
 
 // ── WRITE INPUT ──
 function onWriteInput() {
@@ -1028,7 +1038,10 @@ function submitAssessment() {
 }
 
 function startLearning() {
-  window.location.href = '/';
+  // Redirect to WhatsApp with user's level pre-filled in message
+  const level = document.getElementById('statLevel').textContent || 'A1';
+  const msg = encodeURIComponent('Hi! I just completed the Englisho placement test. My level is ' + level + '. Please start my personalized English lessons! 🎓');
+  window.location.href = 'https://wa.me/919822253333?text=' + msg;
 }
 
 // ── RECORDING ──

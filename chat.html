@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Englisho — Learn to speak English confidently in your own language. Practice through real conversation."/>
+<title>Englisho — Speak English Confidently</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --green: #00a884;
+  --dark-green: #017a62;
+  --bg: #f0f2f5;
+  --white: #ffffff;
+  --dark: #111b21;
+  --chat-bg: #efeae2;
+  --incoming: #ffffff;
+  --outgoing: #d9fdd3;
+  --text: #111b21;
+  --muted: #667781;
+  --border: #e9edef;
+  --header: #008069;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ══ NAV ══ */
+.nav {
+  background: var(--header);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: #a8e6cf; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-link:hover { color: white; }
+
+/* ══ LANDING ══ */
+#landingPage {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0 80px;
+}
+
+.hero-left {}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--dark-green);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hero h1 span { color: var(--header); }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.hero-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.feature-icon {
+  width: 24px; height: 24px;
+  background: #e8f5e9;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.hero-cta {
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-cta:hover { background: var(--dark-green); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,168,132,0.3); }
+
+.hero-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+/* Phone mockup */
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 280px;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  overflow: hidden;
+  border: 6px solid #222;
+}
+
+.mock-header {
+  background: var(--header);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mock-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+.mock-name { font-size: 13px; font-weight: 600; color: white; }
+.mock-status { font-size: 11px; color: rgba(255,255,255,0.7); }
+
+.mock-chat {
+  background: var(--chat-bg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 300px;
+}
+
+.mock-bubble {
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.mock-bubble.in {
+  background: white;
+  border-top-left-radius: 2px;
+  align-self: flex-start;
+  color: #111;
+}
+
+.mock-bubble.out {
+  background: #d9fdd3;
+  border-top-right-radius: 2px;
+  align-self: flex-end;
+  color: #111;
+}
+
+.mock-time { font-size: 10px; color: #8696a0; margin-top: 3px; text-align: right; }
+
+/* Features section */
+.features-section {
+  background: white;
+  padding: 60px 0;
+  margin-top: 20px;
+}
+
+.features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.section-sub {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.feature-card-icon { font-size: 32px; margin-bottom: 14px; }
+.feature-card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.feature-card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* Onboarding panel */
+#onboardingPage {
+  display: none;
+  min-height: calc(100vh - 56px);
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.ob-panel {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.ob-panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.ob-panel-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.ob-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--header);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.lang-btn {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.lang-btn.selected {
+  border-color: var(--green);
+  background: #e8f5e9;
+  color: var(--dark-green);
+}
+
+.english-box {
+  background: #e8f5e9;
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.english-box .flag { font-size: 24px; }
+.english-box .info { flex: 1; }
+.english-box .lang-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.english-box .lang-desc { font-size: 12px; color: var(--muted); }
+.english-box .check { color: var(--green); font-size: 18px; }
+
+.name-input {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  margin-bottom: 20px;
+  background: var(--bg);
+  transition: border-color 0.2s;
+}
+
+.name-input:focus { border-color: var(--green); background: white; }
+.name-input::placeholder { color: #aaa; }
+
+.start-btn {
+  width: 100%;
+  background: var(--green);
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.start-btn:hover { background: var(--dark-green); }
+
+.free-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* ══ CHAT PAGE ══ */
+#chatPage {
+  display: none;
+  height: calc(100vh - 56px);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.chat-container {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+.chat-header {
+  background: var(--header);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chat-back {
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px 4px 0;
+  transition: color 0.15s;
+}
+
+.chat-back:hover { color: white; }
+
+.chat-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chat-info { flex: 1; }
+.chat-name { font-size: 15px; font-weight: 600; color: white; }
+.chat-status { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 1px; }
+.chat-status.typing { color: #a8e6cf; }
+.chat-status.recording { color: #ffcdd2; }
+
+.chat-actions { display: flex; gap: 16px; color: rgba(255,255,255,0.8); font-size: 20px; }
+.chat-actions span { cursor: pointer; transition: color 0.15s; }
+.chat-actions span:hover { color: white; }
+
+.msgs-bar {
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 5px;
+  font-size: 12px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.msgs-bar b { color: var(--green); }
+
+.wa-bg {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  background-color: var(--chat-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 10 L50 30 L70 30 L55 45 L60 65 L40 52 L20 65 L25 45 L10 30 L30 30 Z' fill='none' stroke='%23ddd5c8' stroke-width='0.5'/%3E%3C/svg%3E");
+  scroll-behavior: smooth;
+}
+
+.wa-bg::-webkit-scrollbar { width: 4px; }
+.wa-bg::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+.date-pill { text-align: center; margin: 4px 0 12px; }
+.date-pill span {
+  background: rgba(255,255,255,0.85);
+  color: var(--muted);
+  font-size: 11.5px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.msg-row {
+  display: flex;
+  margin-bottom: 2px;
+  animation: msgIn 0.2s ease both;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-row.incoming { justify-content: flex-start; }
+.msg-row.outgoing { justify-content: flex-end; }
+
+.bubble {
+  max-width: 65%;
+  padding: 7px 10px 22px;
+  border-radius: 8px;
+  position: relative;
+  word-break: break-word;
+  line-height: 1.55;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.bubble.incoming {
+  background: var(--incoming);
+  border-top-left-radius: 2px;
+  color: var(--text);
+}
+
+.bubble.outgoing {
+  background: var(--outgoing);
+  border-top-right-radius: 2px;
+  color: var(--text);
+}
+
+.bubble.incoming::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -7px;
+  border-top: 8px solid var(--incoming);
+  border-left: 8px solid transparent;
+}
+
+.bubble.outgoing::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -7px;
+  border-top: 8px solid var(--outgoing);
+  border-right: 8px solid transparent;
+}
+
+.bubble-text { font-size: 14px; }
+
+.bubble-meta {
+  position: absolute;
+  bottom: 4px; right: 8px;
+  display: flex; align-items: center; gap: 3px;
+  font-size: 11px; color: var(--muted); white-space: nowrap;
+}
+
+.ticks { color: #4fc3f7; font-size: 12px; }
+
+.typing-row {
+  display: none;
+  justify-content: flex-start;
+  margin-bottom: 4px;
+}
+
+.typing-row.visible { display: flex; }
+
+.typing-bubble {
+  background: white;
+  border-radius: 8px;
+  border-top-left-radius: 2px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.typing-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -7px;
+  border-top: 8px solid white;
+  border-left: 8px solid transparent;
+}
+
+.td {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #aaa;
+  animation: tdB 1.2s infinite;
+}
+.td:nth-child(2) { animation-delay: 0.2s; }
+.td:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes tdB {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+#scrollAnchor { height: 4px; }
+
+.chat-input-bar {
+  background: #f0f2f5;
+  padding: 10px 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.chat-input-wrap {
+  flex: 1;
+  background: white;
+  border-radius: 24px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+}
+
+#msgInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  resize: none;
+  max-height: 100px;
+  line-height: 1.4;
+  padding: 2px 0;
+}
+
+#msgInput::placeholder { color: #aaa; }
+
+.mic-btn {
+  width: 44px; height: 44px;
+  background: var(--green);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: white;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.mic-btn.recording {
+  background: #f44336;
+  animation: micP 1s infinite;
+}
+
+@keyframes micP {
+  0%,100% { box-shadow: 0 0 0 0 rgba(244,67,54,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(244,67,54,0); }
+}
+
+.mic-btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
+
+.send-btn {
+  width: 44px; height: 44px;
+  background: var(--green);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center; justify-content: center;
+  font-size: 18px; color: white;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.send-btn:hover { background: var(--dark-green); }
+.send-btn.show { display: flex; }
+
+/* Paywall */
+#paywallOverlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 200;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#paywallOverlay.visible { display: flex; }
+
+.pw-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 28px 24px 36px;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.pw-icon { font-size: 44px; margin-bottom: 14px; }
+.pw-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.pw-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 24px; }
+
+.pw-plans { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.pw-plan {
+  flex: 1; background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 16px 10px;
+  cursor: pointer; transition: all 0.15s;
+}
+
+.pw-plan.active { border-color: var(--green); background: #e8f5e9; }
+.pw-pname { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pw-price { font-size: 22px; font-weight: 700; color: var(--green); }
+.pw-period { font-size: 11px; color: var(--muted); }
+.pw-save { font-size: 10px; background: var(--green); color: white; padding: 2px 6px; border-radius: 8px; display: inline-block; margin-top: 4px; }
+
+.pw-btn {
+  width: 100%; background: var(--green); border: none;
+  border-radius: 12px; padding: 15px;
+  font-size: 16px; font-weight: 600; color: white;
+  cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 12px;
+  transition: all 0.2s;
+}
+
+.pw-btn:hover { background: var(--dark-green); }
+
+.pw-free {
+  font-size: 13px; color: var(--muted); cursor: pointer;
+  background: none; border: none; font-family: 'Inter', sans-serif; text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 60px; }
+  .hero-right { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  #chatPage { padding: 0; border-radius: 0; }
+  .chat-container { border-radius: 0; height: calc(100vh - 56px); }
+  .bubble { max-width: 80%; }
+  .nav { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">English<span>o</span> 🗣️</div>
+  <div class="nav-right">
+    <a class="nav-link" href="#features">How it works</a>
+    <a class="nav-link" href="#" onclick="showOnboarding()">Try Free</a>
+  </div>
+</nav>
+
+<!-- ══ LANDING PAGE ══ -->
+<div id="landingPage">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Free to try · No signup needed
+      </div>
+      <h1>Learn to Speak English<br><span>in your own language</span></h1>
+      <p class="hero-sub">Practice English like chatting with a friend on WhatsApp. No grammar lessons — just real conversation. Your AI tutor explains everything in your own language!</p>
+
+      <div class="hero-features">
+        <div class="feature-item">
+          <div class="feature-icon">🗣️</div>
+          Speak or type — mic and text both work
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✅</div>
+          Silent correction — mistakes fixed naturally
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🇮🇳</div>
+          Explains in Marathi, Hindi, Tamil, Telugu & more
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          Just ₹49/month — cheaper than any coaching class
+        </div>
+      </div>
+
+      <button class="hero-cta" onclick="showOnboarding()">
+        🎤 Start Talking Free
+      </button>
+      <div class="hero-note">✓ 20 free messages · No credit card</div>
+    </div>
+
+    <div class="hero-right">
+      <div class="phone-mockup">
+        <div class="mock-header">
+          <div class="mock-avatar">🎓</div>
+          <div>
+            <div class="mock-name">🗣️ English Tutor</div>
+            <div class="mock-status">online</div>
+          </div>
+        </div>
+        <div class="mock-chat">
+          <div class="mock-bubble in">
+            Hi Priya! 😊 Today let's just chat in English — no pressure, just talking! What did you do today?
+            <div class="mock-time">9:41</div>
+          </div>
+          <div class="mock-bubble out">
+            i go to market today
+            <div class="mock-time">9:42 ✓✓</div>
+          </div>
+          <div class="mock-bubble in">
+            Oh nice! You went to the market today 🛒 What did you buy there?
+            <div class="mock-time">9:42</div>
+          </div>
+          <div class="mock-bubble out">
+            i buyed vegetables and fruits
+            <div class="mock-time">9:43 ✓✓</div>
+          </div>
+          <div class="mock-bubble in">
+            Great! You bought vegetables and fruits 🥦🍎 Healthy choice! Do you cook at home or does someone else cook?
+            <div class="mock-time">9:43</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features-section" id="features">
+    <div class="features-inner">
+      <div class="section-title">Learning English is now easy</div>
+      <div class="section-sub">No coaching class, no app download — just chat and learn</div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon">🗣️</div>
+          <div class="feature-card-title">Real Conversation Practice</div>
+          <div class="feature-card-desc">Chat in English just like WhatsApp. Your AI tutor has natural conversations with you — no boring lessons.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🤫</div>
+          <div class="feature-card-title">Silent Correction</div>
+          <div class="feature-card-desc">When you make a mistake, the tutor uses the correct sentence naturally in the reply — without pointing it out.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🎤</div>
+          <div class="feature-card-title">Speak with Mic</div>
+          <div class="feature-card-desc">Don't want to type? Press the mic button and speak in English. Build your speaking confidence naturally.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ONBOARDING PAGE ══ -->
+<div id="onboardingPage" style="display:none;min-height:calc(100vh - 56px);display:none;align-items:center;justify-content:center;padding:40px 24px;">
+  <div class="ob-panel">
+    <div class="ob-panel-title">Let's get started! 🚀</div>
+    <div class="ob-panel-sub">Select your language and start practicing English</div>
+
+    <div class="ob-label">I speak</div>
+    <div class="lang-grid" id="motherGrid">
+      <button class="lang-btn selected" data-lang="Marathi" onclick="sel(this)">🇮🇳 Marathi</button>
+      <button class="lang-btn" data-lang="Hindi" onclick="sel(this)">🇮🇳 Hindi</button>
+      <button class="lang-btn" data-lang="Tamil" onclick="sel(this)">🇮🇳 Tamil</button>
+      <button class="lang-btn" data-lang="Telugu" onclick="sel(this)">🇮🇳 Telugu</button>
+      <button class="lang-btn" data-lang="Gujarati" onclick="sel(this)">🇮🇳 Gujarati</button>
+      <button class="lang-btn" data-lang="Punjabi" onclick="sel(this)">🇮🇳 Punjabi</button>
+      <button class="lang-btn" data-lang="Kannada" onclick="sel(this)">🇮🇳 Kannada</button>
+      <button class="lang-btn" data-lang="Bengali" onclick="sel(this)">🇮🇳 Bengali</button>
+    </div>
+
+    <div class="ob-label">I want to learn</div>
+    <div class="english-box">
+      <div class="flag">🗣️</div>
+      <div class="info">
+        <div class="lang-name">English</div>
+        <div class="lang-desc">Speak confidently in real life</div>
+      </div>
+      <div class="check">✅</div>
+    </div>
+
+    <div class="ob-label">Your name</div>
+    <input type="text" class="name-input" id="nameInput" placeholder="So your tutor knows what to call you..." maxlength="20"/>
+
+    <button class="start-btn" onclick="startChat()">Start Talking 🎤</button>
+    <div class="free-note">✓ Free to try · No signup · 20 free messages</div>
+  </div>
+</div>
+
+<!-- ══ CHAT PAGE ══ -->
+<div id="chatPage">
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-back" onclick="goBack()">←</div>
+      <div class="chat-avatar">🎓</div>
+      <div class="chat-info">
+        <div class="chat-name">🗣️ English Tutor</div>
+        <div class="chat-status" id="tutorStatus">online</div>
+      </div>
+      <div class="chat-actions">
+        <span id="speakerBtn" onclick="toggleSpeaker()" title="Toggle voice">🔊</span>
+        <span>⋮</span>
+      </div>
+    </div>
+
+    <div class="msgs-bar">Free session · <b id="msgsLeft">20</b> messages left</div>
+
+    <div class="wa-bg" id="chatBg">
+      <div class="date-pill"><span id="dateLabel">Today</span></div>
+      <div class="typing-row" id="typingRow">
+        <div class="typing-bubble">
+          <div class="td"></div><div class="td"></div><div class="td"></div>
+        </div>
+      </div>
+      <div id="scrollAnchor"></div>
+    </div>
+
+    <div class="chat-input-bar">
+      <div class="chat-input-wrap">
+        <textarea id="msgInput" placeholder="Type a message..." rows="1"
+          onkeydown="handleKey(event)"
+          oninput="onType(this)"></textarea>
+      </div>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
+      <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+    </div>
+  </div>
+
+  <div id="paywallOverlay">
+    <div class="pw-sheet">
+      <div class="pw-icon">🎓</div>
+      <div class="pw-title">You're on a roll!</div>
+      <div class="pw-sub">Free session ended. Upgrade to keep practicing with unlimited sessions.</div>
+      <div class="pw-plans">
+        <div class="pw-plan active" id="plan1" onclick="selPlan(1)">
+          <div class="pw-pname">Monthly</div>
+          <div class="pw-price">₹49</div>
+          <div class="pw-period">per month</div>
+        </div>
+        <div class="pw-plan" id="plan2" onclick="selPlan(2)">
+          <div class="pw-pname">Yearly</div>
+          <div class="pw-price">₹399</div>
+          <div class="pw-period">per year</div>
+          <div class="pw-save">SAVE 32%</div>
+        </div>
+      </div>
+      <button class="pw-btn">Continue Learning →</button>
+      <button class="pw-free" onclick="dismissPaywall()">Continue free (3 more messages)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const GEMINI_URL = 'https://englisho-api.nilesh53333.workers.dev/gemini';
+const MAX_FREE = 20;
+
+const S = {
+  mother: 'Marathi',
+  name: 'there',
+  level: 'A1',
+  count: 0,
+  history: [],
+  loading: false,
+  speakerOn: true,
+  recognition: null,
+  recording: false,
+  voiceLang: 'en-US'
+};
+
+// ── READ LEVEL FROM PLACEMENT TEST ──
+function readURLParams() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('level')) {
+    S.level  = params.get('level')  || 'A1';
+    S.name   = params.get('name')   || 'there';
+    S.mother = params.get('lang')   || 'Marathi';
+    // Auto-launch chat directly — skip onboarding
+    document.getElementById('landingPage').style.display = 'none';
+    document.getElementById('onboardingPage').style.display = 'none';
+    document.getElementById('chatPage').style.display = 'block';
+    document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+    // Show level badge in chat header
+    document.getElementById('tutorStatus').textContent = 'Level ' + S.level + ' · online';
+    setupVoice();
+    initTTS();
+    setTimeout(initSession, 400);
+  }
+}
+
+// ── NAVIGATION ──
+function showOnboarding() {
+  document.getElementById('landingPage').style.display = 'none';
+  const ob = document.getElementById('onboardingPage');
+  ob.style.display = 'flex';
+  ob.style.flexDirection = 'column';
+  ob.style.alignItems = 'center';
+  ob.style.justifyContent = 'center';
+  ob.style.minHeight = 'calc(100vh - 56px)';
+  document.getElementById('chatPage').style.display = 'none';
+}
+
+function goBack() {
+  stopMic(); cancelTTS();
+  window.location.href = 'index.html';
+}
+}
+
+// ── ONBOARDING ──
+function sel(el) {
+  document.querySelectorAll('#motherGrid .lang-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  S.mother = el.dataset.lang;
+}
+
+function startChat() {
+  S.name = document.getElementById('nameInput').value.trim() || 'there';
+  S.level = 'A1'; // Default for manual onboarding — no test taken
+  document.getElementById('onboardingPage').style.display = 'none';
+  document.getElementById('chatPage').style.display = 'block';
+  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('tutorStatus').textContent = 'Level ' + S.level + ' · online';
+  setupVoice();
+  initTTS();
+  setTimeout(initSession, 400);
+}
+
+// ── SYSTEM PROMPT ──
+function getLevelInstructions() {
+  const level = S.level;
+  if (level === 'A1') return `
+STUDENT LEVEL: A1 — Complete Beginner
+- Use ONLY simple words (cat, home, eat, go, good, happy)
+- Very short sentences — maximum 8 words per sentence
+- Ask only basic questions: "What did you eat?", "Where do you live?"
+- If they make mistakes, silently correct with the simplest version
+- Celebrate every attempt warmly — they are just starting
+- Topics: food, family, daily routine, colours, numbers, weather`;
+
+  if (level === 'A2') return `
+STUDENT LEVEL: A2 — Elementary
+- Use simple but complete sentences
+- Introduce common phrases and expressions naturally
+- Topics: shopping, travel, work, hobbies, past events
+- Gently push them to use past tense and simple questions
+- Keep replies friendly and encouraging, 2-3 short sentences`;
+
+  if (level === 'B1') return `
+STUDENT LEVEL: B1 — Intermediate
+- Use natural conversational English
+- Introduce phrasal verbs and common idioms naturally in your replies
+- Topics: opinions, experiences, plans, news, culture, work life
+- Push them to give reasons and explain their thoughts
+- Correct errors silently — model correct grammar in your reply
+- 2-3 sentences per reply, feel like a real chat`;
+
+  if (level === 'B2') return `
+STUDENT LEVEL: B2 — Upper Intermediate
+- Speak like a natural native friend — no simplification
+- Use idioms, phrasal verbs, nuanced vocabulary freely
+- Topics: current events, career, relationships, complex opinions, debate
+- Challenge them: ask "Why do you think that?", "Can you explain more?"
+- Correct subtle grammar errors silently — tense, articles, prepositions
+- Push for longer, more detailed responses from them`;
+
+  if (level === 'C1') return `
+STUDENT LEVEL: C1 — Advanced
+- Treat them as near-native — complex vocabulary, formal and informal registers
+- Discuss abstract topics: philosophy, economics, society, ethics, technology
+- Use sophisticated expressions, metaphors, cultural references
+- Challenge every response — ask for counter-arguments, nuance, examples
+- Only correct very subtle errors — focus on precision and elegance of expression
+- Engage in genuine intellectual conversation`;
+
+  return ''; // fallback
+}
+
+function getSystem() {
+  return `You are an English speaking coach for ${S.name}. Their mother tongue is ${S.mother}.
+${getLevelInstructions()}
+
+YOUR ONLY JOB: Keep the conversation flowing naturally in English. Make them speak. That is it.
+
+HOW TO DO IT:
+- Chat about their real life — today, food, work, friends, hobbies, plans, opinions
+- React naturally and ask ONE follow-up question per reply
+- Keep replies to 2-3 sentences MAX — like WhatsApp chat
+- SILENT CORRECTION — most important rule: when user makes a grammar mistake, use the correct version naturally in your reply. NEVER explicitly say "you made a mistake". Example: user says "I am go to market" → you reply "Oh you went to the market! What did you buy?"
+- If they write in ${S.mother} — gently say "Try saying that in English!" and wait
+- Never teach grammar rules. Never list words. Never give explanations.
+- Never ask "how was your day" repeatedly — vary your questions
+- Goal: fluency and confidence — not perfection`;
+}
+
+function getSummaryPrompt() {
+  return `You are an expert English coach reviewing a real conversation. Your job is to give ${S.name} a DETAILED, SPECIFIC, USEFUL session report.
+
+RULES:
+- Be SPECIFIC — quote actual sentences they used, not generic praise
+- Be HONEST — if their level is lower than ${S.level}, say so kindly
+- Be ACTIONABLE — every correction must show exactly what to say instead
+- Never cut off mid-sentence — complete every point fully
+- Write the full report — do not shorten or summarize early
+
+Write the report in this EXACT format (fill every section fully):
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🌟 SESSION REPORT — ${S.name}
+━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 ENGLISH LEVEL ASSESSMENT
+Detected level: [A1/A2/B1/B2/C1]
+[Write 2-3 sentences explaining WHY — mention specific vocabulary, sentence structures, or ideas from THIS conversation that led to this assessment]
+
+━━━━━━━━━━━━━━━━━━━━━━
+✅ STRENGTHS (what you did well)
+━━━━━━━━━━━━━━━━━━━━━━
+1. [Specific strength with example from conversation — e.g. "You used 'mind-muscle connection' naturally — great advanced vocabulary"]
+2. [Another specific strength with example]
+3. [Third strength if applicable]
+
+━━━━━━━━━━━━━━━━━━━━━━
+🔧 MISTAKES & CORRECTIONS
+━━━━━━━━━━━━━━━━━━━━━━
+[For each mistake, show: ❌ What you said → ✅ What to say instead + brief reason why]
+
+1. ❌ "[exact quote from conversation]"
+   ✅ "[corrected version]"
+   💬 [1 line explanation]
+
+2. ❌ "[exact quote]"
+   ✅ "[correction]"
+   💬 [explanation]
+
+3. ❌ "[exact quote]"
+   ✅ "[correction]"
+   💬 [explanation]
+
+(Include only real mistakes from this conversation. If fewer than 3, that's fine.)
+
+━━━━━━━━━━━━━━━━━━━━━━
+📈 PROGRESS TIPS FOR NEXT SESSION
+━━━━━━━━━━━━━━━━━━━━━━
+Focus area: [One specific grammar or vocabulary skill to work on]
+Practice this: [One concrete exercise or sentence pattern to practice daily]
+Topic to explore: [One topic that would stretch them based on this conversation]
+
+━━━━━━━━━━━━━━━━━━━━━━
+💬 COACH'S NOTE
+━━━━━━━━━━━━━━━━━━━━━━
+[2-3 warm, genuine sentences about their overall performance in this specific session. Mention something real from the conversation. End with genuine encouragement.]
+━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT: Base everything ONLY on what was actually said in this conversation. Do not invent examples. Complete every section fully before ending.`;
+}
+
+// ── GEMINI API ──
+async function callGemini(userMsg) {
+  const contents = [];
+  S.history.slice(-10).forEach(m => {
+    contents.push({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] });
+  });
+  if (userMsg) contents.push({ role: 'user', parts: [{ text: userMsg }] });
+
+  const body = {
+    system_instruction: { role: 'user', parts: [{ text: getSystem() }] },
+    contents,
+    generationConfig: { maxOutputTokens: 500, temperature: 0.9 }
+  };
+
+  const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+}
+
+// ── INIT SESSION ──
+async function initSession() {
+  showTyping(); setStatus('typing...', true);
+  const levelOpener = {
+    'A1': `Start a very simple, warm conversation with ${S.name}. In ${S.mother}, say one encouraging sentence that today we will just chat in English — no studying, no pressure. Then ask ONE very simple question in English like "What did you eat today?" or "What is your favourite colour?" — super basic, A1 level only.`,
+    'A2': `Start a friendly conversation with ${S.name}. In ${S.mother}, say one warm sentence that today we are just chatting in English. Then ask a simple everyday question in English — about their day, their work, their family. A2 level — simple but complete sentences.`,
+    'B1': `Start a natural conversation with ${S.name}. In ${S.mother}, say one sentence that today we are just having a casual English chat. Then ask an interesting question about their opinions or experiences — something they can talk about for a while. B1 level.`,
+    'B2': `Start a conversation with ${S.name}. In ${S.mother}, just one short sentence to set the tone. Then immediately ask a thought-provoking question in English — about their work, ambitions, a recent experience, or a complex opinion. B2 level — no small talk, go deep quickly.`,
+    'C1': `Start a conversation with ${S.name}. Skip the small talk entirely. In ${S.mother}, just one brief sentence. Then open with a genuinely interesting, intellectually stimulating question in English — about society, human nature, technology, ethics, or a complex personal belief. C1 level — treat them as near-native.`
+  };
+  const opener = levelOpener[S.level] || levelOpener['A1'];
+  try {
+    const reply = await callGemini(opener);
+    hideTyping(); setStatus('Level ' + S.level + ' · online', false);
+    addBubble('incoming', reply);
+    S.history.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    hideTyping(); setStatus('Level ' + S.level + ' · online', false);
+    addBubble('incoming', `Hi ${S.name}! 😊 Today we're just going to chat in English — no pressure! Tell me something interesting about yourself.`);
+    console.error(e);
+  }
+}
+
+// ── SEND MESSAGE ──
+async function sendMessage(text) {
+  const input = document.getElementById('msgInput');
+  const msg = (text || input.value).trim();
+  if (!msg || S.loading) return;
+  if (S.count >= MAX_FREE) { document.getElementById('paywallOverlay').classList.add('visible'); return; }
+
+  input.value = ''; input.style.height = 'auto';
+  document.getElementById('sendBtn').classList.remove('show');
+  document.getElementById('micBtn').style.display = 'flex';
+
+  addBubble('outgoing', msg);
+  S.history.push({ role: 'user', content: msg });
+  S.count++;
+  document.getElementById('msgsLeft').textContent = MAX_FREE - S.count;
+
+  S.loading = true;
+  document.getElementById('micBtn').disabled = true;
+  showTyping(); setStatus('typing...', true);
+
+  try {
+    const reply = await callGemini(null);
+    hideTyping(); setStatus('Level ' + S.level + ' · online', false);
+    addBubble('incoming', reply);
+    S.history.push({ role: 'assistant', content: reply });
+    if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
+    // Summary fires AFTER AI replies to user's 10th message — user sees full exchange first
+    if (S.count === 10) {
+      setTimeout(() => {
+        // Show a divider message first
+        const bg = document.getElementById('chatBg');
+        const typingRow = document.getElementById('typingRow');
+        const divider = document.createElement('div');
+        divider.style.cssText = 'text-align:center;margin:16px 0 8px;';
+        divider.innerHTML = '<span style="background:rgba(255,255,255,0.85);color:#667781;font-size:11.5px;padding:4px 14px;border-radius:8px;display:inline-block;">📊 Generating your session report...</span>';
+        bg.insertBefore(divider, typingRow);
+        document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' });
+        showSessionSummary();
+      }, 1800);
+    }
+  } catch(e) {
+    hideTyping(); setStatus('online', false);
+    addBubble('incoming', 'Something went wrong. Please try again. 🙏');
+    console.error(e);
+  } finally {
+    S.loading = false;
+    document.getElementById('micBtn').disabled = false;
+    document.getElementById('msgInput').focus();
+  }
+}
+
+// ── BUBBLES ──
+function addBubble(dir, text) {
+  const bg = document.getElementById('chatBg');
+  const anchor = document.getElementById('scrollAnchor');
+  const typingRow = document.getElementById('typingRow');
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+  const row = document.createElement('div');
+  row.className = `msg-row ${dir}`;
+  const bubble = document.createElement('div');
+  bubble.className = `bubble ${dir}`;
+  bubble.innerHTML = `<div class="bubble-text">${esc(text).replace(/\n/g,'<br>')}</div><div class="bubble-meta">${time}${dir==='outgoing'?'<span class="ticks">✓✓</span>':''}</div>`;
+  row.appendChild(bubble);
+  bg.insertBefore(row, typingRow);
+  anchor.scrollIntoView({ behavior: 'smooth' });
+  if (dir === 'incoming' && S.speakerOn) speak(text);
+}
+
+function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function showTyping() { document.getElementById('typingRow').classList.add('visible'); document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' }); }
+function hideTyping() { document.getElementById('typingRow').classList.remove('visible'); }
+function setStatus(text, isTyping) {
+  const el = document.getElementById('tutorStatus');
+  el.textContent = text;
+  el.className = 'chat-status' + (isTyping ? ' typing' : '');
+}
+
+// ── INPUT ──
+function onType(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+  const has = el.value.trim().length > 0;
+  document.getElementById('sendBtn').classList.toggle('show', has);
+  document.getElementById('micBtn').style.display = has ? 'none' : 'flex';
+}
+
+function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+
+// ── VOICE INPUT ──
+function setupVoice() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { document.getElementById('micBtn').style.display = 'none'; return; }
+  S.recognition = new SR();
+  S.recognition.lang = 'en-US';
+  S.recognition.continuous = false;
+  S.recognition.interimResults = true;
+  S.recognition.onstart = () => {
+    S.recording = true; cancelTTS();
+    document.getElementById('micBtn').classList.add('recording');
+    document.getElementById('micBtn').textContent = '⏹';
+    setStatus('Listening...', false);
+    document.getElementById('tutorStatus').className = 'chat-status recording';
+  };
+  S.recognition.onresult = (e) => {
+    let t = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
+    const input = document.getElementById('msgInput');
+    input.value = t; onType(input);
+    if (e.results[e.results.length-1].isFinal) { stopMic(); input.focus(); }
+  };
+  S.recognition.onerror = (e) => { if (e.error !== 'no-speech' && e.error !== 'aborted') console.warn(e.error); stopMic(); };
+  S.recognition.onend = () => stopMic();
+}
+
+function toggleMic() { if (S.recording) stopMic(); else startMic(); }
+function startMic() { if (!S.recognition || S.loading) return; try { S.recognition.start(); } catch(e) {} }
+function stopMic() {
+  if (S.recognition && S.recording) { try { S.recognition.stop(); } catch(e) {} }
+  S.recording = false;
+  document.getElementById('micBtn').classList.remove('recording');
+  document.getElementById('micBtn').textContent = '🎤';
+  setStatus('online', false);
+}
+
+// ── TTS ──
+let voices = [];
+function initTTS() {
+  if (!window.speechSynthesis) return;
+  voices = window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => { voices = window.speechSynthesis.getVoices(); };
+}
+
+function speak(text) {
+  if (!window.speechSynthesis || !S.speakerOn) return;
+  cancelTTS();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.85; u.pitch = 1.0; u.volume = 1.0;
+  const match = voices.find(v => v.lang.startsWith('en'));
+  if (match) u.voice = match; else u.lang = 'en-US';
+  window.speechSynthesis.speak(u);
+}
+
+function cancelTTS() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
+function toggleSpeaker() {
+  S.speakerOn = !S.speakerOn;
+  document.getElementById('speakerBtn').textContent = S.speakerOn ? '🔊' : '🔇';
+  if (!S.speakerOn) cancelTTS();
+}
+
+// ── SESSION SUMMARY ──
+async function showSessionSummary() {
+  showTyping(); setStatus('writing your session report...', true);
+  try {
+    // Send FULL history (not just last 10) so summary sees everything
+    const contents = S.history.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
+    contents.push({ role: 'user', parts: [{ text: 'Please generate my full session report now based on our entire conversation above.' }] });
+    const body = {
+      system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] },
+      contents,
+      generationConfig: { maxOutputTokens: 1500, temperature: 0.5 }
+    };
+    const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const data = await res.json();
+    const summary = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    hideTyping(); setStatus('Level ' + S.level + ' · online', false);
+    if (summary) addSummaryCard(summary);
+  } catch(e) {
+    hideTyping();
+    setStatus('Level ' + S.level + ' · online', false);
+  }
+}
+
+function addSummaryCard(text) {
+  const bg = document.getElementById('chatBg');
+  const anchor = document.getElementById('scrollAnchor');
+  const typingRow = document.getElementById('typingRow');
+  const card = document.createElement('div');
+  card.style.cssText = `
+    background: white;
+    border: 1.5px solid #00a884;
+    border-radius: 14px;
+    padding: 0;
+    margin: 12px 0;
+    animation: msgIn 0.3s ease both;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,168,132,0.15);
+  `;
+  card.innerHTML = `
+    <div style="background:#00a884;padding:12px 16px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:18px;">📊</span>
+      <span style="color:white;font-weight:700;font-size:14px;">Session Report</span>
+      <span style="color:rgba(255,255,255,0.7);font-size:12px;margin-left:auto;">${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</span>
+    </div>
+    <div style="padding:16px;font-size:13px;color:#111;line-height:1.8;white-space:pre-wrap;font-family:'Inter',sans-serif;">${esc(text)}</div>
+  `;
+  bg.insertBefore(card, typingRow);
+  anchor.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── PAYWALL ──
+function selPlan(n) {
+  document.getElementById('plan1').classList.toggle('active', n===1);
+  document.getElementById('plan2').classList.toggle('active', n===2);
+}
+
+function dismissPaywall() {
+  S.count = MAX_FREE - 3;
+  document.getElementById('msgsLeft').textContent = 3;
+  document.getElementById('paywallOverlay').classList.remove('visible');
+}
+
+// ── INIT ──
+readURLParams();
+</script>
+</body>
+</html>

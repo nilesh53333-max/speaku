@@ -642,214 +642,186 @@ body {
       Start Test →
     </button>
   </div>
+  <!-- ══ Q1: A1 — Articles ══ -->
   <div class="q-card" id="q1">
     <div class="level-badge level-A1">A1</div>
     <button class="translate-btn" onclick="toggleTranslate(1)">Translate to Marathi</button>
-    <div class="translation-text" id="trans1">"dog" म्हणजे काय?</div>
-    <div class="q-text">What is a "dog"?</div>
+    <div class="translation-text" id="trans1">रिकाम्या जागी काय येईल? "___ sun rises in the east."</div>
+    <div class="q-text">Fill in the blank: "___ sun rises in the east."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(1,'a','a')"><div class="opt-letter">a</div> An animal</button>
-      <button class="opt-btn" onclick="selectOpt(1,'b','a')"><div class="opt-letter">b</div> A vegetable</button>
-      <button class="opt-btn" onclick="selectOpt(1,'c','a')"><div class="opt-letter">c</div> A color</button>
-      <button class="opt-btn" onclick="selectOpt(1,'d','a')"><div class="opt-letter">d</div> A building</button>
+      <button class="opt-btn" onclick="selectOpt(1,'a','b')"><div class="opt-letter">a</div> A</button>
+      <button class="opt-btn" onclick="selectOpt(1,'b','b')"><div class="opt-letter">b</div> The</button>
+      <button class="opt-btn" onclick="selectOpt(1,'c','b')"><div class="opt-letter">c</div> An</button>
+      <button class="opt-btn" onclick="selectOpt(1,'d','b')"><div class="opt-letter">d</div> (no word needed)</button>
     </div>
     <button class="next-btn" id="next1" onclick="nextQ(1)">Next Question →</button>
   </div>
 
-  <!-- ══ Q2: A1 Numbers ══ -->
+  <!-- ══ Q2: A1 — Present simple third person ══ -->
   <div class="q-card" id="q2">
     <div class="level-badge level-A1">A1</div>
     <button class="translate-btn" onclick="toggleTranslate(2)">Translate to Marathi</button>
-    <div class="translation-text" id="trans2">दहाच्या नंतर कोणती संख्या येते?</div>
-    <div class="q-text">Which number comes after ten?</div>
+    <div class="translation-text" id="trans2">बरोबर रूप निवडा: "She ___ tea every morning."</div>
+    <div class="q-text">Choose the correct form: "She ___ tea every morning."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(2,'a','c')"><div class="opt-letter">a</div> Nine</button>
-      <button class="opt-btn" onclick="selectOpt(2,'b','c')"><div class="opt-letter">b</div> Twenty</button>
-      <button class="opt-btn" onclick="selectOpt(2,'c','c')"><div class="opt-letter">c</div> Eleven</button>
-      <button class="opt-btn" onclick="selectOpt(2,'d','c')"><div class="opt-letter">d</div> Hundred</button>
+      <button class="opt-btn" onclick="selectOpt(2,'a','c')"><div class="opt-letter">a</div> drink</button>
+      <button class="opt-btn" onclick="selectOpt(2,'b','c')"><div class="opt-letter">b</div> is drink</button>
+      <button class="opt-btn" onclick="selectOpt(2,'c','c')"><div class="opt-letter">c</div> drinks</button>
+      <button class="opt-btn" onclick="selectOpt(2,'d','c')"><div class="opt-letter">d</div> are drinking</button>
     </div>
     <button class="next-btn" id="next2" onclick="nextQ(2)">Next Question →</button>
   </div>
 
-  <!-- ══ Q3: A1 Basic sentence ══ -->
+  <!-- ══ Q3: A2 — Past simple ══ -->
   <div class="q-card" id="q3">
-    <div class="level-badge level-A1">A1</div>
+    <div class="level-badge level-A2">A2</div>
     <button class="translate-btn" onclick="toggleTranslate(3)">Translate to Marathi</button>
-    <div class="translation-text" id="trans3">रिकाम्या जागी काय येईल? "My name ___ Rahul."</div>
-    <div class="q-text">Fill in the blank: "My name ___ Rahul."</div>
+    <div class="translation-text" id="trans3">रिकाम्या जागी काय येईल? "I ___ very tired after the long journey yesterday."</div>
+    <div class="q-text">Fill in: "I ___ very tired after the long journey yesterday."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(3,'a','b')"><div class="opt-letter">a</div> are</button>
-      <button class="opt-btn" onclick="selectOpt(3,'b','b')"><div class="opt-letter">b</div> is</button>
-      <button class="opt-btn" onclick="selectOpt(3,'c','b')"><div class="opt-letter">c</div> am</button>
-      <button class="opt-btn" onclick="selectOpt(3,'d','b')"><div class="opt-letter">d</div> be</button>
+      <button class="opt-btn" onclick="selectOpt(3,'a','b')"><div class="opt-letter">a</div> am</button>
+      <button class="opt-btn" onclick="selectOpt(3,'b','b')"><div class="opt-letter">b</div> was</button>
+      <button class="opt-btn" onclick="selectOpt(3,'c','b')"><div class="opt-letter">c</div> were</button>
+      <button class="opt-btn" onclick="selectOpt(3,'d','b')"><div class="opt-letter">d</div> have been</button>
     </div>
     <button class="next-btn" id="next3" onclick="nextQ(3)">Next Question →</button>
   </div>
 
-  <!-- ══ Q4: A2 Preposition ══ -->
+  <!-- ══ Q4: A2 — Preposition in real context ══ -->
   <div class="q-card" id="q4">
     <div class="level-badge level-A2">A2</div>
     <button class="translate-btn" onclick="toggleTranslate(4)">Translate to Marathi</button>
-    <div class="translation-text" id="trans4">माझी बहीण ___ शाळेत जाते.</div>
-    <div class="q-text">My sister goes ___ school every day.</div>
+    <div class="translation-text" id="trans4">सहकर्मी विचारतो: "Are you free ___ lunch on Friday?" सर्वात योग्य काय?</div>
+    <div class="q-text">Your colleague says: "Are you free ___ lunch on Friday?" Which word fits?</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(4,'a','b')"><div class="opt-letter">a</div> on</button>
-      <button class="opt-btn" onclick="selectOpt(4,'b','b')"><div class="opt-letter">b</div> to</button>
-      <button class="opt-btn" onclick="selectOpt(4,'c','b')"><div class="opt-letter">c</div> at</button>
-      <button class="opt-btn" onclick="selectOpt(4,'d','b')"><div class="opt-letter">d</div> by</button>
+      <button class="opt-btn" onclick="selectOpt(4,'a','c')"><div class="opt-letter">a</div> in</button>
+      <button class="opt-btn" onclick="selectOpt(4,'b','c')"><div class="opt-letter">b</div> on</button>
+      <button class="opt-btn" onclick="selectOpt(4,'c','c')"><div class="opt-letter">c</div> for</button>
+      <button class="opt-btn" onclick="selectOpt(4,'d','c')"><div class="opt-letter">d</div> at</button>
     </div>
     <button class="next-btn" id="next4" onclick="nextQ(4)">Next Question →</button>
   </div>
 
-  <!-- ══ Q5: A2 Comprehension ══ -->
+  <!-- ══ Q5: B1 — Present perfect vs past simple ══ -->
   <div class="q-card" id="q5">
-    <div class="level-badge level-A2">A2</div>
+    <div class="level-badge level-B1">B1</div>
     <button class="translate-btn" onclick="toggleTranslate(5)">Translate to Marathi</button>
-    <div class="translation-text" id="trans5">वाचा: "Priya has a cat and two dogs." Priya कडे किती प्राणी आहेत?</div>
-    <div class="q-text">Read: "Priya has a cat and two dogs." How many pets does Priya have?</div>
+    <div class="translation-text" id="trans5">खालीलपैकी कोणते वाक्य बरोबर आहे?</div>
+    <div class="q-text">Which sentence is grammatically correct?</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(5,'a','c')"><div class="opt-letter">a</div> One</button>
-      <button class="opt-btn" onclick="selectOpt(5,'b','c')"><div class="opt-letter">b</div> Two</button>
-      <button class="opt-btn" onclick="selectOpt(5,'c','c')"><div class="opt-letter">c</div> Three</button>
-      <button class="opt-btn" onclick="selectOpt(5,'d','c')"><div class="opt-letter">d</div> Four</button>
+      <button class="opt-btn" onclick="selectOpt(5,'a','c')"><div class="opt-letter">a</div> I have seen that film last week.</button>
+      <button class="opt-btn" onclick="selectOpt(5,'b','c')"><div class="opt-letter">b</div> Did you ever visit London?</button>
+      <button class="opt-btn" onclick="selectOpt(5,'c','c')"><div class="opt-letter">c</div> She has worked here since 2019.</button>
+      <button class="opt-btn" onclick="selectOpt(5,'d','c')"><div class="opt-letter">d</div> We have finished the project yesterday.</button>
     </div>
     <button class="next-btn" id="next5" onclick="nextQ(5)">Next Question →</button>
   </div>
 
-  <!-- ══ Q6: A2 Situation ══ -->
+  <!-- ══ Q6: B1 — First conditional ══ -->
   <div class="q-card" id="q6">
-    <div class="level-badge level-A2">A2</div>
+    <div class="level-badge level-B1">B1</div>
     <button class="translate-btn" onclick="toggleTranslate(6)">Translate to Marathi</button>
-    <div class="translation-text" id="trans6">तुम्हाला वेळ माहित नाही. तुम्ही काय विचारता?</div>
-    <div class="q-text">You don't know the time. What do you ask?</div>
+    <div class="translation-text" id="trans6">रिकाम्या जागी काय येईल? "If it rains tomorrow, we ___ the match."</div>
+    <div class="q-text">Fill in: "If it rains tomorrow, we ___ the match."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(6,'a','b')"><div class="opt-letter">a</div> Where is the time?</button>
-      <button class="opt-btn" onclick="selectOpt(6,'b','b')"><div class="opt-letter">b</div> Excuse me, what time is it?</button>
-      <button class="opt-btn" onclick="selectOpt(6,'c','b')"><div class="opt-letter">c</div> Time what is?</button>
-      <button class="opt-btn" onclick="selectOpt(6,'d','b')"><div class="opt-letter">d</div> Tell me time now.</button>
+      <button class="opt-btn" onclick="selectOpt(6,'a','b')"><div class="opt-letter">a</div> would cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'b','b')"><div class="opt-letter">b</div> will cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'c','b')"><div class="opt-letter">c</div> cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'d','b')"><div class="opt-letter">d</div> are cancelling</button>
     </div>
     <button class="next-btn" id="next6" onclick="nextQ(6)">Next Question →</button>
   </div>
 
-  <!-- ══ Q7: B1 Tense ══ -->
+  <!-- ══ Q7: B1 — Collocation (make/do) ══ -->
   <div class="q-card" id="q7">
     <div class="level-badge level-B1">B1</div>
     <button class="translate-btn" onclick="toggleTranslate(7)">Translate to Marathi</button>
-    <div class="translation-text" id="trans7">रिकाम्या जागी काय येईल? "She ___ in Mumbai for 5 years."</div>
-    <div class="q-text">Fill in the blank: "She ___ in Mumbai for 5 years."</div>
+    <div class="translation-text" id="trans7">रिकाम्या जागी काय येईल? "I need to ___ a decision about my career soon."</div>
+    <div class="q-text">Choose the correct verb: "I need to ___ a decision about my career soon."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(7,'a','c')"><div class="opt-letter">a</div> is living</button>
-      <button class="opt-btn" onclick="selectOpt(7,'b','c')"><div class="opt-letter">b</div> lived</button>
-      <button class="opt-btn" onclick="selectOpt(7,'c','c')"><div class="opt-letter">c</div> has lived</button>
-      <button class="opt-btn" onclick="selectOpt(7,'d','c')"><div class="opt-letter">d</div> was living</button>
+      <button class="opt-btn" onclick="selectOpt(7,'a','b')"><div class="opt-letter">a</div> do</button>
+      <button class="opt-btn" onclick="selectOpt(7,'b','b')"><div class="opt-letter">b</div> make</button>
+      <button class="opt-btn" onclick="selectOpt(7,'c','b')"><div class="opt-letter">c</div> take</button>
+      <button class="opt-btn" onclick="selectOpt(7,'d','b')"><div class="opt-letter">d</div> have</button>
     </div>
     <button class="next-btn" id="next7" onclick="nextQ(7)">Next Question →</button>
   </div>
 
-  <!-- ══ Q8: B1 Comprehension ══ -->
+  <!-- ══ Q8: B2 — Reported speech ══ -->
   <div class="q-card" id="q8">
-    <div class="level-badge level-B1">B1</div>
+    <div class="level-badge level-B2">B2</div>
     <button class="translate-btn" onclick="toggleTranslate(8)">Translate to Marathi</button>
-    <div class="translation-text" id="trans8">वाचा: "Amit studies hard but he never passes exams." Amit बद्दल काय खरे आहे?</div>
-    <div class="q-text">Read: "Amit studies hard but never passes exams." What is true about Amit?</div>
+    <div class="translation-text" id="trans8">त्याने सांगितले: "I will call you tomorrow." Reported speech मध्ये?</div>
+    <div class="q-text">He said: "I will call you tomorrow." What is the correct reported speech?</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(8,'a','b')"><div class="opt-letter">a</div> He is lazy.</button>
-      <button class="opt-btn" onclick="selectOpt(8,'b','b')"><div class="opt-letter">b</div> He works hard but fails.</button>
-      <button class="opt-btn" onclick="selectOpt(8,'c','b')"><div class="opt-letter">c</div> He never studies.</button>
-      <button class="opt-btn" onclick="selectOpt(8,'d','b')"><div class="opt-letter">d</div> He always passes.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'a','c')"><div class="opt-letter">a</div> He said he will call me tomorrow.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'b','c')"><div class="opt-letter">b</div> He said he calls me the next day.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'c','c')"><div class="opt-letter">c</div> He said he would call me the next day.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'d','c')"><div class="opt-letter">d</div> He told he would call me tomorrow.</button>
     </div>
     <button class="next-btn" id="next8" onclick="nextQ(8)">Next Question →</button>
   </div>
 
-  <!-- ══ Q9: B1 Modal ══ -->
+  <!-- ══ Q9: B2 — Discourse connectors / implied meaning ══ -->
   <div class="q-card" id="q9">
-    <div class="level-badge level-B1">B1</div>
+    <div class="level-badge level-B2">B2</div>
     <button class="translate-btn" onclick="toggleTranslate(9)">Translate to Marathi</button>
-    <div class="translation-text" id="trans9">तुम्ही आजारी आहात म्हणून ऑफिसला जाऊ शकत नाही. तुम्ही बॉसला काय म्हणाल?</div>
-    <div class="q-text">You are sick and can't go to office. What do you tell your boss?</div>
+    <div class="translation-text" id="trans9">"The presentation was long, ___ it kept everyone's attention." योग्य connector कोणता?</div>
+    <div class="q-text">"The presentation was long, ___ it kept everyone's attention." Choose the best connector.</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(9,'a','b')"><div class="opt-letter">a</div> I not come today.</button>
-      <button class="opt-btn" onclick="selectOpt(9,'b','b')"><div class="opt-letter">b</div> I won't be able to come in today, I'm not feeling well.</button>
-      <button class="opt-btn" onclick="selectOpt(9,'c','b')"><div class="opt-letter">c</div> Today I am sick so no coming.</button>
-      <button class="opt-btn" onclick="selectOpt(9,'d','b')"><div class="opt-letter">d</div> Cannot come, sick am I.</button>
+      <button class="opt-btn" onclick="selectOpt(9,'a','b')"><div class="opt-letter">a</div> so</button>
+      <button class="opt-btn" onclick="selectOpt(9,'b','b')"><div class="opt-letter">b</div> yet</button>
+      <button class="opt-btn" onclick="selectOpt(9,'c','b')"><div class="opt-letter">c</div> since</button>
+      <button class="opt-btn" onclick="selectOpt(9,'d','b')"><div class="opt-letter">d</div> for</button>
     </div>
     <button class="next-btn" id="next9" onclick="nextQ(9)">Next Question →</button>
   </div>
 
-  <!-- ══ Q10: B2 Vocabulary ══ -->
+  <!-- ══ Q10: B2 — Second conditional ══ -->
   <div class="q-card" id="q10">
     <div class="level-badge level-B2">B2</div>
     <button class="translate-btn" onclick="toggleTranslate(10)">Translate to Marathi</button>
-    <div class="translation-text" id="trans10">"exhausted" चा अर्थ काय आहे?</div>
-    <div class="q-text">What does "exhausted" mean?</div>
+    <div class="translation-text" id="trans10">रिकाम्या जागी काय येईल? "If I ___ the manager, I would change this policy immediately."</div>
+    <div class="q-text">Fill in: "If I ___ the manager, I would change this policy immediately."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(10,'a','c')"><div class="opt-letter">a</div> Very happy</button>
-      <button class="opt-btn" onclick="selectOpt(10,'b','c')"><div class="opt-letter">b</div> Very hungry</button>
-      <button class="opt-btn" onclick="selectOpt(10,'c','c')"><div class="opt-letter">c</div> Extremely tired</button>
-      <button class="opt-btn" onclick="selectOpt(10,'d','c')"><div class="opt-letter">d</div> Very angry</button>
+      <button class="opt-btn" onclick="selectOpt(10,'a','c')"><div class="opt-letter">a</div> am</button>
+      <button class="opt-btn" onclick="selectOpt(10,'b','c')"><div class="opt-letter">b</div> will be</button>
+      <button class="opt-btn" onclick="selectOpt(10,'c','c')"><div class="opt-letter">c</div> were</button>
+      <button class="opt-btn" onclick="selectOpt(10,'d','c')"><div class="opt-letter">d</div> would be</button>
     </div>
     <button class="next-btn" id="next10" onclick="nextQ(10)">Next Question →</button>
   </div>
 
-  <!-- ══ Q11: B2 Passive Voice ══ -->
+  <!-- ══ Q11: C1 — Vocabulary in context (ambiguity) ══ -->
   <div class="q-card" id="q11">
-    <div class="level-badge level-B2">B2</div>
+    <div class="level-badge level-C1">C1</div>
     <button class="translate-btn" onclick="toggleTranslate(11)">Translate to Marathi</button>
-    <div class="translation-text" id="trans11">या वाक्याचे Passive voice मध्ये रूपांतर करा: "The chef cooked the food."</div>
-    <div class="q-text">Which is the correct passive form of: "The chef cooked the food."</div>
+    <div class="translation-text" id="trans11">"The minister's comments were deliberately ___, allowing different groups to interpret them as they wished."</div>
+    <div class="q-text">"The minister's comments were deliberately ___, allowing different groups to interpret them as they wished."</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(11,'a','b')"><div class="opt-letter">a</div> The food is cooked by the chef.</button>
-      <button class="opt-btn" onclick="selectOpt(11,'b','b')"><div class="opt-letter">b</div> The food was cooked by the chef.</button>
-      <button class="opt-btn" onclick="selectOpt(11,'c','b')"><div class="opt-letter">c</div> The food has cooked by the chef.</button>
-      <button class="opt-btn" onclick="selectOpt(11,'d','b')"><div class="opt-letter">d</div> The food were cooked by chef.</button>
+      <button class="opt-btn" onclick="selectOpt(11,'a','b')"><div class="opt-letter">a</div> straightforward</button>
+      <button class="opt-btn" onclick="selectOpt(11,'b','b')"><div class="opt-letter">b</div> ambiguous</button>
+      <button class="opt-btn" onclick="selectOpt(11,'c','b')"><div class="opt-letter">c</div> repetitive</button>
+      <button class="opt-btn" onclick="selectOpt(11,'d','b')"><div class="opt-letter">d</div> literal</button>
     </div>
     <button class="next-btn" id="next11" onclick="nextQ(11)">Next Question →</button>
   </div>
 
-  <!-- ══ Q12: B2 Formal email ══ -->
+  <!-- ══ Q12: C1 — Inversion (formal grammar) ══ -->
   <div class="q-card" id="q12">
-    <div class="level-badge level-B2">B2</div>
+    <div class="level-badge level-C1">C1</div>
     <button class="translate-btn" onclick="toggleTranslate(12)">Translate to Marathi</button>
-    <div class="translation-text" id="trans12">Formal email मध्ये शेवट कसा करता?</div>
-    <div class="q-text">How do you end a formal email?</div>
+    <div class="translation-text" id="trans12">खालीलपैकी formal English मध्ये कोणते वाक्य बरोबर आहे?</div>
+    <div class="q-text">Which sentence uses correct formal English grammar?</div>
     <div class="options">
-      <button class="opt-btn" onclick="selectOpt(12,'a','b')"><div class="opt-letter">a</div> Bye bye!</button>
-      <button class="opt-btn" onclick="selectOpt(12,'b','b')"><div class="opt-letter">b</div> Yours sincerely,</button>
-      <button class="opt-btn" onclick="selectOpt(12,'c','b')"><div class="opt-letter">c</div> See you later,</button>
-      <button class="opt-btn" onclick="selectOpt(12,'d','b')"><div class="opt-letter">d</div> Ok thanks,</button>
+      <button class="opt-btn" onclick="selectOpt(12,'a','c')"><div class="opt-letter">a</div> Hardly I had sat down when the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'b','c')"><div class="opt-letter">b</div> Hardly I had sat down, the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'c','c')"><div class="opt-letter">c</div> Hardly had I sat down when the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'d','c')"><div class="opt-letter">d</div> Hardly did I sat down when the phone rang.</button>
     </div>
-    <button class="next-btn" id="next12" onclick="nextQ(12)">Next Question →</button>
+    <button class="next-btn" id="next12" onclick="nextQTo(12,15)">Next Question →</button>
   </div>
 
-  <!-- ══ Q13: C1 Vocabulary ══ -->
-  <div class="q-card" id="q13">
-    <div class="level-badge level-C1">C1</div>
-    <button class="translate-btn" onclick="toggleTranslate(13)">Translate to Marathi</button>
-    <div class="translation-text" id="trans13">"ambiguous" चा सर्वोत्तम अर्थ निवडा.</div>
-    <div class="q-text">Choose the best meaning of "ambiguous."</div>
-    <div class="options">
-      <button class="opt-btn" onclick="selectOpt(13,'a','c')"><div class="opt-letter">a</div> Very clear and direct</button>
-      <button class="opt-btn" onclick="selectOpt(13,'b','c')"><div class="opt-letter">b</div> Completely false</button>
-      <button class="opt-btn" onclick="selectOpt(13,'c','c')"><div class="opt-letter">c</div> Open to more than one interpretation</button>
-      <button class="opt-btn" onclick="selectOpt(13,'d','c')"><div class="opt-letter">d</div> Extremely important</button>
-    </div>
-    <button class="next-btn" id="next13" onclick="nextQ(13)">Next Question →</button>
-  </div>
-
-  <!-- ══ Q14: C1 Idiom ══ -->
-  <div class="q-card" id="q14">
-    <div class="level-badge level-C1">C1</div>
-    <button class="translate-btn" onclick="toggleTranslate(14)">Translate to Marathi</button>
-    <div class="translation-text" id="trans14">"bite the bullet" म्हणजे काय?</div>
-    <div class="q-text">What does "bite the bullet" mean?</div>
-    <div class="options">
-      <button class="opt-btn" onclick="selectOpt(14,'a','b')"><div class="opt-letter">a</div> To eat something hard</button>
-      <button class="opt-btn" onclick="selectOpt(14,'b','b')"><div class="opt-letter">b</div> To endure a painful situation bravely</button>
-      <button class="opt-btn" onclick="selectOpt(14,'c','b')"><div class="opt-letter">c</div> To lose a fight</button>
-      <button class="opt-btn" onclick="selectOpt(14,'d','b')"><div class="opt-letter">d</div> To speak too loudly</button>
-    </div>
-    <button class="next-btn" id="next14" onclick="nextQ(14)">Next Question →</button>
-  </div>
 
   <!-- ══ Q15: SPEAKING ══ -->
   <div class="speak-card" id="q15">
@@ -862,35 +834,35 @@ body {
       <div class="sentence-item">
         <div class="sentence-num">1</div>
         <div class="sentence-body">
-          <div class="sentence-text">My name is Rahul and I live in Pune.</div>
+          <div class="sentence-text">I go to work by train every day.</div>
           <div class="sentence-level">A1 – Beginner</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">2</div>
         <div class="sentence-body">
-          <div class="sentence-text">Every morning I drink tea and read the newspaper before going to work.</div>
+          <div class="sentence-text">Last weekend I visited my friend and we cooked dinner together at home.</div>
           <div class="sentence-level">A2 – Elementary</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">3</div>
         <div class="sentence-body">
-          <div class="sentence-text">If you practice speaking English every day, your confidence will improve significantly within a month.</div>
+          <div class="sentence-text">I have been learning English for two years and I think it is getting easier to express my ideas.</div>
           <div class="sentence-level">B1 – Intermediate</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">4</div>
         <div class="sentence-body">
-          <div class="sentence-text">The government's new policy on digital infrastructure has sparked considerable debate among economists and urban planners.</div>
+          <div class="sentence-text">Although technology has made communication much faster, it has also reduced the depth of personal relationships in modern society.</div>
           <div class="sentence-level">B2 – Upper Intermediate</div>
         </div>
       </div>
       <div class="sentence-item">
         <div class="sentence-num">5</div>
         <div class="sentence-body">
-          <div class="sentence-text">Sustained bilingual exposure during formative years has been shown to enhance cognitive flexibility and executive functioning in adolescents.</div>
+          <div class="sentence-text">The proliferation of misinformation across digital platforms poses a significant challenge to democratic processes and public health policy.</div>
           <div class="sentence-level">C1 – Advanced</div>
         </div>
       </div>
@@ -983,7 +955,7 @@ body {
 </div><!-- end page-wrap -->
 
 <script>
-const TOTAL = 17;
+const TOTAL = 15;
 let current = 1;
 let score = 0;
 let answers = {};
@@ -1058,24 +1030,24 @@ function selectOpt(qn, chosen, correct) {
 
 // ── NEXT Q ──
 function nextQ(qn) {
-  // FIX: Stop any playing audio when leaving speaking section
-  if (recordedAudio) {
-    recordedAudio.pause();
-    recordedAudio.currentTime = 0;
-  }
-
+  if (recordedAudio) { recordedAudio.pause(); recordedAudio.currentTime = 0; }
   document.getElementById('q' + qn).classList.remove('active');
   current = qn + 1;
   updateProgress();
-
   if (current <= 16) {
     const nextCard = document.getElementById('q' + current);
-    if (nextCard) {
-      nextCard.classList.add('active');
-      // FIX: scroll to top of page, not card — prevents layout jump feel
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (nextCard) { nextCard.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   }
+}
+
+// Jump to a specific question number (used when some q numbers are skipped)
+function nextQTo(qn, targetQn) {
+  if (recordedAudio) { recordedAudio.pause(); recordedAudio.currentTime = 0; }
+  document.getElementById('q' + qn).classList.remove('active');
+  current = targetQn;
+  updateProgress();
+  const nextCard = document.getElementById('q' + targetQn);
+  if (nextCard) { nextCard.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
 // ── WRITE INPUT ──
@@ -1095,11 +1067,12 @@ async function submitAssessment() {
 
   const totalMCQ = 14;
   let level = 'A1';
-  // MCQ scoring — capped at B2. Only writing eval can push to C1.
-  // 14 simple MCQs cannot reliably detect C1 — max is B2
-  if (score >= 12) level = 'B2';
-  else if (score >= 9) level = 'B1';
-  else if (score >= 6) level = 'A2';
+  // Scoring out of 12 MCQs — capped at B2, only writing can push to C1
+  const totalMCQ = 12;
+  let level = 'A1';
+  if (score >= 11) level = 'B2';
+  else if (score >= 8) level = 'B1';
+  else if (score >= 5) level = 'A2';
   else level = 'A1';
 
   // Evaluate writing via Gemini
@@ -1145,8 +1118,8 @@ Be honest. Most learners who score 12/14 on MCQ are B2, not C1.`;
   }
 
   document.getElementById('statLevel').textContent = finalLevel;
-  document.getElementById('statScore').textContent = score + ' / ' + totalMCQ;
-  document.getElementById('statAnswered').textContent = '17 / 17';
+  document.getElementById('statScore').textContent = score + ' / 12';
+  document.getElementById('statAnswered').textContent = '15 / 15';
   if (writingFeedback) {
     document.getElementById('writingFeedbackText').textContent = '✍️ ' + writingFeedback;
     document.getElementById('writingFeedback').style.display = 'block';

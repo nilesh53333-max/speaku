@@ -914,6 +914,10 @@ body {
       </div>
     </div>
     <hr class="thanks-divider"/>
+    <div id="writingFeedback" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:13px; color:#166534; line-height:1.6;">
+      <div style="font-weight:700; margin-bottom:4px;">Writing Feedback</div>
+      <div id="writingFeedbackText"></div>
+    </div>
     <div class="thanks-contact">Have questions? Contact us!</div>
     <div class="contact-btns">
       <button class="contact-btn-email" onclick="window.location='mailto:hello@englisho.in'">📧 Email Us</button>
@@ -937,6 +941,9 @@ const TOTAL = 17;
 let current = 1;
 let score = 0;
 let answers = {};
+let userName = 'there';
+let userLang = 'Marathi';
+let speechTranscript = ''; // stores speech-to-text result for Gemini eval
 
 // Recording state
 let mediaRecorder = null;
@@ -1013,9 +1020,12 @@ function onWriteInput() {
 }
 
 // ── SUBMIT ──
-function submitAssessment() {
+async function submitAssessment() {
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Evaluating... ⏳';
+  btn.classList.remove('enabled');
+
   const totalMCQ = 14;
-  const pct = Math.round((score / totalMCQ) * 100);
   let level = 'A1';
   if (score >= 13) level = 'C1';
   else if (score >= 11) level = 'B2';
@@ -1023,25 +1033,71 @@ function submitAssessment() {
   else if (score >= 7) level = 'A2';
   else level = 'A1';
 
-  document.getElementById('statLevel').textContent = level;
+  // Evaluate writing via Gemini
+  const writingText = document.getElementById('writeInput').value.trim();
+  let writingFeedback = '';
+  let finalLevel = level;
+
+  try {
+    const evalPrompt = `You are an English level assessor. A student wrote this response to "Why do you want to learn English?":
+
+"${writingText}"
+
+Their MCQ score suggests level: ${level}
+
+Evaluate their writing in 2 lines max:
+1. Does the writing confirm ${level} level, or suggest higher/lower? 
+2. Give ONE specific grammar/vocabulary observation.
+
+Reply in this exact JSON format only (no markdown):
+{"confirmed_level":"${level}","feedback":"your one observation here"}`;
+
+    const res = await fetch('https://englisho-api.nilesh53333.workers.dev/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: evalPrompt }] }],
+        generationConfig: { maxOutputTokens: 150, temperature: 0.3 }
+      })
+    });
+    const data = await res.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    finalLevel = parsed.confirmed_level || level;
+    writingFeedback = parsed.feedback || '';
+  } catch(e) {
+    // If Gemini eval fails, just use MCQ score
+    finalLevel = level;
+  }
+
+  document.getElementById('statLevel').textContent = finalLevel;
   document.getElementById('statScore').textContent = score + ' / ' + totalMCQ;
   document.getElementById('statAnswered').textContent = '17 / 17';
+  if (writingFeedback) {
+    document.getElementById('writingFeedbackText').textContent = '✍️ ' + writingFeedback;
+    document.getElementById('writingFeedback').style.display = 'block';
+  }
+
+  // Store level for redirect
+  window._finalLevel = finalLevel;
 
   document.getElementById('q16').classList.remove('active');
   const tc = document.getElementById('thanksCard');
   tc.classList.add('active');
-  tc.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  current = 18;
-  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('progressLabel').textContent = '17 / 17';
 }
 
 function startLearning() {
-  // Redirect to WhatsApp with user's level pre-filled in message
-  const level = document.getElementById('statLevel').textContent || 'A1';
-  const msg = encodeURIComponent('Hi! I just completed the Englisho placement test. My level is ' + level + '. Please start my personalized English lessons! 🎓');
-  window.location.href = 'https://wa.me/919822253333?text=' + msg;
+  const level = window._finalLevel || document.getElementById('statLevel').textContent || 'A1';
+  const params = new URLSearchParams({
+    level: level,
+    name: userName || 'there',
+    lang: userLang || 'Marathi'
+  });
+  window.location.href = 'index.html?' + params.toString();
 }
 
 // ── RECORDING ──
@@ -1059,16 +1115,31 @@ async function startRecording() {
     recordedChunks = [];
     recSeconds = 0;
     recHasData = false;
+    speechTranscript = '';
+
+    // Start speech recognition to capture transcript for Gemini eval
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    if (SR) {
+      recognition = new SR();
+      recognition.lang = 'en-US';
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.onresult = (e) => {
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          if (e.results[i].isFinal) speechTranscript += e.results[i][0].transcript + ' ';
+        }
+      };
+      try { recognition.start(); } catch(e) {}
+    }
 
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = e => {
-      if (e.data && e.data.size > 0) {
-        recordedChunks.push(e.data);
-        recHasData = true;
-      }
+      if (e.data && e.data.size > 0) { recordedChunks.push(e.data); recHasData = true; }
     };
     mediaRecorder.onstop = () => {
       stream.getTracks().forEach(t => t.stop());
+      if (recognition) { try { recognition.stop(); } catch(e) {} }
       if (recHasData) {
         recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
         recordedAudio = new Audio(URL.createObjectURL(recordedBlob));
@@ -1086,7 +1157,7 @@ async function startRecording() {
     recordTimer = setInterval(() => {
       recSeconds++;
       document.getElementById('recordTimer').textContent = 'Recording... ' + recSeconds + 's';
-      if (recSeconds >= 120) stopRecording(); // max 2 min
+      if (recSeconds >= 120) stopRecording();
     }, 1000);
   } catch(e) {
     alert('Microphone access denied. Please allow mic access to record.');

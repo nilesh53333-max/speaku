@@ -3,1278 +3,1271 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Englisho — Learn to speak English confidently in your own language. Practice through real conversation."/>
-<title>Englisho — Speak English Confidently</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<meta name="description" content="Englisho — Learn English confidently through WhatsApp. AI-powered lessons in Marathi, Hindi & more Indian languages."/>
+<title>Englisho — Learn English on WhatsApp</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root {
   --green: #00a884;
-  --dark-green: #017a62;
-  --bg: #f0f2f5;
-  --white: #ffffff;
-  --dark: #111b21;
-  --chat-bg: #efeae2;
-  --incoming: #ffffff;
-  --outgoing: #d9fdd3;
+  --dark-green: #008069;
+  --light-green: #e8f5e9;
   --text: #111b21;
   --muted: #667781;
   --border: #e9edef;
-  --header: #008069;
+  --bg: #f7f8fa;
+  --white: #ffffff;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
+  font-family: 'Inter', sans-serif;
   color: var(--text);
-  min-height: 100vh;
+  background: var(--white);
+  overflow-x: hidden;
 }
 
 /* ══ NAV ══ */
 .nav {
-  background: var(--header);
-  padding: 14px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-logo {
   font-size: 22px;
-  font-weight: 700;
-  color: white;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
   letter-spacing: -0.5px;
 }
+.nav-logo span { color: var(--green); }
 
-.nav-logo span { color: #a8e6cf; }
-
-.nav-right {
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
+  list-style: none;
 }
 
-.nav-link {
+.nav-links a {
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  color: var(--muted);
   text-decoration: none;
   transition: color 0.15s;
 }
+.nav-links a:hover { color: var(--text); }
 
-.nav-link:hover { color: white; }
-
-/* ══ LANDING ══ */
-#landingPage {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
+.nav-cta {
+  background: var(--green);
+  color: white !important;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: background 0.15s !important;
 }
+.nav-cta:hover { background: var(--dark-green) !important; color: white !important; }
 
+.nav-hamburger { display: none; font-size: 22px; cursor: pointer; color: var(--text); }
+
+/* ══ HERO ══ */
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  padding: 60px 0 80px;
+  background: linear-gradient(160deg, #f0fdf4 0%, #fff 50%, #f0f9ff 100%);
+  padding: 80px 40px 90px;
+  text-align: center;
 }
-
-.hero-left {}
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #e8f5e9;
-  border: 1px solid #c8e6c9;
-  border-radius: 20px;
-  padding: 5px 12px;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 99px;
+  padding: 5px 14px;
   font-size: 12px;
-  color: var(--dark-green);
-  font-weight: 500;
-  margin-bottom: 20px;
+  font-weight: 600;
+  color: #166534;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
 }
-
-.hero-badge-dot {
+.badge-dot {
   width: 6px; height: 6px;
   background: var(--green);
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
-
 @keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(1.5); }
 }
 
 .hero h1 {
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -1px;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -2px;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.hero h1 span { color: var(--header); }
+.hero h1 .accent { color: var(--green); }
+.hero h1 .accent2 { color: #3b82f6; }
 
 .hero-sub {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--muted);
   line-height: 1.7;
-  margin-bottom: 32px;
+  max-width: 560px;
+  margin: 0 auto 36px;
   font-weight: 400;
 }
 
-.hero-features {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.feature-item {
+.hero-btns {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text);
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.feature-icon {
-  width: 24px; height: 24px;
-  background: #e8f5e9;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-  flex-shrink: 0;
-}
-
-.hero-cta {
+.btn-primary {
   background: var(--green);
   color: white;
   border: none;
-  border-radius: 12px;
-  padding: 16px 32px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  transition: all 0.2s;
 }
+.btn-primary:hover { background: var(--dark-green); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,168,132,0.3); }
 
-.hero-cta:hover { background: var(--dark-green); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,168,132,0.3); }
-
-.hero-note {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 12px;
-}
-
-/* Phone mockup */
-.hero-right {
-  display: flex;
-  justify-content: center;
-}
-
-.phone-mockup {
-  width: 280px;
+.btn-secondary {
   background: white;
-  border-radius: 32px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  overflow: hidden;
-  border: 6px solid #222;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
 }
+.btn-secondary:hover { border-color: var(--green); color: var(--green); }
 
-.mock-header {
-  background: var(--header);
-  padding: 12px 14px;
+.hero-note { font-size: 12px; color: #9ca3af; }
+.hero-note span { color: var(--green); font-weight: 600; }
+
+/* Hero cards */
+.hero-cards {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 48px;
+  flex-wrap: wrap;
 }
 
-.mock-avatar {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-}
-
-.mock-name { font-size: 13px; font-weight: 600; color: white; }
-.mock-status { font-size: 11px; color: rgba(255,255,255,0.7); }
-
-.mock-chat {
-  background: var(--chat-bg);
-  padding: 12px;
+.hero-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  min-width: 180px;
+}
+.hero-card-icon {
+  font-size: 24px;
+  width: 40px; height: 40px;
+  background: var(--light-green);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-card-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.hero-card-sub { font-size: 11px; color: var(--muted); }
+
+/* ══ STATS BAR ══ */
+.stats-bar {
+  background: var(--dark-green);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  min-height: 300px;
+  padding: 6px 32px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  color: white;
 }
+.stat-item:last-child { border-right: none; }
+.stat-icon { font-size: 16px; }
+.stat-text { font-size: 13px; font-weight: 500; }
 
-.mock-bubble {
-  max-width: 85%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  line-height: 1.5;
-  position: relative;
-}
+/* ══ SECTIONS COMMON ══ */
+section { padding: 80px 40px; }
 
-.mock-bubble.in {
-  background: white;
-  border-top-left-radius: 2px;
-  align-self: flex-start;
-  color: #111;
-}
-
-.mock-bubble.out {
-  background: #d9fdd3;
-  border-top-right-radius: 2px;
-  align-self: flex-end;
-  color: #111;
-}
-
-.mock-time { font-size: 10px; color: #8696a0; margin-top: 3px; text-align: right; }
-
-/* Features section */
-.features-section {
-  background: white;
-  padding: 60px 0;
-  margin-top: 20px;
-}
-
-.features-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
+.section-label {
+  display: inline-block;
+  background: var(--light-green);
+  color: var(--dark-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 16px;
 }
 
 .section-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
   color: var(--text);
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
+  margin-bottom: 12px;
 }
+.section-title .accent { color: var(--green); }
+.section-title .accent2 { color: #3b82f6; }
 
 .section-sub {
-  text-align: center;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
-  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
-.features-grid {
+.text-center { text-align: center; }
+
+/* ══ WHY ENGLISHO ══ */
+.why-section {
+  background: white;
+}
+
+.why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 48px auto 0;
 }
 
-.feature-card {
+.why-card {
   background: var(--bg);
-  border-radius: 16px;
-  padding: 24px;
   border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: all 0.2s;
+}
+.why-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #a7f3d0; }
+
+.why-icon {
+  font-size: 28px;
+  width: 52px; height: 52px;
+  background: var(--light-green);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.why-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.why-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.why-tag { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 12px; }
+
+/* ══ HOW IT WORKS ══ */
+.how-section { background: var(--bg); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1000px;
+  margin: 48px auto 0;
 }
 
-.feature-card-icon { font-size: 32px; margin-bottom: 14px; }
-.feature-card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-.feature-card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-/* Onboarding panel */
-#onboardingPage {
-  display: none;
-  min-height: calc(100vh - 56px);
-  align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
-}
-
-.ob-panel {
+.step-card {
   background: white;
-  border-radius: 20px;
-  padding: 32px;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative;
+  transition: all 0.2s;
 }
+.step-card:hover { border-color: #a7f3d0; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 
-.ob-panel-title {
-  font-size: 22px;
+.step-num {
+  font-size: 10px;
   font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-  letter-spacing: -0.3px;
-}
-
-.ob-panel-sub {
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 24px;
-}
-
-.ob-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--header);
   letter-spacing: 1px;
+  color: var(--green);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+.step-icon { font-size: 24px; margin-bottom: 10px; }
+.step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-.lang-grid {
+.how-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+.how-cta-box {
+  display: inline-block;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 32px;
+  text-align: center;
+}
+.how-cta-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.how-cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+
+/* ══ PROGRAMS ══ */
+.programs-section { background: white; }
+
+.programs-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1000px;
+  margin: 48px auto 0;
 }
 
-.lang-btn {
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.prog-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px 20px;
   cursor: pointer;
-  font-size: 13px;
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  transition: all 0.15s;
+  transition: all 0.2s;
+  background: white;
 }
+.prog-card:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(0,168,132,0.1); }
 
-.lang-btn.selected {
-  border-color: var(--green);
-  background: #e8f5e9;
-  color: var(--dark-green);
-}
-
-.english-box {
-  background: #e8f5e9;
-  border: 1.5px solid var(--green);
-  border-radius: 10px;
-  padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.english-box .flag { font-size: 24px; }
-.english-box .info { flex: 1; }
-.english-box .lang-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.english-box .lang-desc { font-size: 12px; color: var(--muted); }
-.english-box .check { color: var(--green); font-size: 18px; }
-
-.name-input {
-  width: 100%;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 14px;
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  outline: none;
-  margin-bottom: 20px;
-  background: var(--bg);
-  transition: border-color 0.2s;
-}
-
-.name-input:focus { border-color: var(--green); background: white; }
-.name-input::placeholder { color: #aaa; }
-
-.start-btn {
-  width: 100%;
-  background: var(--green);
-  border: none;
+.prog-icon-wrap {
+  width: 44px; height: 44px;
   border-radius: 12px;
-  padding: 14px;
-  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.prog-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.prog-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+.prog-link {
+  font-size: 13px;
   font-weight: 600;
-  color: white;
+  color: var(--green);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.15s;
+  border: none;
+  background: none;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
+}
+.prog-link:hover { gap: 8px; }
+
+/* ══ SOLUTIONS ══ */
+.solutions-section { background: var(--bg); }
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 48px auto 0;
+}
+
+.sol-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
   transition: all 0.2s;
 }
+.sol-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
-.start-btn:hover { background: var(--dark-green); }
-
-.free-note {
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 10px;
-}
-
-/* ══ CHAT PAGE ══ */
-#chatPage {
-  display: none;
-  height: calc(100vh - 56px);
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 24px;
-}
-
-.chat-container {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-  border: 1px solid var(--border);
-}
-
-.chat-header {
-  background: var(--header);
-  padding: 12px 20px;
+.sol-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
+  margin-bottom: 14px;
 }
-
-.chat-back {
-  color: rgba(255,255,255,0.8);
-  font-size: 20px;
-  cursor: pointer;
-  padding: 4px 8px 4px 0;
-  transition: color 0.15s;
-}
-
-.chat-back:hover { color: white; }
-
-.chat-avatar {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+.sol-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
 }
+.sol-title { font-size: 16px; font-weight: 700; color: var(--text); }
+.sol-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
 
-.chat-info { flex: 1; }
-.chat-name { font-size: 15px; font-weight: 600; color: white; }
-.chat-status { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 1px; }
-.chat-status.typing { color: #a8e6cf; }
-.chat-status.recording { color: #ffcdd2; }
-
-.chat-actions { display: flex; gap: 16px; color: rgba(255,255,255,0.8); font-size: 20px; }
-.chat-actions span { cursor: pointer; transition: color 0.15s; }
-.chat-actions span:hover { color: white; }
-
-.msgs-bar {
-  background: #fafafa;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-  padding: 5px;
-  font-size: 12px;
-  color: var(--muted);
-  flex-shrink: 0;
-}
-
-.msgs-bar b { color: var(--green); }
-
-.wa-bg {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 20px;
-  background-color: var(--chat-bg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 10 L50 30 L70 30 L55 45 L60 65 L40 52 L20 65 L25 45 L10 30 L30 30 Z' fill='none' stroke='%23ddd5c8' stroke-width='0.5'/%3E%3C/svg%3E");
-  scroll-behavior: smooth;
-}
-
-.wa-bg::-webkit-scrollbar { width: 4px; }
-.wa-bg::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-
-.date-pill { text-align: center; margin: 4px 0 12px; }
-.date-pill span {
-  background: rgba(255,255,255,0.85);
-  color: var(--muted);
-  font-size: 11.5px;
-  padding: 4px 12px;
-  border-radius: 8px;
-  display: inline-block;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-}
-
-.msg-row {
+.sol-features { list-style: none; margin-bottom: 16px; }
+.sol-features li {
+  font-size: 13px;
+  color: #374151;
+  padding: 4px 0;
   display: flex;
-  margin-bottom: 2px;
-  animation: msgIn 0.2s ease both;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+.sol-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+.sol-tag {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  display: block;
 }
 
-@keyframes msgIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ══ STORY ══ */
+.story-section { background: white; }
+
+.story-inner {
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-.msg-row.incoming { justify-content: flex-start; }
-.msg-row.outgoing { justify-content: flex-end; }
-
-.bubble {
-  max-width: 65%;
-  padding: 7px 10px 22px;
-  border-radius: 8px;
-  position: relative;
-  word-break: break-word;
-  line-height: 1.55;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+.vision-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 36px;
 }
 
-.bubble.incoming {
-  background: var(--incoming);
-  border-top-left-radius: 2px;
-  color: var(--text);
+.vm-card {
+  border-radius: 16px;
+  padding: 28px 24px;
+  color: white;
+}
+.vm-card.vision { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.vm-card.mission { background: linear-gradient(135deg, #065f46, #059669); }
+.vm-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.vm-title { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+.vm-text { font-size: 13px; opacity: 0.9; line-height: 1.6; }
+
+.story-text {
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.8;
+  margin-top: 32px;
+  max-width: 700px;
 }
 
-.bubble.outgoing {
-  background: var(--outgoing);
-  border-top-right-radius: 2px;
-  color: var(--text);
+/* ══ FAQ ══ */
+.faq-section { background: var(--bg); }
+
+.faq-inner {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.bubble.incoming::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -7px;
-  border-top: 8px solid var(--incoming);
-  border-left: 8px solid transparent;
-}
-
-.bubble.outgoing::before {
-  content: '';
-  position: absolute;
-  top: 0; right: -7px;
-  border-top: 8px solid var(--outgoing);
-  border-right: 8px solid transparent;
-}
-
-.bubble-text { font-size: 14px; }
-
-.bubble-meta {
-  position: absolute;
-  bottom: 4px; right: 8px;
-  display: flex; align-items: center; gap: 3px;
-  font-size: 11px; color: var(--muted); white-space: nowrap;
-}
-
-.ticks { color: #4fc3f7; font-size: 12px; }
-
-.typing-row {
-  display: none;
-  justify-content: flex-start;
-  margin-bottom: 4px;
-}
-
-.typing-row.visible { display: flex; }
-
-.typing-bubble {
-  background: white;
-  border-radius: 8px;
-  border-top-left-radius: 2px;
-  padding: 10px 14px;
+.faq-search {
   display: flex;
   align-items: center;
-  gap: 4px;
-  position: relative;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-}
-
-.typing-bubble::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -7px;
-  border-top: 8px solid white;
-  border-left: 8px solid transparent;
-}
-
-.td {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: #aaa;
-  animation: tdB 1.2s infinite;
-}
-.td:nth-child(2) { animation-delay: 0.2s; }
-.td:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes tdB {
-  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-5px); opacity: 1; }
-}
-
-#scrollAnchor { height: 4px; }
-
-.chat-input-bar {
-  background: #f0f2f5;
-  padding: 10px 16px;
-  display: flex;
-  align-items: flex-end;
   gap: 10px;
-  border-top: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-.chat-input-wrap {
-  flex: 1;
   background: white;
-  border-radius: 24px;
-  padding: 10px 16px;
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  min-height: 44px;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
 }
-
-#msgInput {
+.faq-search:focus-within { border-color: var(--green); }
+.faq-search input {
   flex: 1;
-  background: transparent;
   border: none;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  resize: none;
-  max-height: 100px;
-  line-height: 1.4;
-  padding: 2px 0;
+  background: transparent;
 }
+.faq-search input::placeholder { color: #aaa; }
 
-#msgInput::placeholder { color: #aaa; }
-
-.mic-btn {
-  width: 44px; height: 44px;
-  background: var(--green);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; color: white;
-  flex-shrink: 0;
-  transition: all 0.2s;
-}
-
-.mic-btn.recording {
-  background: #f44336;
-  animation: micP 1s infinite;
-}
-
-@keyframes micP {
-  0%,100% { box-shadow: 0 0 0 0 rgba(244,67,54,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(244,67,54,0); }
-}
-
-.mic-btn:disabled { background: #ccc; cursor: not-allowed; animation: none; }
-
-.send-btn {
-  width: 44px; height: 44px;
-  background: var(--green);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: none;
-  align-items: center; justify-content: center;
-  font-size: 18px; color: white;
-  flex-shrink: 0;
-  transition: all 0.2s;
-}
-
-.send-btn:hover { background: var(--dark-green); }
-.send-btn.show { display: flex; }
-
-/* Paywall */
-#paywallOverlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 200;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-#paywallOverlay.visible { display: flex; }
-
-.pw-sheet {
+.faq-item {
   background: white;
-  border-radius: 20px 20px 0 0;
-  padding: 28px 24px 36px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--green); }
+
+.faq-q {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  gap: 12px;
+  user-select: none;
+}
+.faq-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--green); }
+
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ══ CONTACT ══ */
+.contact-section { background: white; }
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 48px auto 0;
+}
+
+.contact-form-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.form-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+.form-row { margin-bottom: 14px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-input {
   width: 100%;
-  max-width: 480px;
-  text-align: center;
-}
-
-.pw-icon { font-size: 44px; margin-bottom: 14px; }
-.pw-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.pw-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 24px; }
-
-.pw-plans { display: flex; gap: 10px; margin-bottom: 20px; }
-
-.pw-plan {
-  flex: 1; background: var(--bg);
   border: 1.5px solid var(--border);
-  border-radius: 14px; padding: 16px 10px;
-  cursor: pointer; transition: all 0.15s;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
 }
+.form-input:focus { border-color: var(--green); }
+.form-input::placeholder { color: #bbb; }
+textarea.form-input { resize: vertical; min-height: 100px; }
 
-.pw-plan.active { border-color: var(--green); background: #e8f5e9; }
-.pw-pname { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-.pw-price { font-size: 22px; font-weight: 700; color: var(--green); }
-.pw-period { font-size: 11px; color: var(--muted); }
-.pw-save { font-size: 10px; background: var(--green); color: white; padding: 2px 6px; border-radius: 8px; display: inline-block; margin-top: 4px; }
-
-.pw-btn {
-  width: 100%; background: var(--green); border: none;
-  border-radius: 12px; padding: 15px;
-  font-size: 16px; font-weight: 600; color: white;
-  cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 12px;
+.form-submit {
+  width: 100%;
+  background: var(--green);
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
   transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.form-submit:hover { background: var(--dark-green); }
+
+.contact-options-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.pw-btn:hover { background: var(--dark-green); }
+.contact-opt {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.contact-opt:hover { border-color: var(--green); background: #f0fdf4; }
+.contact-opt-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.contact-opt-title { font-size: 14px; font-weight: 700; color: var(--text); }
+.contact-opt-sub { font-size: 12px; color: var(--muted); }
 
-.pw-free {
-  font-size: 13px; color: var(--muted); cursor: pointer;
-  background: none; border: none; font-family: 'Inter', sans-serif; text-decoration: underline;
+.cta-banner {
+  background: linear-gradient(135deg, var(--dark-green), #059669);
+  border-radius: 16px;
+  padding: 28px 24px;
+  color: white;
+  text-align: center;
+  margin-top: 12px;
+}
+.cta-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+.cta-banner p { font-size: 13px; opacity: 0.85; margin-bottom: 16px; }
+.cta-banner-btn {
+  background: white;
+  color: var(--dark-green);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.cta-banner-btn:hover { opacity: 0.9; }
+
+/* ══ FOOTER ══ */
+.footer {
+  background: #0d1117;
+  color: rgba(255,255,255,0.7);
+  padding: 48px 40px 24px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 60px; }
-  .hero-right { display: none; }
-  .features-grid { grid-template-columns: 1fr; }
-  #chatPage { padding: 0; border-radius: 0; }
-  .chat-container { border-radius: 0; height: calc(100vh - 56px); }
-  .bubble { max-width: 80%; }
-  .nav { padding: 14px 16px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.footer-brand-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+.footer-brand-name span { color: var(--green); }
+.footer-brand-desc { font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+.footer-wa-btn {
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.footer-wa-btn:hover { background: var(--dark-green); }
+
+.footer-col-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--green); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-social { display: flex; gap: 12px; }
+.footer-social a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 16px; transition: color 0.15s; }
+.footer-social a:hover { color: var(--green); }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 20px; gap: 16px; z-index: 99; }
+  .nav-hamburger { display: block; }
+  section { padding: 60px 20px; }
+  .hero { padding: 60px 20px 70px; }
+  .hero h1 { letter-spacing: -1px; }
+  .hero-cards { gap: 10px; }
+  .stats-bar { padding: 16px 20px; gap: 0; }
+  .stat-item { padding: 6px 16px; }
+  .why-grid, .steps-grid, .programs-grid { grid-template-columns: 1fr; }
+  .solutions-grid { grid-template-columns: 1fr; }
+  .vision-mission { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-grid > div:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .hero-cards { flex-direction: column; align-items: stretch; }
+  .hero-card { min-width: auto; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > div:first-child { grid-column: span 1; }
+  .footer-bottom { flex-direction: column; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ══ NAV ══ -->
 <nav class="nav">
-  <div class="nav-logo">English<span>o</span> 🗣️</div>
-  <div class="nav-right">
-    <a class="nav-link" href="#features">How it works</a>
-    <a class="nav-link" href="#" onclick="showOnboarding()">Try Free</a>
-  </div>
+  <a class="nav-logo" href="#">English<span>o</span> 🗣️</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-cta" href="placement.html">Take Free Test →</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleNav()">☰</div>
 </nav>
 
-<!-- ══ LANDING PAGE ══ -->
-<div id="landingPage">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        Free to try · No signup needed
-      </div>
-      <h1>Learn to Speak English<br><span>in your own language</span></h1>
-      <p class="hero-sub">Practice English like chatting with a friend on WhatsApp. No grammar lessons — just real conversation. Your AI tutor explains everything in your own language!</p>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    100% Free to Start · No App Download
+  </div>
 
-      <div class="hero-features">
-        <div class="feature-item">
-          <div class="feature-icon">🗣️</div>
-          Speak or type — mic and text both work
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">✅</div>
-          Silent correction — mistakes fixed naturally
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🇮🇳</div>
-          Explains in Marathi, Hindi, Tamil, Telugu & more
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">💰</div>
-          Just ₹49/month — cheaper than any coaching class
-        </div>
-      </div>
+  <h1>
+    Learn <span class="accent">English</span><br>
+    on <span class="accent2">WhatsApp</span><br>
+    in Your Language
+  </h1>
 
-      <button class="hero-cta" onclick="showOnboarding()">
-        🎤 Start Talking Free
-      </button>
-      <div class="hero-note">✓ 20 free messages · No credit card</div>
+  <p class="hero-sub">
+    Your personal AI English tutor — available 24/7 on WhatsApp. Learns in Marathi, Hindi & more Indian languages. No boring grammar. Just real conversation.
+  </p>
+
+  <div class="hero-btns">
+    <a class="btn-primary" href="placement.html">🎯 Take Free Level Test</a>
+    <a class="btn-secondary" href="https://wa.me/919822253333" target="_blank">💬 Chat on WhatsApp</a>
+  </div>
+  <div class="hero-note">✓ Free · <span>No credit card</span> · Works on any phone</div>
+
+  <div class="hero-cards">
+    <div class="hero-card">
+      <div class="hero-card-icon">🗣️</div>
+      <div>
+        <div class="hero-card-title">Learn on WhatsApp</div>
+        <div class="hero-card-sub">No app download needed</div>
+      </div>
     </div>
-
-    <div class="hero-right">
-      <div class="phone-mockup">
-        <div class="mock-header">
-          <div class="mock-avatar">🎓</div>
-          <div>
-            <div class="mock-name">🗣️ English Tutor</div>
-            <div class="mock-status">online</div>
-          </div>
-        </div>
-        <div class="mock-chat">
-          <div class="mock-bubble in">
-            Hi Priya! 😊 Today let's just chat in English — no pressure, just talking! What did you do today?
-            <div class="mock-time">9:41</div>
-          </div>
-          <div class="mock-bubble out">
-            i go to market today
-            <div class="mock-time">9:42 ✓✓</div>
-          </div>
-          <div class="mock-bubble in">
-            Oh nice! You went to the market today 🛒 What did you buy there?
-            <div class="mock-time">9:42</div>
-          </div>
-          <div class="mock-bubble out">
-            i buyed vegetables and fruits
-            <div class="mock-time">9:43 ✓✓</div>
-          </div>
-          <div class="mock-bubble in">
-            Great! You bought vegetables and fruits 🥦🍎 Healthy choice! Do you cook at home or does someone else cook?
-            <div class="mock-time">9:43</div>
-          </div>
-        </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🤖</div>
+      <div>
+        <div class="hero-card-title">AI Powered</div>
+        <div class="hero-card-sub">Gemini AI tutor, 24/7</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🇮🇳</div>
+      <div>
+        <div class="hero-card-title">Indian Languages</div>
+        <div class="hero-card-sub">Marathi, Hindi & more</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">💰</div>
+      <div>
+        <div class="hero-card-title">Just ₹49/month</div>
+        <div class="hero-card-sub">Cheaper than any class</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Features -->
-  <div class="features-section" id="features">
-    <div class="features-inner">
-      <div class="section-title">Learning English is now easy</div>
-      <div class="section-sub">No coaching class, no app download — just chat and learn</div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-card-icon">🗣️</div>
-          <div class="feature-card-title">Real Conversation Practice</div>
-          <div class="feature-card-desc">Chat in English just like WhatsApp. Your AI tutor has natural conversations with you — no boring lessons.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon">🤫</div>
-          <div class="feature-card-title">Silent Correction</div>
-          <div class="feature-card-desc">When you make a mistake, the tutor uses the correct sentence naturally in the reply — without pointing it out.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon">🎤</div>
-          <div class="feature-card-title">Speak with Mic</div>
-          <div class="feature-card-desc">Don't want to type? Press the mic button and speak in English. Build your speaking confidence naturally.</div>
-        </div>
-      </div>
-    </div>
+<!-- ══ STATS BAR ══ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-icon">🇮🇳</span>
+    <span class="stat-text">Built for India</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">🤖</span>
+    <span class="stat-text">Gemini AI Tutor</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">📱</span>
+    <span class="stat-text">WhatsApp Native</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">💬</span>
+    <span class="stat-text">Silent Correction</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">🔓</span>
+    <span class="stat-text">Free to Start</span>
   </div>
 </div>
 
-<!-- ══ ONBOARDING PAGE ══ -->
-<div id="onboardingPage" style="display:none;min-height:calc(100vh - 56px);display:none;align-items:center;justify-content:center;padding:40px 24px;">
-  <div class="ob-panel">
-    <div class="ob-panel-title">Let's get started! 🚀</div>
-    <div class="ob-panel-sub">Select your language and start practicing English</div>
-
-    <div class="ob-label">I speak</div>
-    <div class="lang-grid" id="motherGrid">
-      <button class="lang-btn selected" data-lang="Marathi" onclick="sel(this)">🇮🇳 Marathi</button>
-      <button class="lang-btn" data-lang="Hindi" onclick="sel(this)">🇮🇳 Hindi</button>
-      <button class="lang-btn" data-lang="Tamil" onclick="sel(this)">🇮🇳 Tamil</button>
-      <button class="lang-btn" data-lang="Telugu" onclick="sel(this)">🇮🇳 Telugu</button>
-      <button class="lang-btn" data-lang="Gujarati" onclick="sel(this)">🇮🇳 Gujarati</button>
-      <button class="lang-btn" data-lang="Punjabi" onclick="sel(this)">🇮🇳 Punjabi</button>
-      <button class="lang-btn" data-lang="Kannada" onclick="sel(this)">🇮🇳 Kannada</button>
-      <button class="lang-btn" data-lang="Bengali" onclick="sel(this)">🇮🇳 Bengali</button>
-    </div>
-
-    <div class="ob-label">I want to learn</div>
-    <div class="english-box">
-      <div class="flag">🗣️</div>
-      <div class="info">
-        <div class="lang-name">English</div>
-        <div class="lang-desc">Speak confidently in real life</div>
-      </div>
-      <div class="check">✅</div>
-    </div>
-
-    <div class="ob-label">Your name</div>
-    <input type="text" class="name-input" id="nameInput" placeholder="So your tutor knows what to call you..." maxlength="20"/>
-
-    <button class="start-btn" onclick="startChat()">Start Talking 🎤</button>
-    <div class="free-note">✓ Free to try · No signup · 20 free messages</div>
-  </div>
-</div>
-
-<!-- ══ CHAT PAGE ══ -->
-<div id="chatPage">
-  <div class="chat-container">
-    <div class="chat-header">
-      <div class="chat-back" onclick="goBack()">←</div>
-      <div class="chat-avatar">🎓</div>
-      <div class="chat-info">
-        <div class="chat-name">🗣️ English Tutor</div>
-        <div class="chat-status" id="tutorStatus">online</div>
-      </div>
-      <div class="chat-actions">
-        <span id="speakerBtn" onclick="toggleSpeaker()" title="Toggle voice">🔊</span>
-        <span>⋮</span>
-      </div>
-    </div>
-
-    <div class="msgs-bar">Free session · <b id="msgsLeft">20</b> messages left</div>
-
-    <div class="wa-bg" id="chatBg">
-      <div class="date-pill"><span id="dateLabel">Today</span></div>
-      <div class="typing-row" id="typingRow">
-        <div class="typing-bubble">
-          <div class="td"></div><div class="td"></div><div class="td"></div>
-        </div>
-      </div>
-      <div id="scrollAnchor"></div>
-    </div>
-
-    <div class="chat-input-bar">
-      <div class="chat-input-wrap">
-        <textarea id="msgInput" placeholder="Type a message..." rows="1"
-          onkeydown="handleKey(event)"
-          oninput="onType(this)"></textarea>
-      </div>
-      <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
-      <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
-    </div>
+<!-- ══ WHY ENGLISHO ══ -->
+<section class="why-section" id="features">
+  <div class="text-center">
+    <div class="section-label">Why Englisho</div>
+    <div class="section-title">We're Changing How<br><span class="accent">India Learns English</span></div>
+    <div class="section-sub">No coaching class. No app download. Just open WhatsApp and start talking.</div>
   </div>
 
-  <div id="paywallOverlay">
-    <div class="pw-sheet">
-      <div class="pw-icon">🎓</div>
-      <div class="pw-title">You're on a roll!</div>
-      <div class="pw-sub">Free session ended. Upgrade to keep practicing with unlimited sessions.</div>
-      <div class="pw-plans">
-        <div class="pw-plan active" id="plan1" onclick="selPlan(1)">
-          <div class="pw-pname">Monthly</div>
-          <div class="pw-price">₹49</div>
-          <div class="pw-period">per month</div>
-        </div>
-        <div class="pw-plan" id="plan2" onclick="selPlan(2)">
-          <div class="pw-pname">Yearly</div>
-          <div class="pw-price">₹399</div>
-          <div class="pw-period">per year</div>
-          <div class="pw-save">SAVE 32%</div>
-        </div>
-      </div>
-      <button class="pw-btn">Continue Learning →</button>
-      <button class="pw-free" onclick="dismissPaywall()">Continue free (3 more messages)</button>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Instant Start, Zero Barriers</div>
+      <div class="why-desc">Send "Hi" to our WhatsApp number and begin learning immediately. No registration, no login, no app install.</div>
+      <div class="why-tag">→ Start in under 60 seconds</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <div class="why-title">Personalized to Your Level</div>
+      <div class="why-desc">Take a 5-minute placement test and your AI tutor automatically adjusts difficulty to match your exact English level — A1 to C1.</div>
+      <div class="why-tag">→ A1 to C1 adaptive learning</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤫</div>
+      <div class="why-title">Silent Correction — No Shame</div>
+      <div class="why-desc">When you make a grammar mistake, your tutor uses the correct version naturally in the reply. No red marks, no embarrassment.</div>
+      <div class="why-tag">→ Learn naturally, not painfully</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎤</div>
+      <div class="why-title">Speak or Type — Your Choice</div>
+      <div class="why-desc">Send voice notes in English and get feedback. Or just type. Practice speaking confidence without fear of judgment.</div>
+      <div class="why-tag">→ Voice + text supported</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌐</div>
+      <div class="why-title">Explains in Your Language</div>
+      <div class="why-desc">Confused about something? Your tutor explains it in Marathi, Hindi, Tamil, Telugu or your mother tongue — so nothing gets lost.</div>
+      <div class="why-tag">→ 8+ Indian languages</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📅</div>
+      <div class="why-title">Daily Practice, 15 Minutes</div>
+      <div class="why-desc">Just 15 minutes a day is enough. Your tutor sends you a new conversation topic every day and tracks your progress automatically.</div>
+      <div class="why-tag">→ Consistency builds fluency</div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section" id="how">
+  <div class="text-center">
+    <div class="section-label">Simple Process</div>
+    <div class="section-title">How <span class="accent">Englisho</span> Works</div>
+    <div class="section-sub">Getting started is as simple as sending a WhatsApp message. Our 6-step process is built for busy Indian learners.</div>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">Step 01</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title">Say Hi on WhatsApp</div>
+      <div class="step-desc">Message our WhatsApp number to begin. No app download needed. Works on any Android or iPhone.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 02</div>
+      <div class="step-icon">🌐</div>
+      <div class="step-title">Set Your Language</div>
+      <div class="step-desc">Tell us your native language — Marathi, Hindi, Tamil, Telugu, or others. We'll teach in your language.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 03</div>
+      <div class="step-icon">📝</div>
+      <div class="step-title">Take a Quick Level Test</div>
+      <div class="step-desc">5-minute placement test — 10 simple questions to find your exact English level from A1 to C1.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 04</div>
+      <div class="step-icon">🎓</div>
+      <div class="step-title">Get Daily Lessons</div>
+      <div class="step-desc">Your AI tutor sends a new conversation topic every day — grammar, vocabulary, real-life situations and more.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 05</div>
+      <div class="step-icon">🗣️</div>
+      <div class="step-title">Practice & Get Feedback</div>
+      <div class="step-desc">Reply in English — text or voice. Your tutor gives instant feedback with silent corrections woven naturally into replies.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 06</div>
+      <div class="step-icon">📈</div>
+      <div class="step-title">Track Your Progress</div>
+      <div class="step-desc">After every 10 messages, get a session summary showing what you did well, mistakes to fix and next steps.</div>
+    </div>
+  </div>
+
+  <div class="how-cta">
+    <div class="how-cta-box">
+      <div class="how-cta-title">Ready to start your English journey?</div>
+      <div class="how-cta-sub">Join thousands of learners improving their English every day on WhatsApp.</div>
+      <a class="btn-primary" href="placement.html">🎯 Get Started With a Free Test</a>
+      <div style="margin-top:10px;font-size:12px;color:#9ca3af;">No credit card required · Free to start</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAMS ══ -->
+<section class="programs-section" id="programs">
+  <div class="text-center">
+    <div class="section-label">Learning Programs</div>
+    <div class="section-title">Our <span class="accent">Learning Tracks</span></div>
+    <div class="section-sub">Structured programs designed for different types of Indian English learners.</div>
+  </div>
+
+  <div class="programs-grid">
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#dcfce7;">🗣️</div>
+      <div class="prog-title">Marathi to English</div>
+      <div class="prog-desc">Master English with lessons taught in Marathi. Designed for Maharashtra learners of all levels.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#dbeafe;">🇮🇳</div>
+      <div class="prog-title">Hindi to English</div>
+      <div class="prog-desc">Learn English naturally with Hindi explanations. Perfect for Hindi speakers across India.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#fef3c7;">💼</div>
+      <div class="prog-title">Business English</div>
+      <div class="prog-desc">Emails, meetings, presentations — learn professional English for your career growth.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#fce7f3;">📞</div>
+      <div class="prog-title">Spoken English</div>
+      <div class="prog-desc">Focus on speaking — pronunciation, fluency and confidence for real-life conversations.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#ede9fe;">📚</div>
+      <div class="prog-title">Grammar Foundations</div>
+      <div class="prog-desc">Fix your grammar basics — tenses, articles, prepositions — all explained in your language.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+    <div class="prog-card">
+      <div class="prog-icon-wrap" style="background:#dcfce7;">🎯</div>
+      <div class="prog-title">Daily Practice</div>
+      <div class="prog-desc">Just 15 minutes every day. Maintain streak, build habit and track progress week by week.</div>
+      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTIONS ══ -->
+<section class="solutions-section">
+  <div class="text-center">
+    <div class="section-label">Our Solutions</div>
+    <div class="section-title">Tailored <span class="accent">English Learning</span></div>
+    <div class="section-sub">Programs for every type of learner — from students to working professionals.</div>
+  </div>
+
+  <div class="solutions-grid">
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-icon" style="background:#dcfce7; color:#166534;">👤</div>
+        <div>
+          <div class="sol-title">For Individuals</div>
+          <div class="sol-sub">Personal English coaching at ₹49/month</div>
+        </div>
+      </div>
+      <ul class="sol-features">
+        <li>30-day structured course tailored to your level</li>
+        <li>AI tutor available 24/7 on WhatsApp</li>
+        <li>Daily practice conversations and exercises</li>
+        <li>Weekly progress summary with corrections</li>
+        <li>Explanations in your mother tongue</li>
+      </ul>
+      <span class="sol-tag">Perfect for: Students, job seekers, homemakers, professionals</span>
+      <a class="btn-primary" href="placement.html" style="font-size:14px; padding:11px 20px;">Start Learning →</a>
+    </div>
+
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-icon" style="background:#dbeafe; color:#1d4ed8;">🏢</div>
+        <div>
+          <div class="sol-title">For Organizations</div>
+          <div class="sol-sub">Bulk plans for teams & institutions</div>
+        </div>
+      </div>
+      <ul class="sol-features">
+        <li>Branded WhatsApp experience for your team</li>
+        <li>Batch management and admin dashboard</li>
+        <li>Progress reports for all learners</li>
+        <li>Custom curriculum for your industry</li>
+        <li>No URL or app required for learners</li>
+      </ul>
+      <span class="sol-tag">Perfect for: Schools, colleges, corporate teams, NGOs</span>
+      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank" style="display:inline-flex; margin-top:0; padding:11px 20px; border-radius:10px; background:var(--green); color:white; border:none; font-weight:700; font-size:14px; text-decoration:none;">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT / STORY ══ -->
+<section class="story-section" id="about">
+  <div class="story-inner text-center">
+    <div class="section-label">Our Journey</div>
+    <div class="section-title">The <span class="accent">Englisho</span> Story</div>
+    <div class="section-sub">Built in Pune, for India — because everyone deserves to speak English confidently.</div>
+
+    <div class="vision-mission">
+      <div class="vm-card vision">
+        <div class="vm-label">🔭 Our Vision</div>
+        <div class="vm-title">English for Every Indian</div>
+        <div class="vm-text">To make English fluency accessible to every Indian, regardless of their location, income or background — using technology they already use every day: WhatsApp.</div>
+      </div>
+      <div class="vm-card mission">
+        <div class="vm-label">🎯 Our Mission</div>
+        <div class="vm-title">Teach Without Shame</div>
+        <div class="vm-text">To deliver an English learning experience that feels like chatting with a supportive friend — no judgment, no red marks, no fear. Just confidence, one conversation at a time.</div>
+      </div>
+    </div>
+
+    <p class="story-text" style="margin: 32px auto 0; text-align:left;">
+      Crores of Indians know English words but fear speaking. They worry about making mistakes, being judged, or sounding wrong. Traditional coaching is expensive, time-consuming and often shameful.<br><br>
+      We believed there was a better way. WhatsApp is already on every Indian phone. Why not use it to learn? Englisho was built on that simple idea — bring a world-class AI English tutor right into the app everyone already loves.<br><br>
+      We believe real progress comes from daily practice, cultural understanding and gentle feedback. That's why we built a system where learners start where they are, guided by AI and supported every step of the way.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="text-center">
+    <div class="section-label">Need Help?</div>
+    <div class="section-title">Frequently Asked <span class="accent">Questions</span></div>
+  </div>
+
+  <div class="faq-inner" style="margin-top:36px;">
+    <div class="faq-search">
+      <span>🔍</span>
+      <input type="text" placeholder="Search questions..." oninput="filterFAQ(this.value)" id="faqSearch"/>
+    </div>
+
+    <div id="faqList">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">Is Englisho really free? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! You can start completely free. Send a message to our WhatsApp number, take the placement test and get your first 20 messages free. After that, continue with just ₹49/month — less than a chai every week.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">Do I need to download any app? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">No app needed at all! Englisho works entirely on WhatsApp, which you already have. Just save our number and start chatting — that's it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">Which languages are supported? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Currently we support Marathi, Hindi, Tamil, Telugu, Gujarati, Punjabi, Kannada and Bengali. More languages are being added regularly. Tell us your language if it's not listed!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">How is this different from Duolingo or other apps? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Duolingo gives you exercises. Englisho gives you real conversation. Our AI tutor chats with you like a friend — about your life, your work, your day. And it explains things in your mother tongue, which no English app does. Plus, it works on WhatsApp so there's nothing to install or remember to open.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">What is the placement test? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">It's a free 5-minute test with 14 MCQ questions + 1 speaking section + 1 writing section. It detects your English level from A1 (beginner) to C1 (advanced). After the test, your tutor automatically teaches at the right difficulty for you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">How much time do I need every day? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Just 15 minutes! Your tutor sends a new topic every day. You can reply whenever you have time — morning commute, lunch break, before bed. Consistency matters more than long sessions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">Can I use voice instead of typing? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! You can send voice notes on WhatsApp and your tutor will respond to what you said. This is great for practicing pronunciation and building speaking confidence.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-section" id="contact">
+  <div class="text-center">
+    <div class="section-label">Ready to Help You</div>
+    <div class="section-title">Get In Touch</div>
+    <div class="section-sub">Let's talk about your English learning goals. We're here to help.</div>
+  </div>
+
+  <div class="contact-inner">
+    <div class="contact-form-box">
+      <div class="form-title">📩 Send Us a Message</div>
+      <div class="form-row">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your name"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">WhatsApp Number</label>
+        <input class="form-input" type="tel" placeholder="+91 98765 43210"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Your Language</label>
+        <input class="form-input" type="text" placeholder="Marathi, Hindi, Tamil..."/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Your Message</label>
+        <textarea class="form-input" placeholder="Tell us about your English learning goal..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thanks! We will contact you on WhatsApp shortly. 🙏')">📤 Send Message</button>
+    </div>
+
+    <div class="contact-options-box">
+      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank">
+        <div class="contact-opt-icon" style="background:#dcfce7;">💬</div>
+        <div>
+          <div class="contact-opt-title">Chat on WhatsApp</div>
+          <div class="contact-opt-sub">Get instant replies from our team</div>
+        </div>
+        <span style="margin-left:auto; color:var(--green);">→</span>
+      </a>
+      <a class="contact-opt" href="mailto:hello@englisho.in">
+        <div class="contact-opt-icon" style="background:#dbeafe;">📧</div>
+        <div>
+          <div class="contact-opt-title">Email Us</div>
+          <div class="contact-opt-sub">hello@englisho.in</div>
+        </div>
+        <span style="margin-left:auto; color:var(--green);">→</span>
+      </a>
+      <a class="contact-opt" href="placement.html">
+        <div class="contact-opt-icon" style="background:#fef3c7;">📝</div>
+        <div>
+          <div class="contact-opt-title">Take Free Level Test</div>
+          <div class="contact-opt-sub">Discover your English level in 5 min</div>
+        </div>
+        <span style="margin-left:auto; color:var(--green);">→</span>
+      </a>
+
+      <div class="cta-banner">
+        <h3>Ready to Transform<br>Your English?</h3>
+        <p>Join learners across Maharashtra improving their English every day on WhatsApp.</p>
+        <a class="cta-banner-btn" href="https://wa.me/919822253333" target="_blank">🚀 Start Free on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">English<span>o</span> 🗣️</div>
+      <div class="footer-brand-desc">AI-powered English learning on WhatsApp. Built in Pune for India. Teaching English in your language — no shame, no app, no coaching class.</div>
+      <a class="footer-wa-btn" href="https://wa.me/919822253333" target="_blank">💬 Chat Now</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Programs</div>
+      <ul class="footer-links">
+        <li><a href="placement.html">Take Level Test</a></li>
+        <li><a href="#">Marathi to English</a></li>
+        <li><a href="#">Hindi to English</a></li>
+        <li><a href="#">Business English</a></li>
+        <li><a href="#">Spoken English</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">GDPR Compliance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact Us</div>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@englisho.in">hello@englisho.in</a></li>
+        <li><a href="https://wa.me/919822253333" target="_blank">+91 98222 53333</a></li>
+        <li><a href="#">Pune, Maharashtra, India</a></li>
+        <li><a href="#">UDYAM-MH-30-0190090</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Englisho. All rights reserved. | Registered under MSME India</div>
+    <div class="footer-social">
+      <a href="#" title="Instagram">📷</a>
+      <a href="https://wa.me/919822253333" target="_blank" title="WhatsApp">💬</a>
+      <a href="mailto:hello@englisho.in" title="Email">📧</a>
+    </div>
+  </div>
+</footer>
 
 <script>
-const GEMINI_URL = 'https://englisho-api.nilesh53333.workers.dev/gemini';
-const MAX_FREE = 20;
-
-const S = {
-  mother: 'Marathi',
-  name: 'there',
-  count: 0,
-  history: [],
-  loading: false,
-  speakerOn: true,
-  recognition: null,
-  recording: false,
-  voiceLang: 'en-US'
-};
-
-// ── NAVIGATION ──
-function showOnboarding() {
-  document.getElementById('landingPage').style.display = 'none';
-  const ob = document.getElementById('onboardingPage');
-  ob.style.display = 'flex';
-  ob.style.flexDirection = 'column';
-  ob.style.alignItems = 'center';
-  ob.style.justifyContent = 'center';
-  ob.style.minHeight = 'calc(100vh - 56px)';
-  document.getElementById('chatPage').style.display = 'none';
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
 }
 
-function goBack() {
-  stopMic(); cancelTTS();
-  document.getElementById('chatPage').style.display = 'none';
-  document.getElementById('landingPage').style.display = 'block';
-  S.history = []; S.count = 0; S.loading = false;
-  document.getElementById('chatBg').innerHTML = '<div class="date-pill"><span id="dateLabel">Today</span></div><div class="typing-row" id="typingRow"><div class="typing-bubble"><div class="td"></div><div class="td"></div><div class="td"></div></div></div><div id="scrollAnchor"></div>';
-  document.getElementById('msgsLeft').textContent = MAX_FREE;
-  document.getElementById('msgInput').value = '';
-  document.getElementById('sendBtn').classList.remove('show');
+function toggleFAQ(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
 }
 
-// ── ONBOARDING ──
-function sel(el) {
-  document.querySelectorAll('#motherGrid .lang-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  S.mother = el.dataset.lang;
-}
-
-function startChat() {
-  S.name = document.getElementById('nameInput').value.trim() || 'there';
-  document.getElementById('onboardingPage').style.display = 'none';
-  document.getElementById('chatPage').style.display = 'block';
-  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
-  setupVoice();
-  initTTS();
-  setTimeout(initSession, 400);
-}
-
-// ── SYSTEM PROMPT ──
-function getSystem() {
-  return `You are an English speaking coach for ${S.name}. Their mother tongue is ${S.mother}.
-
-YOUR ONLY JOB: Keep the conversation flowing naturally in English. Make them speak. That is it.
-
-HOW TO DO IT:
-- Chat about their real life — today, food, work, friends, hobbies, plans, opinions
-- React naturally and ask ONE follow-up question per reply
-- Keep replies to 2-3 sentences MAX — like WhatsApp chat
-- SILENT CORRECTION — most important rule: when user makes a grammar mistake, use the correct version naturally in your reply. NEVER explicitly say "you made a mistake". Example: user says "I am go to market" → you reply "Oh you went to the market! What did you buy?"
-- If they write in ${S.mother} — gently say "Try saying that in English!" and wait
-- Never teach grammar rules. Never list words. Never give explanations.
-- Never ask "how was your day" repeatedly — vary your questions
-- Goal: fluency and confidence — not perfection`;
-}
-
-function getSummaryPrompt() {
-  return `You are an encouraging English coach. Review this conversation and give a session summary in this exact format:
-
-🌟 Session Summary for ${S.name}!
-
-📊 Overall Level: [One line assessment — Beginner / Intermediate / Advanced, with one sentence explanation]
-
-✅ What you did well:
-• [Specific thing 1 from actual conversation]
-• [Specific thing 2 from actual conversation]
-
-🔧 Mistakes to remember:
-• [Correction 1: "You said X → say Y instead"]
-• [Correction 2: "You said X → say Y instead"]
-• [Correction 3 if applicable]
-
-💡 Focus for next session: [One specific thing they should practice next time]
-
-Keep it warm, encouraging, and based ONLY on what actually happened in this conversation. Max 12 lines.`;
-}
-
-// ── GEMINI API ──
-async function callGemini(userMsg) {
-  const contents = [];
-  S.history.slice(-10).forEach(m => {
-    contents.push({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] });
+function filterFAQ(val) {
+  const items = document.querySelectorAll('#faqList .faq-item');
+  const q = val.toLowerCase();
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(q) ? '' : 'none';
   });
-  if (userMsg) contents.push({ role: 'user', parts: [{ text: userMsg }] });
-
-  const body = {
-    system_instruction: { role: 'user', parts: [{ text: getSystem() }] },
-    contents,
-    generationConfig: { maxOutputTokens: 500, temperature: 0.9 }
-  };
-
-  const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-}
-
-// ── INIT SESSION ──
-async function initSession() {
-  showTyping(); setStatus('typing...', true);
-  try {
-    const reply = await callGemini(`Start a casual conversation with ${S.name}. In ${S.mother}, say one warm sentence that today we are just going to chat in English — no studying, no pressure, just talking. Then immediately ask them one easy interesting question in English. Never ask "how was your day" — be more creative.`);
-    hideTyping(); setStatus('online', false);
-    addBubble('incoming', reply);
-    S.history.push({ role: 'assistant', content: reply });
-  } catch(e) {
-    hideTyping(); setStatus('online', false);
-    addBubble('incoming', `Hi ${S.name}! 😊 Today we're just going to chat in English — no pressure, no studying! Tell me, what's something interesting that happened to you this week?`);
-    console.error(e);
-  }
-}
-
-// ── SEND MESSAGE ──
-async function sendMessage(text) {
-  const input = document.getElementById('msgInput');
-  const msg = (text || input.value).trim();
-  if (!msg || S.loading) return;
-  if (S.count >= MAX_FREE) { document.getElementById('paywallOverlay').classList.add('visible'); return; }
-
-  input.value = ''; input.style.height = 'auto';
-  document.getElementById('sendBtn').classList.remove('show');
-  document.getElementById('micBtn').style.display = 'flex';
-
-  addBubble('outgoing', msg);
-  S.history.push({ role: 'user', content: msg });
-  S.count++;
-  document.getElementById('msgsLeft').textContent = MAX_FREE - S.count;
-
-  S.loading = true;
-  document.getElementById('micBtn').disabled = true;
-  showTyping(); setStatus('typing...', true);
-
-  try {
-    const reply = await callGemini(null);
-    hideTyping(); setStatus('online', false);
-    addBubble('incoming', reply);
-    S.history.push({ role: 'assistant', content: reply });
-    if (MAX_FREE - S.count <= 0) setTimeout(() => document.getElementById('paywallOverlay').classList.add('visible'), 1500);
-    if (S.count === 10) setTimeout(showSessionSummary, 1000);
-  } catch(e) {
-    hideTyping(); setStatus('online', false);
-    addBubble('incoming', 'Something went wrong. Please try again. 🙏');
-    console.error(e);
-  } finally {
-    S.loading = false;
-    document.getElementById('micBtn').disabled = false;
-    document.getElementById('msgInput').focus();
-  }
-}
-
-// ── BUBBLES ──
-function addBubble(dir, text) {
-  const bg = document.getElementById('chatBg');
-  const anchor = document.getElementById('scrollAnchor');
-  const typingRow = document.getElementById('typingRow');
-  const now = new Date();
-  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-  const row = document.createElement('div');
-  row.className = `msg-row ${dir}`;
-  const bubble = document.createElement('div');
-  bubble.className = `bubble ${dir}`;
-  bubble.innerHTML = `<div class="bubble-text">${esc(text).replace(/\n/g,'<br>')}</div><div class="bubble-meta">${time}${dir==='outgoing'?'<span class="ticks">✓✓</span>':''}</div>`;
-  row.appendChild(bubble);
-  bg.insertBefore(row, typingRow);
-  anchor.scrollIntoView({ behavior: 'smooth' });
-  if (dir === 'incoming' && S.speakerOn) speak(text);
-}
-
-function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-function showTyping() { document.getElementById('typingRow').classList.add('visible'); document.getElementById('scrollAnchor').scrollIntoView({ behavior: 'smooth' }); }
-function hideTyping() { document.getElementById('typingRow').classList.remove('visible'); }
-function setStatus(text, isTyping) {
-  const el = document.getElementById('tutorStatus');
-  el.textContent = text;
-  el.className = 'chat-status' + (isTyping ? ' typing' : '');
-}
-
-// ── INPUT ──
-function onType(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
-  const has = el.value.trim().length > 0;
-  document.getElementById('sendBtn').classList.toggle('show', has);
-  document.getElementById('micBtn').style.display = has ? 'none' : 'flex';
-}
-
-function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
-
-// ── VOICE INPUT ──
-function setupVoice() {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { document.getElementById('micBtn').style.display = 'none'; return; }
-  S.recognition = new SR();
-  S.recognition.lang = 'en-US';
-  S.recognition.continuous = false;
-  S.recognition.interimResults = true;
-  S.recognition.onstart = () => {
-    S.recording = true; cancelTTS();
-    document.getElementById('micBtn').classList.add('recording');
-    document.getElementById('micBtn').textContent = '⏹';
-    setStatus('Listening...', false);
-    document.getElementById('tutorStatus').className = 'chat-status recording';
-  };
-  S.recognition.onresult = (e) => {
-    let t = '';
-    for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
-    const input = document.getElementById('msgInput');
-    input.value = t; onType(input);
-    if (e.results[e.results.length-1].isFinal) { stopMic(); input.focus(); }
-  };
-  S.recognition.onerror = (e) => { if (e.error !== 'no-speech' && e.error !== 'aborted') console.warn(e.error); stopMic(); };
-  S.recognition.onend = () => stopMic();
-}
-
-function toggleMic() { if (S.recording) stopMic(); else startMic(); }
-function startMic() { if (!S.recognition || S.loading) return; try { S.recognition.start(); } catch(e) {} }
-function stopMic() {
-  if (S.recognition && S.recording) { try { S.recognition.stop(); } catch(e) {} }
-  S.recording = false;
-  document.getElementById('micBtn').classList.remove('recording');
-  document.getElementById('micBtn').textContent = '🎤';
-  setStatus('online', false);
-}
-
-// ── TTS ──
-let voices = [];
-function initTTS() {
-  if (!window.speechSynthesis) return;
-  voices = window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => { voices = window.speechSynthesis.getVoices(); };
-}
-
-function speak(text) {
-  if (!window.speechSynthesis || !S.speakerOn) return;
-  cancelTTS();
-  const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.85; u.pitch = 1.0; u.volume = 1.0;
-  const match = voices.find(v => v.lang.startsWith('en'));
-  if (match) u.voice = match; else u.lang = 'en-US';
-  window.speechSynthesis.speak(u);
-}
-
-function cancelTTS() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
-function toggleSpeaker() {
-  S.speakerOn = !S.speakerOn;
-  document.getElementById('speakerBtn').textContent = S.speakerOn ? '🔊' : '🔇';
-  if (!S.speakerOn) cancelTTS();
-}
-
-// ── SESSION SUMMARY ──
-async function showSessionSummary() {
-  showTyping(); setStatus('reviewing your session...', true);
-  try {
-    const contents = S.history.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
-    contents.push({ role: 'user', parts: [{ text: 'Give me a session summary now.' }] });
-    const body = { system_instruction: { role: 'user', parts: [{ text: getSummaryPrompt() }] }, contents, generationConfig: { maxOutputTokens: 600, temperature: 0.7 } };
-    const res = await fetch(GEMINI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    const data = await res.json();
-    const summary = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    hideTyping(); setStatus('online', false);
-    if (summary) addSummaryCard(summary);
-  } catch(e) { hideTyping(); setStatus('online', false); }
-}
-
-function addSummaryCard(text) {
-  const bg = document.getElementById('chatBg');
-  const anchor = document.getElementById('scrollAnchor');
-  const typingRow = document.getElementById('typingRow');
-  const card = document.createElement('div');
-  card.style.cssText = 'background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border:1px solid #a5d6a7;border-radius:12px;padding:16px;margin:10px 0;animation:msgIn 0.3s ease both;';
-  card.innerHTML = `<div style="font-size:13px;color:#1b5e20;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`;
-  bg.insertBefore(card, typingRow);
-  anchor.scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── PAYWALL ──
-function selPlan(n) {
-  document.getElementById('plan1').classList.toggle('active', n===1);
-  document.getElementById('plan2').classList.toggle('active', n===2);
-}
-
-function dismissPaywall() {
-  S.count = MAX_FREE - 3;
-  document.getElementById('msgsLeft').textContent = 3;
-  document.getElementById('paywallOverlay').classList.remove('visible');
 }
 </script>
 </body>

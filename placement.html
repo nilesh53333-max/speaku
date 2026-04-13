@@ -32,6 +32,7 @@ body {
   font-weight: 700;
   color: white;
   letter-spacing: -0.5px;
+  text-decoration: none;
 }
 .nav-logo span { color: #a8e6cf; }
 
@@ -582,7 +583,7 @@ body {
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">English<span>o</span> 🗣️</div>
+  <a href="index.html" class="nav-logo">English<span>o</span> 🗣️</a>
 </nav>
 
 <!-- PROGRESS -->
@@ -1097,7 +1098,7 @@ function startLearning() {
     name: userName || 'there',
     lang: userLang || 'Marathi'
   });
-  window.location.href = 'index.html?' + params.toString();
+  window.location.href = 'chat.html?' + params.toString();
 }
 
 // ── RECORDING ──

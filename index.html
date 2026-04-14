@@ -3,1272 +3,1253 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Englisho — Learn English confidently through WhatsApp. AI-powered lessons in Marathi, Hindi & more Indian languages."/>
-<title>Englisho — Learn English on WhatsApp</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<title>Englisho — English Level Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --green: #00a884;
-  --dark-green: #008069;
-  --light-green: #e8f5e9;
-  --text: #111b21;
-  --muted: #667781;
-  --border: #e9edef;
-  --bg: #f7f8fa;
-  --white: #ffffff;
-}
-
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
-  color: var(--text);
-  background: var(--white);
-  overflow-x: hidden;
+  background: #f5f5f5;
+  color: #111;
+  min-height: 100vh;
 }
 
 /* ══ NAV ══ */
 .nav {
+  background: #008069;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 100;
-  background: white;
-  border-bottom: 1px solid var(--border);
-  padding: 0 40px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
-
 .nav-logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text);
-  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
   letter-spacing: -0.5px;
-}
-.nav-logo span { color: var(--green); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--muted);
   text-decoration: none;
-  transition: color 0.15s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-logo span { color: #a8e6cf; }
 
-.nav-cta {
-  background: var(--green);
-  color: white !important;
-  padding: 9px 20px;
-  border-radius: 8px;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-  transition: background 0.15s !important;
+/* ══ PROGRESS BAR ══ */
+.progress-wrap {
+  background: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e9edef;
 }
-.nav-cta:hover { background: var(--dark-green) !important; color: white !important; }
-
-.nav-hamburger { display: none; font-size: 22px; cursor: pointer; color: var(--text); }
-
-/* ══ HERO ══ */
-.hero {
-  background: linear-gradient(160deg, #f0fdf4 0%, #fff 50%, #f0f9ff 100%);
-  padding: 80px 40px 90px;
-  text-align: center;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #dcfce7;
-  border: 1px solid #bbf7d0;
+.progress-bar-bg {
+  background: #e9edef;
   border-radius: 99px;
-  padding: 5px 14px;
+  height: 5px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  background: #00a884;
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.progress-label {
   font-size: 12px;
-  font-weight: 600;
-  color: #166534;
-  margin-bottom: 24px;
-  letter-spacing: 0.3px;
-}
-.badge-dot {
-  width: 6px; height: 6px;
-  background: var(--green);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50% { opacity:0.5; transform:scale(1.5); }
+  color: #667781;
+  text-align: right;
+  margin-top: 4px;
 }
 
-.hero h1 {
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  color: var(--text);
-  margin-bottom: 20px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero h1 .accent { color: var(--green); }
-.hero h1 .accent2 { color: #3b82f6; }
-
-.hero-sub {
-  font-size: 18px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 560px;
-  margin: 0 auto 36px;
-  font-weight: 400;
-}
-
-.hero-btns {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.btn-primary {
-  background: var(--green);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 28px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.btn-primary:hover { background: var(--dark-green); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,168,132,0.3); }
-
-.btn-secondary {
-  background: white;
-  color: var(--text);
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 28px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.btn-secondary:hover { border-color: var(--green); color: var(--green); }
-
-.hero-note { font-size: 12px; color: #9ca3af; }
-.hero-note span { color: var(--green); font-weight: 600; }
-
-/* Hero cards */
-.hero-cards {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-}
-
-.hero-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  min-width: 180px;
-}
-.hero-card-icon {
-  font-size: 24px;
-  width: 40px; height: 40px;
-  background: var(--light-green);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.hero-card-title { font-size: 13px; font-weight: 700; color: var(--text); }
-.hero-card-sub { font-size: 11px; color: var(--muted); }
-
-/* ══ STATS BAR ══ */
-.stats-bar {
-  background: var(--dark-green);
-  padding: 18px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 32px;
-  border-right: 1px solid rgba(255,255,255,0.2);
-  color: white;
-}
-.stat-item:last-child { border-right: none; }
-.stat-icon { font-size: 16px; }
-.stat-text { font-size: 13px; font-weight: 500; }
-
-/* ══ SECTIONS COMMON ══ */
-section { padding: 80px 40px; }
-
-.section-label {
-  display: inline-block;
-  background: var(--light-green);
-  color: var(--dark-green);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 99px;
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.section-title .accent { color: var(--green); }
-.section-title .accent2 { color: #3b82f6; }
-
-.section-sub {
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.6;
+/* ══ MAIN CONTENT ══ */
+.page-wrap {
   max-width: 520px;
   margin: 0 auto;
+  padding: 24px 16px 40px;
 }
 
-.text-center { text-align: center; }
-
-/* ══ WHY ENGLISHO ══ */
-.why-section {
+/* ══ QUESTION CARD ══ */
+.q-card {
   background: white;
+  border-radius: 18px;
+  padding: 24px 20px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: none;
+  animation: fadeUp 0.3s ease both;
+  min-height: 460px;
+  display: none;
+  flex-direction: column;
+}
+.q-card.active { display: flex; }
+
+/* Prevent layout shift when answer selected — options take fixed space */
+.options { min-height: 224px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1000px;
-  margin: 48px auto 0;
-}
-
-.why-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px;
-  transition: all 0.2s;
-}
-.why-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #a7f3d0; }
-
-.why-icon {
-  font-size: 28px;
-  width: 52px; height: 52px;
-  background: var(--light-green);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.why-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.why-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-.why-tag { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 12px; }
-
-/* ══ HOW IT WORKS ══ */
-.how-section { background: var(--bg); }
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 1000px;
-  margin: 48px auto 0;
-}
-
-.step-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 20px;
-  position: relative;
-  transition: all 0.2s;
-}
-.step-card:hover { border-color: #a7f3d0; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-
-.step-num {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--green);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.step-icon { font-size: 24px; margin-bottom: 10px; }
-.step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-.how-cta {
-  text-align: center;
-  margin-top: 40px;
-}
-.how-cta-box {
-  display: inline-block;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 32px;
-  text-align: center;
-}
-.how-cta-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.how-cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
-
-/* ══ PROGRAMS ══ */
-.programs-section { background: white; }
-
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 1000px;
-  margin: 48px auto 0;
-}
-
-.prog-card {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 20px 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: white;
-}
-.prog-card:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(0,168,132,0.1); }
-
-.prog-icon-wrap {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  margin-bottom: 14px;
-}
-.prog-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.prog-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
-.prog-link {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--green);
-  text-decoration: none;
+/* Level badge */
+.level-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  transition: gap 0.15s;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.level-A1 { background: #dcfce7; color: #166534; }
+.level-A2 { background: #dcfce7; color: #166534; }
+.level-B1 { background: #fef9c3; color: #854d0e; }
+.level-B2 { background: #fef9c3; color: #854d0e; }
+.level-C1 { background: #dbeafe; color: #1e40af; }
+
+/* Translate button */
+.translate-btn {
+  display: block;
+  width: 100%;
+  background: #f3e8ff;
   border: none;
-  background: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #7c3aed;
   cursor: pointer;
+  text-align: center;
+  margin-bottom: 20px;
   font-family: 'Inter', sans-serif;
+  transition: background 0.15s;
 }
-.prog-link:hover { gap: 8px; }
+.translate-btn:hover { background: #ede9fe; }
+.translate-btn.translated { background: #ede9fe; }
 
-/* ══ SOLUTIONS ══ */
-.solutions-section { background: var(--bg); }
+/* Translation text */
+.translation-text {
+  display: none;
+  background: #f8f4ff;
+  border-left: 3px solid #7c3aed;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #5b21b6;
+  line-height: 1.5;
+  animation: fadeUp 0.2s ease;
+}
+.translation-text.show { display: block; }
 
-.solutions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  max-width: 900px;
-  margin: 48px auto 0;
+/* Question text */
+.q-text {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #111;
+  margin-bottom: 22px;
 }
 
-.sol-card {
+/* Options */
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+.opt-btn {
   background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px;
-  transition: all 0.2s;
-}
-.sol-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-
-.sol-header {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.15s;
+  text-align: left;
 }
-.sol-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.sol-title { font-size: 16px; font-weight: 700; color: var(--text); }
-.sol-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.opt-btn:hover { border-color: #93c5fd; background: #eff6ff; }
+.opt-btn.selected { border-color: #3b82f6; background: #eff6ff; }
+.opt-btn.correct { border-color: #22c55e; background: #f0fdf4; }
+.opt-btn.wrong { border-color: #ef4444; background: #fef2f2; }
 
-.sol-features { list-style: none; margin-bottom: 16px; }
-.sol-features li {
+.opt-letter {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #9ca3af;
+  display: flex; align-items: center; justify-content: center;
   font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
   color: #374151;
-  padding: 4px 0;
+  transition: all 0.15s;
+}
+.opt-btn.selected .opt-letter { border-color: #3b82f6; color: #3b82f6; }
+.opt-btn.correct .opt-letter { border-color: #22c55e; background: #22c55e; color: white; }
+.opt-btn.wrong .opt-letter { border-color: #ef4444; background: #ef4444; color: white; }
+
+/* Next button */
+.next-btn {
+  width: 100%;
+  max-width: 220px;
+  background: linear-gradient(135deg, #00a884, #008069);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.next-btn.enabled {
+  opacity: 1;
+  pointer-events: all;
+}
+.next-btn.enabled:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,168,132,0.35); }
+
+/* ══ SPEAKING SECTION ══ */
+.speak-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px 20px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: none;
+  animation: fadeUp 0.3s ease both;
+}
+.speak-card.active { display: block; }
+
+.speak-intro {
+  font-size: 13px;
+  color: #667781;
+  text-align: center;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.sentences-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+
+.sentence-item {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 14px 16px;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  line-height: 1.5;
-}
-.sol-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-
-.sol-tag {
-  font-size: 11px;
-  color: var(--muted);
-  font-style: italic;
-  margin-bottom: 14px;
-  display: block;
-}
-
-/* ══ STORY ══ */
-.story-section { background: white; }
-
-.story-inner {
-  max-width: 860px;
-  margin: 0 auto;
-}
-
-.vision-mission {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 36px;
-}
-
-.vm-card {
-  border-radius: 16px;
-  padding: 28px 24px;
-  color: white;
-}
-.vm-card.vision { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
-.vm-card.mission { background: linear-gradient(135deg, #065f46, #059669); }
-.vm-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.vm-title { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
-.vm-text { font-size: 13px; opacity: 0.9; line-height: 1.6; }
-
-.story-text {
-  font-size: 15px;
-  color: #374151;
-  line-height: 1.8;
-  margin-top: 32px;
-  max-width: 700px;
-}
-
-/* ══ FAQ ══ */
-.faq-section { background: var(--bg); }
-
-.faq-inner {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.faq-search {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: white;
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  transition: border-color 0.2s;
-}
-.faq-search:focus-within { border-color: var(--green); }
-.faq-search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  background: transparent;
-}
-.faq-search input::placeholder { color: #aaa; }
-
-.faq-item {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.faq-item.open { border-color: var(--green); }
-
-.faq-q {
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
   gap: 12px;
-  user-select: none;
 }
-.faq-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
-.faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--green); }
 
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
+.sentence-num {
+  width: 28px; height: 28px;
+  background: #3b82f6;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.faq-item.open .faq-a { display: block; }
-
-/* ══ CONTACT ══ */
-.contact-section { background: white; }
-
-.contact-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 900px;
-  margin: 48px auto 0;
-}
-
-.contact-form-box {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px;
-}
-.form-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-
-.form-row { margin-bottom: 14px; }
-.form-label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
-.form-input {
-  width: 100%;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 14px;
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  background: white;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.form-input:focus { border-color: var(--green); }
-.form-input::placeholder { color: #bbb; }
-textarea.form-input { resize: vertical; min-height: 100px; }
-
-.form-submit {
-  width: 100%;
-  background: var(--green);
-  border: none;
-  border-radius: 10px;
-  padding: 13px;
-  font-size: 14px;
   font-weight: 700;
   color: white;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.form-submit:hover { background: var(--dark-green); }
-
-.contact-options-box {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.contact-opt {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-}
-.contact-opt:hover { border-color: var(--green); background: #f0fdf4; }
-.contact-opt-icon {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
   flex-shrink: 0;
 }
-.contact-opt-title { font-size: 14px; font-weight: 700; color: var(--text); }
-.contact-opt-sub { font-size: 12px; color: var(--muted); }
 
-.cta-banner {
-  background: linear-gradient(135deg, var(--dark-green), #059669);
-  border-radius: 16px;
-  padding: 28px 24px;
-  color: white;
+.sentence-body { flex: 1; }
+.sentence-text { font-size: 15px; font-weight: 600; color: #111; line-height: 1.45; margin-bottom: 3px; }
+.sentence-level { font-size: 12px; color: #3b82f6; font-weight: 500; }
+
+/* Recording states */
+.record-section { margin-bottom: 20px; }
+
+.record-idle {
   text-align: center;
-  margin-top: 12px;
 }
-.cta-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
-.cta-banner p { font-size: 13px; opacity: 0.85; margin-bottom: 16px; }
-.cta-banner-btn {
-  background: white;
-  color: var(--dark-green);
+
+.record-btn-big {
+  width: 70px; height: 70px;
+  background: linear-gradient(135deg, #00a884, #008069);
+  border-radius: 50%;
   border: none;
-  border-radius: 8px;
-  padding: 11px 22px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 10px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,168,132,0.35);
+}
+.record-btn-big:hover { transform: scale(1.05); }
+.record-btn-big.recording {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: micPulse 1s infinite;
+  box-shadow: 0 4px 16px rgba(239,68,68,0.35);
+}
+
+@keyframes micPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+  50% { box-shadow: 0 0 0 14px rgba(239,68,68,0); }
+}
+
+.record-hint { font-size: 13px; color: #667781; }
+
+.recording-status {
+  display: none;
+  text-align: center;
+  padding: 12px;
+  background: #fef2f2;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.recording-status.show { display: block; }
+.recording-status .rec-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.recording-status span { font-size: 13px; color: #dc2626; font-weight: 500; }
+
+.recording-complete {
+  display: none;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  animation: fadeUp 0.25s ease;
+}
+.recording-complete.show { display: block; }
+
+.rec-complete-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.rec-complete-check { font-size: 20px; color: #16a34a; }
+.rec-complete-title { font-size: 15px; font-weight: 700; color: #15803d; }
+.rec-complete-dur { font-size: 13px; color: #4ade80; margin-left: auto; }
+
+.rec-actions { display: flex; flex-direction: column; gap: 8px; }
+.rec-play-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
   font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background 0.15s;
+}
+.rec-play-btn:hover { background: #2563eb; }
+.rec-delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background 0.15s;
+}
+.rec-delete-btn:hover { background: #dc2626; }
+.rec-hint-small { font-size: 12px; color: #667781; text-align: center; margin-top: 4px; }
+
+/* ══ WRITING SECTION ══ */
+.write-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px 20px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: none;
+  animation: fadeUp 0.3s ease both;
+}
+.write-card.active { display: block; }
+
+.write-textarea {
+  width: 100%;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  resize: none;
+  min-height: 130px;
+  outline: none;
+  margin-bottom: 6px;
+  background: #fafafa;
+  transition: border-color 0.2s;
+  line-height: 1.5;
+}
+.write-textarea:focus { border-color: #00a884; background: white; }
+.write-textarea::placeholder { color: #aaa; }
+.char-count { font-size: 12px; color: #667781; margin-bottom: 18px; }
+
+.submit-btn {
+  width: 100%;
+  max-width: 260px;
+  background: linear-gradient(135deg, #00a884, #008069);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.submit-btn.enabled { opacity: 1; pointer-events: all; }
+.submit-btn.enabled:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,168,132,0.35); }
+
+/* ══ THANK YOU SCREEN ══ */
+.thanks-card {
+  background: white;
+  border-radius: 18px;
+  padding: 32px 20px 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: none;
+  text-align: center;
+  animation: fadeUp 0.3s ease both;
+}
+.thanks-card.active { display: block; }
+
+.thanks-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.thanks-brand {
+  font-size: 22px;
   font-weight: 700;
+  color: #00a884;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.thanks-box {
+  background: #f0f4ff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.thanks-submitted { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.thanks-rep { font-size: 15px; font-weight: 700; color: #111; line-height: 1.5; }
+
+.thanks-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.stat-item {}
+.stat-label { font-size: 12px; color: #667781; margin-bottom: 4px; }
+.stat-value { font-size: 15px; font-weight: 700; color: #111; }
+
+.thanks-divider { border: none; border-top: 1px solid #e9edef; margin: 20px 0; }
+.thanks-contact { font-size: 14px; color: #667781; margin-bottom: 14px; }
+
+.contact-btns { display: flex; gap: 10px; }
+.contact-btn-email {
+  flex: 1;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.contact-btn-email:hover { background: #2563eb; }
+.contact-btn-wa {
+  flex: 1;
+  background: #00a884;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.contact-btn-wa:hover { background: #008069; }
+
+/* ══ RESULT SCREEN ══ */
+.result-card {
+  display: none;
+  background: white;
+  border-radius: 18px;
+  padding: 28px 20px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  text-align: center;
+  animation: fadeUp 0.3s ease both;
+}
+.result-card.active { display: block; }
+
+.result-emoji { font-size: 52px; margin-bottom: 12px; }
+.result-title { font-size: 24px; font-weight: 800; color: #111; margin-bottom: 6px; }
+.result-level-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 99px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.result-desc { font-size: 15px; color: #374151; line-height: 1.6; margin-bottom: 24px; }
+
+.result-score-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.result-score-num { font-size: 36px; font-weight: 800; color: #00a884; }
+.result-score-label { font-size: 13px; color: #4ade80; margin-top: 2px; }
+
+.start-learning-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00a884, #008069);
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+.start-learning-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,168,132,0.35); }
+
+.retake-btn {
+  background: none;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  transition: all 0.15s;
+}
+.retake-btn:hover { border-color: #9ca3af; }
+
+/* Footer */
+.footer { text-align: center; font-size: 11px; color: #9ca3af; padding: 20px 0 0; }
+.footer a { color: #00a884; text-decoration: none; }
+
+.lang-opt {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   transition: all 0.15s;
-  text-decoration: none;
-  display: inline-block;
+  text-align: left;
 }
-.cta-banner-btn:hover { opacity: 0.9; }
+.lang-opt:hover { border-color: #00a884; background: #f0fdf4; }
+.lang-opt.selected { border-color: #00a884; background: #f0fdf4; color: #00a884; font-weight: 700; }
 
-/* ══ FOOTER ══ */
-.footer {
-  background: #0d1117;
-  color: rgba(255,255,255,0.7);
-  padding: 48px 40px 24px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  gap: 32px;
-  max-width: 1100px;
-  margin: 0 auto 40px;
-}
-
-.footer-brand-name {
-  font-size: 20px;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 10px;
-}
-.footer-brand-name span { color: var(--green); }
-.footer-brand-desc { font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
-.footer-wa-btn {
-  background: var(--green);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 9px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-.footer-wa-btn:hover { background: var(--dark-green); }
-
-.footer-col-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 8px; }
-.footer-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
-.footer-links a:hover { color: var(--green); }
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: 0 auto;
-  font-size: 12px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.footer-social { display: flex; gap: 12px; }
-.footer-social a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 16px; transition: color 0.15s; }
-.footer-social a:hover { color: var(--green); }
-
-/* ══ RESPONSIVE ══ */
-@media (max-width: 900px) {
-  .nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 20px; gap: 16px; z-index: 99; }
-  .nav-hamburger { display: block; }
-  section { padding: 60px 20px; }
-  .hero { padding: 60px 20px 70px; }
-  .hero h1 { letter-spacing: -1px; }
-  .hero-cards { gap: 10px; }
-  .stats-bar { padding: 16px 20px; gap: 0; }
-  .stat-item { padding: 6px 16px; }
-  .why-grid, .steps-grid, .programs-grid { grid-template-columns: 1fr; }
-  .solutions-grid { grid-template-columns: 1fr; }
-  .vision-mission { grid-template-columns: 1fr; }
-  .contact-inner { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .footer-grid > div:first-child { grid-column: span 2; }
-}
-
-@media (max-width: 600px) {
-  .hero-cards { flex-direction: column; align-items: stretch; }
-  .hero-card { min-width: auto; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-grid > div:first-child { grid-column: span 1; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+@media (max-width: 480px) {
+  .page-wrap { padding: 16px 12px 40px; }
+  .q-text { font-size: 18px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav class="nav">
-  <a class="nav-logo" href="#">English<span>o</span> 🗣️</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#how">How it Works</a></li>
-    <li><a href="#programs">Programs</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a class="nav-cta" href="placement.html">Take Free Test →</a></li>
-  </ul>
-  <div class="nav-hamburger" onclick="toggleNav()">☰</div>
+  <a href="index.html" class="nav-logo">English<span>o</span> 🗣️</a>
 </nav>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <div class="hero-badge">
-    <div class="badge-dot"></div>
-    100% Free to Start · No App Download
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
   </div>
-
-  <h1>
-    Learn <span class="accent">English</span><br>
-    on <span class="accent2">WhatsApp</span><br>
-    in Your Language
-  </h1>
-
-  <p class="hero-sub">
-    Your personal AI English tutor — available 24/7 on WhatsApp. Learns in Marathi, Hindi & more Indian languages. No boring grammar. Just real conversation.
-  </p>
-
-  <div class="hero-btns">
-    <a class="btn-primary" href="placement.html">🎯 Take Free Level Test</a>
-    <a class="btn-secondary" href="https://wa.me/919822253333" target="_blank">💬 Chat on WhatsApp</a>
-  </div>
-  <div class="hero-note">✓ Free · <span>No credit card</span> · Works on any phone</div>
-
-  <div class="hero-cards">
-    <div class="hero-card">
-      <div class="hero-card-icon">🗣️</div>
-      <div>
-        <div class="hero-card-title">Learn on WhatsApp</div>
-        <div class="hero-card-sub">No app download needed</div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-card-icon">🤖</div>
-      <div>
-        <div class="hero-card-title">AI Powered</div>
-        <div class="hero-card-sub">Gemini AI tutor, 24/7</div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-card-icon">🇮🇳</div>
-      <div>
-        <div class="hero-card-title">Indian Languages</div>
-        <div class="hero-card-sub">Marathi, Hindi & more</div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-card-icon">💰</div>
-      <div>
-        <div class="hero-card-title">Just ₹49/month</div>
-        <div class="hero-card-sub">Cheaper than any class</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ STATS BAR ══ -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-icon">🇮🇳</span>
-    <span class="stat-text">Built for India</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-icon">🤖</span>
-    <span class="stat-text">Gemini AI Tutor</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-icon">📱</span>
-    <span class="stat-text">WhatsApp Native</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-icon">💬</span>
-    <span class="stat-text">Silent Correction</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-icon">🔓</span>
-    <span class="stat-text">Free to Start</span>
-  </div>
+  <div class="progress-label" id="progressLabel">0 / 15</div>
 </div>
 
-<!-- ══ WHY ENGLISHO ══ -->
-<section class="why-section" id="features">
-  <div class="text-center">
-    <div class="section-label">Why Englisho</div>
-    <div class="section-title">We're Changing How<br><span class="accent">India Learns English</span></div>
-    <div class="section-sub">No coaching class. No app download. Just open WhatsApp and start talking.</div>
+<div class="page-wrap">
+
+  <!-- ══ INTRO: Name + Language ══ -->
+  <div class="q-card active" id="q0" style="min-height:auto;">
+    <div style="font-size:28px;margin-bottom:12px;">👋</div>
+    <div class="q-text" style="margin-bottom:6px;">Welcome to the Englisho Placement Test</div>
+    <p style="font-size:14px;color:#667781;margin-bottom:22px;line-height:1.6;">15 questions · ~5 minutes · Finds your exact English level (A1 to C1)</p>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;color:#008069;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Your Name</div>
+      <input type="text" id="introName" placeholder="Enter your name..."
+        style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;"
+        onfocus="this.style.borderColor='#00a884'" onblur="this.style.borderColor='#e5e7eb'"
+        oninput="checkIntro()"/>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;color:#008069;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">I Speak</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" id="langGrid">
+        <button class="lang-opt selected" data-lang="Marathi" onclick="pickLang(this)">🇮🇳 Marathi</button>
+        <button class="lang-opt" data-lang="Hindi" onclick="pickLang(this)">🇮🇳 Hindi</button>
+        <button class="lang-opt" data-lang="Tamil" onclick="pickLang(this)">🇮🇳 Tamil</button>
+        <button class="lang-opt" data-lang="Telugu" onclick="pickLang(this)">🇮🇳 Telugu</button>
+        <button class="lang-opt" data-lang="Gujarati" onclick="pickLang(this)">🇮🇳 Gujarati</button>
+        <button class="lang-opt" data-lang="Kannada" onclick="pickLang(this)">🇮🇳 Kannada</button>
+      </div>
+    </div>
+
+    <button class="next-btn enabled" id="startTestBtn" onclick="startTest()" style="max-width:100%;background:linear-gradient(135deg,#00a884,#008069);">
+      Start Test →
+    </button>
+  </div>
+  <!-- ══ Q1: A1 — Articles ══ -->
+  <div class="q-card" id="q1">
+    <div class="level-badge level-A1">A1</div>
+    <button class="translate-btn" onclick="toggleTranslate(1)">Translate to Marathi</button>
+    <div class="translation-text" id="trans1">रिकाम्या जागी काय येईल? "___ sun rises in the east."</div>
+    <div class="q-text">Fill in the blank: "___ sun rises in the east."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(1,'a','b')"><div class="opt-letter">a</div> A</button>
+      <button class="opt-btn" onclick="selectOpt(1,'b','b')"><div class="opt-letter">b</div> The</button>
+      <button class="opt-btn" onclick="selectOpt(1,'c','b')"><div class="opt-letter">c</div> An</button>
+      <button class="opt-btn" onclick="selectOpt(1,'d','b')"><div class="opt-letter">d</div> (no word needed)</button>
+    </div>
+    <button class="next-btn" id="next1" onclick="nextQ(1)">Next Question →</button>
   </div>
 
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div class="why-title">Instant Start, Zero Barriers</div>
-      <div class="why-desc">Send "Hi" to our WhatsApp number and begin learning immediately. No registration, no login, no app install.</div>
-      <div class="why-tag">→ Start in under 60 seconds</div>
+  <!-- ══ Q2: A1 — Present simple third person ══ -->
+  <div class="q-card" id="q2">
+    <div class="level-badge level-A1">A1</div>
+    <button class="translate-btn" onclick="toggleTranslate(2)">Translate to Marathi</button>
+    <div class="translation-text" id="trans2">बरोबर रूप निवडा: "She ___ tea every morning."</div>
+    <div class="q-text">Choose the correct form: "She ___ tea every morning."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(2,'a','c')"><div class="opt-letter">a</div> drink</button>
+      <button class="opt-btn" onclick="selectOpt(2,'b','c')"><div class="opt-letter">b</div> is drink</button>
+      <button class="opt-btn" onclick="selectOpt(2,'c','c')"><div class="opt-letter">c</div> drinks</button>
+      <button class="opt-btn" onclick="selectOpt(2,'d','c')"><div class="opt-letter">d</div> are drinking</button>
     </div>
-    <div class="why-card">
-      <div class="why-icon">🎯</div>
-      <div class="why-title">Personalized to Your Level</div>
-      <div class="why-desc">Take a 5-minute placement test and your AI tutor automatically adjusts difficulty to match your exact English level — A1 to C1.</div>
-      <div class="why-tag">→ A1 to C1 adaptive learning</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🤫</div>
-      <div class="why-title">Silent Correction — No Shame</div>
-      <div class="why-desc">When you make a grammar mistake, your tutor uses the correct version naturally in the reply. No red marks, no embarrassment.</div>
-      <div class="why-tag">→ Learn naturally, not painfully</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🎤</div>
-      <div class="why-title">Speak or Type — Your Choice</div>
-      <div class="why-desc">Send voice notes in English and get feedback. Or just type. Practice speaking confidence without fear of judgment.</div>
-      <div class="why-tag">→ Voice + text supported</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🌐</div>
-      <div class="why-title">Explains in Your Language</div>
-      <div class="why-desc">Confused about something? Your tutor explains it in Marathi, Hindi, Tamil, Telugu or your mother tongue — so nothing gets lost.</div>
-      <div class="why-tag">→ 8+ Indian languages</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">📅</div>
-      <div class="why-title">Daily Practice, 15 Minutes</div>
-      <div class="why-desc">Just 15 minutes a day is enough. Your tutor sends you a new conversation topic every day and tracks your progress automatically.</div>
-      <div class="why-tag">→ Consistency builds fluency</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ HOW IT WORKS ══ -->
-<section class="how-section" id="how">
-  <div class="text-center">
-    <div class="section-label">Simple Process</div>
-    <div class="section-title">How <span class="accent">Englisho</span> Works</div>
-    <div class="section-sub">Getting started is as simple as sending a WhatsApp message. Our 6-step process is built for busy Indian learners.</div>
+    <button class="next-btn" id="next2" onclick="nextQ(2)">Next Question →</button>
   </div>
 
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-num">Step 01</div>
-      <div class="step-icon">💬</div>
-      <div class="step-title">Say Hi on WhatsApp</div>
-      <div class="step-desc">Message our WhatsApp number to begin. No app download needed. Works on any Android or iPhone.</div>
+  <!-- ══ Q3: A2 — Past simple ══ -->
+  <div class="q-card" id="q3">
+    <div class="level-badge level-A2">A2</div>
+    <button class="translate-btn" onclick="toggleTranslate(3)">Translate to Marathi</button>
+    <div class="translation-text" id="trans3">रिकाम्या जागी काय येईल? "I ___ very tired after the long journey yesterday."</div>
+    <div class="q-text">Fill in: "I ___ very tired after the long journey yesterday."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(3,'a','b')"><div class="opt-letter">a</div> am</button>
+      <button class="opt-btn" onclick="selectOpt(3,'b','b')"><div class="opt-letter">b</div> was</button>
+      <button class="opt-btn" onclick="selectOpt(3,'c','b')"><div class="opt-letter">c</div> were</button>
+      <button class="opt-btn" onclick="selectOpt(3,'d','b')"><div class="opt-letter">d</div> have been</button>
     </div>
-    <div class="step-card">
-      <div class="step-num">Step 02</div>
-      <div class="step-icon">🌐</div>
-      <div class="step-title">Set Your Language</div>
-      <div class="step-desc">Tell us your native language — Marathi, Hindi, Tamil, Telugu, or others. We'll teach in your language.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">Step 03</div>
-      <div class="step-icon">📝</div>
-      <div class="step-title">Take a Quick Level Test</div>
-      <div class="step-desc">5-minute placement test — 10 simple questions to find your exact English level from A1 to C1.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">Step 04</div>
-      <div class="step-icon">🎓</div>
-      <div class="step-title">Get Daily Lessons</div>
-      <div class="step-desc">Your AI tutor sends a new conversation topic every day — grammar, vocabulary, real-life situations and more.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">Step 05</div>
-      <div class="step-icon">🗣️</div>
-      <div class="step-title">Practice & Get Feedback</div>
-      <div class="step-desc">Reply in English — text or voice. Your tutor gives instant feedback with silent corrections woven naturally into replies.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">Step 06</div>
-      <div class="step-icon">📈</div>
-      <div class="step-title">Track Your Progress</div>
-      <div class="step-desc">After every 10 messages, get a session summary showing what you did well, mistakes to fix and next steps.</div>
-    </div>
+    <button class="next-btn" id="next3" onclick="nextQ(3)">Next Question →</button>
   </div>
 
-  <div class="how-cta">
-    <div class="how-cta-box">
-      <div class="how-cta-title">Ready to start your English journey?</div>
-      <div class="how-cta-sub">Join thousands of learners improving their English every day on WhatsApp.</div>
-      <a class="btn-primary" href="placement.html">🎯 Get Started With a Free Test</a>
-      <div style="margin-top:10px;font-size:12px;color:#9ca3af;">No credit card required · Free to start</div>
+  <!-- ══ Q4: A2 — Preposition in real context ══ -->
+  <div class="q-card" id="q4">
+    <div class="level-badge level-A2">A2</div>
+    <button class="translate-btn" onclick="toggleTranslate(4)">Translate to Marathi</button>
+    <div class="translation-text" id="trans4">सहकर्मी विचारतो: "Are you free ___ lunch on Friday?" सर्वात योग्य काय?</div>
+    <div class="q-text">Your colleague says: "Are you free ___ lunch on Friday?" Which word fits?</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(4,'a','c')"><div class="opt-letter">a</div> in</button>
+      <button class="opt-btn" onclick="selectOpt(4,'b','c')"><div class="opt-letter">b</div> on</button>
+      <button class="opt-btn" onclick="selectOpt(4,'c','c')"><div class="opt-letter">c</div> for</button>
+      <button class="opt-btn" onclick="selectOpt(4,'d','c')"><div class="opt-letter">d</div> at</button>
     </div>
-  </div>
-</section>
-
-<!-- ══ PROGRAMS ══ -->
-<section class="programs-section" id="programs">
-  <div class="text-center">
-    <div class="section-label">Learning Programs</div>
-    <div class="section-title">Our <span class="accent">Learning Tracks</span></div>
-    <div class="section-sub">Structured programs designed for different types of Indian English learners.</div>
+    <button class="next-btn" id="next4" onclick="nextQ(4)">Next Question →</button>
   </div>
 
-  <div class="programs-grid">
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#dcfce7;">🗣️</div>
-      <div class="prog-title">Marathi to English</div>
-      <div class="prog-desc">Master English with lessons taught in Marathi. Designed for Maharashtra learners of all levels.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
+  <!-- ══ Q5: B1 — Present perfect vs past simple ══ -->
+  <div class="q-card" id="q5">
+    <div class="level-badge level-B1">B1</div>
+    <button class="translate-btn" onclick="toggleTranslate(5)">Translate to Marathi</button>
+    <div class="translation-text" id="trans5">खालीलपैकी कोणते वाक्य बरोबर आहे?</div>
+    <div class="q-text">Which sentence is grammatically correct?</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(5,'a','c')"><div class="opt-letter">a</div> I have seen that film last week.</button>
+      <button class="opt-btn" onclick="selectOpt(5,'b','c')"><div class="opt-letter">b</div> Did you ever visit London?</button>
+      <button class="opt-btn" onclick="selectOpt(5,'c','c')"><div class="opt-letter">c</div> She has worked here since 2019.</button>
+      <button class="opt-btn" onclick="selectOpt(5,'d','c')"><div class="opt-letter">d</div> We have finished the project yesterday.</button>
     </div>
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#dbeafe;">🇮🇳</div>
-      <div class="prog-title">Hindi to English</div>
-      <div class="prog-desc">Learn English naturally with Hindi explanations. Perfect for Hindi speakers across India.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
-    </div>
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#fef3c7;">💼</div>
-      <div class="prog-title">Business English</div>
-      <div class="prog-desc">Emails, meetings, presentations — learn professional English for your career growth.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
-    </div>
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#fce7f3;">📞</div>
-      <div class="prog-title">Spoken English</div>
-      <div class="prog-desc">Focus on speaking — pronunciation, fluency and confidence for real-life conversations.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
-    </div>
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#ede9fe;">📚</div>
-      <div class="prog-title">Grammar Foundations</div>
-      <div class="prog-desc">Fix your grammar basics — tenses, articles, prepositions — all explained in your language.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
-    </div>
-    <div class="prog-card">
-      <div class="prog-icon-wrap" style="background:#dcfce7;">🎯</div>
-      <div class="prog-title">Daily Practice</div>
-      <div class="prog-desc">Just 15 minutes every day. Maintain streak, build habit and track progress week by week.</div>
-      <button class="prog-link" onclick="window.location.href='placement.html'">Start Learning →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SOLUTIONS ══ -->
-<section class="solutions-section">
-  <div class="text-center">
-    <div class="section-label">Our Solutions</div>
-    <div class="section-title">Tailored <span class="accent">English Learning</span></div>
-    <div class="section-sub">Programs for every type of learner — from students to working professionals.</div>
+    <button class="next-btn" id="next5" onclick="nextQ(5)">Next Question →</button>
   </div>
 
-  <div class="solutions-grid">
-    <div class="sol-card">
-      <div class="sol-header">
-        <div class="sol-icon" style="background:#dcfce7; color:#166534;">👤</div>
-        <div>
-          <div class="sol-title">For Individuals</div>
-          <div class="sol-sub">Personal English coaching at ₹49/month</div>
+  <!-- ══ Q6: B1 — First conditional ══ -->
+  <div class="q-card" id="q6">
+    <div class="level-badge level-B1">B1</div>
+    <button class="translate-btn" onclick="toggleTranslate(6)">Translate to Marathi</button>
+    <div class="translation-text" id="trans6">रिकाम्या जागी काय येईल? "If it rains tomorrow, we ___ the match."</div>
+    <div class="q-text">Fill in: "If it rains tomorrow, we ___ the match."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(6,'a','b')"><div class="opt-letter">a</div> would cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'b','b')"><div class="opt-letter">b</div> will cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'c','b')"><div class="opt-letter">c</div> cancel</button>
+      <button class="opt-btn" onclick="selectOpt(6,'d','b')"><div class="opt-letter">d</div> are cancelling</button>
+    </div>
+    <button class="next-btn" id="next6" onclick="nextQ(6)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q7: B1 — Collocation (make/do) ══ -->
+  <div class="q-card" id="q7">
+    <div class="level-badge level-B1">B1</div>
+    <button class="translate-btn" onclick="toggleTranslate(7)">Translate to Marathi</button>
+    <div class="translation-text" id="trans7">रिकाम्या जागी काय येईल? "I need to ___ a decision about my career soon."</div>
+    <div class="q-text">Choose the correct verb: "I need to ___ a decision about my career soon."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(7,'a','b')"><div class="opt-letter">a</div> do</button>
+      <button class="opt-btn" onclick="selectOpt(7,'b','b')"><div class="opt-letter">b</div> make</button>
+      <button class="opt-btn" onclick="selectOpt(7,'c','b')"><div class="opt-letter">c</div> take</button>
+      <button class="opt-btn" onclick="selectOpt(7,'d','b')"><div class="opt-letter">d</div> have</button>
+    </div>
+    <button class="next-btn" id="next7" onclick="nextQ(7)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q8: B2 — Reported speech ══ -->
+  <div class="q-card" id="q8">
+    <div class="level-badge level-B2">B2</div>
+    <button class="translate-btn" onclick="toggleTranslate(8)">Translate to Marathi</button>
+    <div class="translation-text" id="trans8">त्याने सांगितले: "I will call you tomorrow." Reported speech मध्ये?</div>
+    <div class="q-text">He said: "I will call you tomorrow." What is the correct reported speech?</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(8,'a','c')"><div class="opt-letter">a</div> He said he will call me tomorrow.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'b','c')"><div class="opt-letter">b</div> He said he calls me the next day.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'c','c')"><div class="opt-letter">c</div> He said he would call me the next day.</button>
+      <button class="opt-btn" onclick="selectOpt(8,'d','c')"><div class="opt-letter">d</div> He told he would call me tomorrow.</button>
+    </div>
+    <button class="next-btn" id="next8" onclick="nextQ(8)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q9: B2 — Discourse connectors / implied meaning ══ -->
+  <div class="q-card" id="q9">
+    <div class="level-badge level-B2">B2</div>
+    <button class="translate-btn" onclick="toggleTranslate(9)">Translate to Marathi</button>
+    <div class="translation-text" id="trans9">"The presentation was long, ___ it kept everyone's attention." योग्य connector कोणता?</div>
+    <div class="q-text">"The presentation was long, ___ it kept everyone's attention." Choose the best connector.</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(9,'a','b')"><div class="opt-letter">a</div> so</button>
+      <button class="opt-btn" onclick="selectOpt(9,'b','b')"><div class="opt-letter">b</div> yet</button>
+      <button class="opt-btn" onclick="selectOpt(9,'c','b')"><div class="opt-letter">c</div> since</button>
+      <button class="opt-btn" onclick="selectOpt(9,'d','b')"><div class="opt-letter">d</div> for</button>
+    </div>
+    <button class="next-btn" id="next9" onclick="nextQ(9)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q10: B2 — Second conditional ══ -->
+  <div class="q-card" id="q10">
+    <div class="level-badge level-B2">B2</div>
+    <button class="translate-btn" onclick="toggleTranslate(10)">Translate to Marathi</button>
+    <div class="translation-text" id="trans10">रिकाम्या जागी काय येईल? "If I ___ the manager, I would change this policy immediately."</div>
+    <div class="q-text">Fill in: "If I ___ the manager, I would change this policy immediately."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(10,'a','c')"><div class="opt-letter">a</div> am</button>
+      <button class="opt-btn" onclick="selectOpt(10,'b','c')"><div class="opt-letter">b</div> will be</button>
+      <button class="opt-btn" onclick="selectOpt(10,'c','c')"><div class="opt-letter">c</div> were</button>
+      <button class="opt-btn" onclick="selectOpt(10,'d','c')"><div class="opt-letter">d</div> would be</button>
+    </div>
+    <button class="next-btn" id="next10" onclick="nextQ(10)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q11: C1 — Vocabulary in context (ambiguity) ══ -->
+  <div class="q-card" id="q11">
+    <div class="level-badge level-C1">C1</div>
+    <button class="translate-btn" onclick="toggleTranslate(11)">Translate to Marathi</button>
+    <div class="translation-text" id="trans11">"The minister's comments were deliberately ___, allowing different groups to interpret them as they wished."</div>
+    <div class="q-text">"The minister's comments were deliberately ___, allowing different groups to interpret them as they wished."</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(11,'a','b')"><div class="opt-letter">a</div> straightforward</button>
+      <button class="opt-btn" onclick="selectOpt(11,'b','b')"><div class="opt-letter">b</div> ambiguous</button>
+      <button class="opt-btn" onclick="selectOpt(11,'c','b')"><div class="opt-letter">c</div> repetitive</button>
+      <button class="opt-btn" onclick="selectOpt(11,'d','b')"><div class="opt-letter">d</div> literal</button>
+    </div>
+    <button class="next-btn" id="next11" onclick="nextQ(11)">Next Question →</button>
+  </div>
+
+  <!-- ══ Q12: C1 — Inversion (formal grammar) ══ -->
+  <div class="q-card" id="q12">
+    <div class="level-badge level-C1">C1</div>
+    <button class="translate-btn" onclick="toggleTranslate(12)">Translate to Marathi</button>
+    <div class="translation-text" id="trans12">खालीलपैकी formal English मध्ये कोणते वाक्य बरोबर आहे?</div>
+    <div class="q-text">Which sentence uses correct formal English grammar?</div>
+    <div class="options">
+      <button class="opt-btn" onclick="selectOpt(12,'a','c')"><div class="opt-letter">a</div> Hardly I had sat down when the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'b','c')"><div class="opt-letter">b</div> Hardly I had sat down, the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'c','c')"><div class="opt-letter">c</div> Hardly had I sat down when the phone rang.</button>
+      <button class="opt-btn" onclick="selectOpt(12,'d','c')"><div class="opt-letter">d</div> Hardly did I sat down when the phone rang.</button>
+    </div>
+    <button class="next-btn" id="next12" onclick="nextQTo(12,15)">Next Question →</button>
+  </div>
+
+
+  <!-- ══ Q15: SPEAKING ══ -->
+  <div class="speak-card" id="q15">
+    <div class="level-badge level-B1" style="margin-bottom:12px;">Speaking</div>
+    <button class="translate-btn" onclick="toggleTranslate(15)">Translate to Marathi</button>
+    <div class="translation-text" id="trans15">खालील वाक्ये मोठ्याने वाचा. आपला आवाज रेकॉर्ड केला जाईल.</div>
+    <div class="q-text">Read the following sentences aloud.</div>
+    <p class="speak-intro">(A1 to C1 level — read naturally)</p>
+    <div class="sentences-list">
+      <div class="sentence-item">
+        <div class="sentence-num">1</div>
+        <div class="sentence-body">
+          <div class="sentence-text">I go to work by train every day.</div>
+          <div class="sentence-level">A1 – Beginner</div>
         </div>
       </div>
-      <ul class="sol-features">
-        <li>30-day structured course tailored to your level</li>
-        <li>AI tutor available 24/7 on WhatsApp</li>
-        <li>Daily practice conversations and exercises</li>
-        <li>Weekly progress summary with corrections</li>
-        <li>Explanations in your mother tongue</li>
-      </ul>
-      <span class="sol-tag">Perfect for: Students, job seekers, homemakers, professionals</span>
-      <a class="btn-primary" href="placement.html" style="font-size:14px; padding:11px 20px;">Start Learning →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-header">
-        <div class="sol-icon" style="background:#dbeafe; color:#1d4ed8;">🏢</div>
-        <div>
-          <div class="sol-title">For Organizations</div>
-          <div class="sol-sub">Bulk plans for teams & institutions</div>
+      <div class="sentence-item">
+        <div class="sentence-num">2</div>
+        <div class="sentence-body">
+          <div class="sentence-text">Last weekend I visited my friend and we cooked dinner together at home.</div>
+          <div class="sentence-level">A2 – Elementary</div>
         </div>
       </div>
-      <ul class="sol-features">
-        <li>Branded WhatsApp experience for your team</li>
-        <li>Batch management and admin dashboard</li>
-        <li>Progress reports for all learners</li>
-        <li>Custom curriculum for your industry</li>
-        <li>No URL or app required for learners</li>
-      </ul>
-      <span class="sol-tag">Perfect for: Schools, colleges, corporate teams, NGOs</span>
-      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank" style="display:inline-flex; margin-top:0; padding:11px 20px; border-radius:10px; background:var(--green); color:white; border:none; font-weight:700; font-size:14px; text-decoration:none;">Contact Us →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ABOUT / STORY ══ -->
-<section class="story-section" id="about">
-  <div class="story-inner text-center">
-    <div class="section-label">Our Journey</div>
-    <div class="section-title">The <span class="accent">Englisho</span> Story</div>
-    <div class="section-sub">Built in Pune, for India — because everyone deserves to speak English confidently.</div>
-
-    <div class="vision-mission">
-      <div class="vm-card vision">
-        <div class="vm-label">🔭 Our Vision</div>
-        <div class="vm-title">English for Every Indian</div>
-        <div class="vm-text">To make English fluency accessible to every Indian, regardless of their location, income or background — using technology they already use every day: WhatsApp.</div>
-      </div>
-      <div class="vm-card mission">
-        <div class="vm-label">🎯 Our Mission</div>
-        <div class="vm-title">Teach Without Shame</div>
-        <div class="vm-text">To deliver an English learning experience that feels like chatting with a supportive friend — no judgment, no red marks, no fear. Just confidence, one conversation at a time.</div>
-      </div>
-    </div>
-
-    <p class="story-text" style="margin: 32px auto 0; text-align:left;">
-      Crores of Indians know English words but fear speaking. They worry about making mistakes, being judged, or sounding wrong. Traditional coaching is expensive, time-consuming and often shameful.<br><br>
-      We believed there was a better way. WhatsApp is already on every Indian phone. Why not use it to learn? Englisho was built on that simple idea — bring a world-class AI English tutor right into the app everyone already loves.<br><br>
-      We believe real progress comes from daily practice, cultural understanding and gentle feedback. That's why we built a system where learners start where they are, guided by AI and supported every step of the way.
-    </p>
-  </div>
-</section>
-
-<!-- ══ FAQ ══ -->
-<section class="faq-section" id="faq">
-  <div class="text-center">
-    <div class="section-label">Need Help?</div>
-    <div class="section-title">Frequently Asked <span class="accent">Questions</span></div>
-  </div>
-
-  <div class="faq-inner" style="margin-top:36px;">
-    <div class="faq-search">
-      <span>🔍</span>
-      <input type="text" placeholder="Search questions..." oninput="filterFAQ(this.value)" id="faqSearch"/>
-    </div>
-
-    <div id="faqList">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">Is Englisho really free? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Yes! You can start completely free. Send a message to our WhatsApp number, take the placement test and get your first 20 messages free. After that, continue with just ₹49/month — less than a chai every week.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">Do I need to download any app? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">No app needed at all! Englisho works entirely on WhatsApp, which you already have. Just save our number and start chatting — that's it.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">Which languages are supported? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Currently we support Marathi, Hindi, Tamil, Telugu, Gujarati, Punjabi, Kannada and Bengali. More languages are being added regularly. Tell us your language if it's not listed!</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">How is this different from Duolingo or other apps? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Duolingo gives you exercises. Englisho gives you real conversation. Our AI tutor chats with you like a friend — about your life, your work, your day. And it explains things in your mother tongue, which no English app does. Plus, it works on WhatsApp so there's nothing to install or remember to open.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">What is the placement test? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">It's a free 5-minute test with 14 MCQ questions + 1 speaking section + 1 writing section. It detects your English level from A1 (beginner) to C1 (advanced). After the test, your tutor automatically teaches at the right difficulty for you.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">How much time do I need every day? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Just 15 minutes! Your tutor sends a new topic every day. You can reply whenever you have time — morning commute, lunch break, before bed. Consistency matters more than long sessions.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">Can I use voice instead of typing? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Yes! You can send voice notes on WhatsApp and your tutor will respond to what you said. This is great for practicing pronunciation and building speaking confidence.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<section class="contact-section" id="contact">
-  <div class="text-center">
-    <div class="section-label">Ready to Help You</div>
-    <div class="section-title">Get In Touch</div>
-    <div class="section-sub">Let's talk about your English learning goals. We're here to help.</div>
-  </div>
-
-  <div class="contact-inner">
-    <div class="contact-form-box">
-      <div class="form-title">📩 Send Us a Message</div>
-      <div class="form-row">
-        <label class="form-label">Full Name</label>
-        <input class="form-input" type="text" placeholder="Your name"/>
-      </div>
-      <div class="form-row">
-        <label class="form-label">WhatsApp Number</label>
-        <input class="form-input" type="tel" placeholder="+91 98765 43210"/>
-      </div>
-      <div class="form-row">
-        <label class="form-label">Your Language</label>
-        <input class="form-input" type="text" placeholder="Marathi, Hindi, Tamil..."/>
-      </div>
-      <div class="form-row">
-        <label class="form-label">Your Message</label>
-        <textarea class="form-input" placeholder="Tell us about your English learning goal..."></textarea>
-      </div>
-      <button class="form-submit" onclick="alert('Thanks! We will contact you on WhatsApp shortly. 🙏')">📤 Send Message</button>
-    </div>
-
-    <div class="contact-options-box">
-      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank">
-        <div class="contact-opt-icon" style="background:#dcfce7;">💬</div>
-        <div>
-          <div class="contact-opt-title">Chat on WhatsApp</div>
-          <div class="contact-opt-sub">Get instant replies from our team</div>
+      <div class="sentence-item">
+        <div class="sentence-num">3</div>
+        <div class="sentence-body">
+          <div class="sentence-text">I have been learning English for two years and I think it is getting easier to express my ideas.</div>
+          <div class="sentence-level">B1 – Intermediate</div>
         </div>
-        <span style="margin-left:auto; color:var(--green);">→</span>
-      </a>
-      <a class="contact-opt" href="mailto:hello@englisho.in">
-        <div class="contact-opt-icon" style="background:#dbeafe;">📧</div>
-        <div>
-          <div class="contact-opt-title">Email Us</div>
-          <div class="contact-opt-sub">hello@englisho.in</div>
+      </div>
+      <div class="sentence-item">
+        <div class="sentence-num">4</div>
+        <div class="sentence-body">
+          <div class="sentence-text">Although technology has made communication much faster, it has also reduced the depth of personal relationships in modern society.</div>
+          <div class="sentence-level">B2 – Upper Intermediate</div>
         </div>
-        <span style="margin-left:auto; color:var(--green);">→</span>
-      </a>
-      <a class="contact-opt" href="placement.html">
-        <div class="contact-opt-icon" style="background:#fef3c7;">📝</div>
-        <div>
-          <div class="contact-opt-title">Take Free Level Test</div>
-          <div class="contact-opt-sub">Discover your English level in 5 min</div>
+      </div>
+      <div class="sentence-item">
+        <div class="sentence-num">5</div>
+        <div class="sentence-body">
+          <div class="sentence-text">The proliferation of misinformation across digital platforms poses a significant challenge to democratic processes and public health policy.</div>
+          <div class="sentence-level">C1 – Advanced</div>
         </div>
-        <span style="margin-left:auto; color:var(--green);">→</span>
-      </a>
-
-      <div class="cta-banner">
-        <h3>Ready to Transform<br>Your English?</h3>
-        <p>Join learners across Maharashtra improving their English every day on WhatsApp.</p>
-        <a class="cta-banner-btn" href="https://wa.me/919822253333" target="_blank">🚀 Start Free on WhatsApp</a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">English<span>o</span> 🗣️</div>
-      <div class="footer-brand-desc">AI-powered English learning on WhatsApp. Built in Pune for India. Teaching English in your language — no shame, no app, no coaching class.</div>
-      <a class="footer-wa-btn" href="https://wa.me/919822253333" target="_blank">💬 Chat Now</a>
+    <div class="record-section">
+      <div class="record-idle" id="recordIdle">
+        <button class="record-btn-big" id="recordBtn" onclick="toggleRecord()">🎤</button>
+        <div class="record-hint">Tap mic to start recording</div>
+      </div>
+      <div class="recording-status" id="recordingStatus">
+        <div class="rec-dot"></div>
+        <span id="recordTimer">Recording... 0s</span>
+      </div>
+      <div class="recording-complete" id="recordingComplete">
+        <div class="rec-complete-header">
+          <span class="rec-complete-check">✅</span>
+          <span class="rec-complete-title">Recording Complete!</span>
+          <span class="rec-complete-dur" id="recDur"></span>
+        </div>
+        <div class="rec-actions">
+          <button class="rec-play-btn" onclick="playRecording()">▷ &nbsp;Play Recording</button>
+          <button class="rec-delete-btn" onclick="deleteRecording()">🗑 &nbsp;Delete &amp; Re-record</button>
+        </div>
+        <div class="rec-hint-small">Listen to your recording or delete to try again</div>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <ul class="footer-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#programs">Programs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Programs</div>
-      <ul class="footer-links">
-        <li><a href="placement.html">Take Level Test</a></li>
-        <li><a href="#">Marathi to English</a></li>
-        <li><a href="#">Hindi to English</a></li>
-        <li><a href="#">Business English</a></li>
-        <li><a href="#">Spoken English</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Legal</div>
-      <ul class="footer-links">
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Refund Policy</a></li>
-        <li><a href="#">GDPR Compliance</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Contact Us</div>
-      <ul class="footer-links">
-        <li><a href="mailto:hello@englisho.in">hello@englisho.in</a></li>
-        <li><a href="https://wa.me/919822253333" target="_blank">+91 98222 53333</a></li>
-        <li><a href="#">Pune, Maharashtra, India</a></li>
-        <li><a href="#">UDYAM-MH-30-0190090</a></li>
-      </ul>
-    </div>
+
+    <button class="next-btn" id="next15" onclick="nextQ(15)">Next Question →</button>
   </div>
-  <div class="footer-bottom">
-    <div>© 2026 Englisho. All rights reserved. | Registered under MSME India</div>
-    <div class="footer-social">
-      <a href="#" title="Instagram">📷</a>
-      <a href="https://wa.me/919822253333" target="_blank" title="WhatsApp">💬</a>
-      <a href="mailto:hello@englisho.in" title="Email">📧</a>
-    </div>
+
+  <!-- ══ Q16: WRITING ══ -->
+  <div class="write-card" id="q16">
+    <div class="level-badge level-C1" style="margin-bottom:12px;">C1</div>
+    <button class="translate-btn" onclick="toggleTranslate(16)">Translate to Marathi</button>
+    <div class="translation-text" id="trans16">या विषयावर ३-४ वाक्ये लिहा: "तुम्हाला इंग्रजी का शिकायचे आहे?"</div>
+    <div class="q-text">Write 3-4 sentences on this topic: "Why do you want to learn English?"</div>
+    <textarea class="write-textarea" id="writeInput" placeholder="I want to learn English because..." oninput="onWriteInput()"></textarea>
+    <div class="char-count" id="charCount">0 characters</div>
+    <button class="submit-btn" id="submitBtn" onclick="submitAssessment()">Submit Assessment →</button>
   </div>
-</footer>
+
+  <!-- ══ THANKS SCREEN ══ -->
+  <div class="thanks-card" id="thanksCard">
+    <div class="thanks-title">Thank You<br>for Taking</div>
+    <div class="thanks-brand">Englisho —<br>Placement Assessment</div>
+    <div class="thanks-box">
+      <div class="thanks-submitted">Your assessment has been submitted successfully!</div>
+      <div class="thanks-rep">Our AI tutor will start your personalized learning journey shortly.</div>
+    </div>
+    <div class="thanks-stats">
+      <div class="stat-item">
+        <div class="stat-label">Language Pair</div>
+        <div class="stat-value">Marathi → English</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Questions Answered</div>
+        <div class="stat-value" id="statAnswered">17 / 17</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Estimated Level</div>
+        <div class="stat-value" id="statLevel">—</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="statScore">—</div>
+      </div>
+    </div>
+    <hr class="thanks-divider"/>
+    <div id="writingFeedback" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:13px; color:#166534; line-height:1.6;">
+      <div style="font-weight:700; margin-bottom:4px;">Writing Feedback</div>
+      <div id="writingFeedbackText"></div>
+    </div>
+    <div class="thanks-contact">Have questions? Contact us!</div>
+    <div class="contact-btns">
+      <button class="contact-btn-email" onclick="window.location='mailto:hello@englisho.in'">📧 Email Us</button>
+      <button class="contact-btn-wa" onclick="window.open('https://wa.me/919822253333','_blank')">💬 WhatsApp</button>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="start-learning-btn" onclick="startLearning()">🎓 Start Learning Now →</button>
+    </div>
+    <p style="font-size:12px;color:#9ca3af;margin-top:10px;">You will be taken to WhatsApp to begin your personalized lessons</p>
+  </div>
+
+  <div class="footer">
+    © 2026 Englisho. All rights reserved.<br>
+    <a href="https://englisho.in">englisho.in</a>
+  </div>
+
+</div><!-- end page-wrap -->
 
 <script>
-function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
+const TOTAL = 15;
+let current = 1;
+let score = 0;
+let answers = {};
+let userName = 'there';
+let userLang = 'Marathi';
+let speechTranscript = '';
+
+// ── INTRO STEP ──
+function pickLang(el) {
+  document.querySelectorAll('.lang-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  userLang = el.dataset.lang;
 }
 
-function toggleFAQ(el) {
-  const item = el.parentElement;
-  item.classList.toggle('open');
+function checkIntro() {
+  // name input is optional — always allow start
 }
 
-function filterFAQ(val) {
-  const items = document.querySelectorAll('#faqList .faq-item');
-  const q = val.toLowerCase();
-  items.forEach(item => {
-    const text = item.textContent.toLowerCase();
-    item.style.display = text.includes(q) ? '' : 'none';
+function startTest() {
+  const nameVal = document.getElementById('introName').value.trim();
+  if (nameVal) userName = nameVal;
+  // Hide intro, show Q1
+  document.getElementById('q0').classList.remove('active');
+  document.getElementById('q1').classList.add('active');
+  current = 1;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Recording state
+let mediaRecorder = null;
+let recordedChunks = [];
+let recordedBlob = null;
+let recordedAudio = null;
+let recordTimer = null;
+let recSeconds = 0;
+let recHasData = false;
+
+// ── PROGRESS ──
+function updateProgress() {
+  const done = Math.max(0, current - 1);
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = done + ' / ' + TOTAL;
+}
+
+// ── TRANSLATE ──
+function toggleTranslate(qn) {
+  const t = document.getElementById('trans' + qn);
+  const btn = document.querySelector('#q' + qn + ' .translate-btn') || document.querySelector('#q' + qn + ' .translate-btn') || document.getElementById('q' + qn + ' .translate-btn');
+  const allBtns = document.querySelectorAll('#q' + qn + '.q-card .translate-btn, #q' + qn + '.speak-card .translate-btn, #q' + qn + '.write-card .translate-btn');
+  allBtns.forEach(b => b.classList.toggle('translated', !t.classList.contains('show')));
+  t.classList.toggle('show');
+}
+
+// ── SELECT OPTION ──
+function selectOpt(qn, chosen, correct) {
+  // Already answered?
+  if (answers[qn] !== undefined) return;
+  answers[qn] = chosen;
+  const card = document.getElementById('q' + qn);
+  const opts = card.querySelectorAll('.opt-btn');
+  opts.forEach(btn => {
+    const letter = btn.querySelector('.opt-letter').textContent.trim();
+    if (letter === correct) btn.classList.add('correct');
+    else if (letter === chosen) btn.classList.add('wrong');
+    btn.style.cursor = 'default';
   });
+  if (chosen === correct) score++;
+  document.getElementById('next' + qn).classList.add('enabled');
 }
+
+// ── NEXT Q ──
+function nextQ(qn) {
+  if (recordedAudio) { recordedAudio.pause(); recordedAudio.currentTime = 0; }
+  document.getElementById('q' + qn).classList.remove('active');
+  current = qn + 1;
+  updateProgress();
+  if (current <= 16) {
+    const nextCard = document.getElementById('q' + current);
+    if (nextCard) { nextCard.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  }
+}
+
+// Jump to a specific question number (used when some q numbers are skipped)
+function nextQTo(qn, targetQn) {
+  if (recordedAudio) { recordedAudio.pause(); recordedAudio.currentTime = 0; }
+  document.getElementById('q' + qn).classList.remove('active');
+  current = targetQn;
+  updateProgress();
+  const nextCard = document.getElementById('q' + targetQn);
+  if (nextCard) { nextCard.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+}
+
+// ── WRITE INPUT ──
+function onWriteInput() {
+  const val = document.getElementById('writeInput').value;
+  document.getElementById('charCount').textContent = val.length + ' characters';
+  const btn = document.getElementById('submitBtn');
+  if (val.trim().length >= 10) btn.classList.add('enabled');
+  else btn.classList.remove('enabled');
+}
+
+// ── SUBMIT ──
+async function submitAssessment() {
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Evaluating... ⏳';
+  btn.classList.remove('enabled');
+
+  // Scoring out of 12 MCQs — capped at B2, only writing can push to C1
+  const totalMCQ = 12;
+  let level = 'A1';
+  if (score >= 11) level = 'B2';
+  else if (score >= 8) level = 'B1';
+  else if (score >= 5) level = 'A2';
+  else level = 'A1';
+
+  // Evaluate writing via Gemini
+  const writingText = document.getElementById('writeInput').value.trim();
+  let writingFeedback = '';
+  let finalLevel = level;
+
+  try {
+    const evalPrompt = `You are a strict CEFR English assessor. A student wrote this about "Why do you want to learn English?":
+
+"${writingText}"
+
+Their MCQ test suggests level: ${level}
+
+Assess their writing STRICTLY:
+- C1 requires: complex sentences, sophisticated vocabulary, accurate grammar, nuanced expression. Only confirm C1 if the writing is genuinely advanced.
+- B2 requires: clear ideas, good range of vocabulary, mostly accurate grammar
+- MCQ alone cannot confirm C1 — writing must show clear evidence
+
+Reply ONLY in this exact JSON (no markdown):
+{"confirmed_level":"[A1/A2/B1/B2/C1]","feedback":"one specific observation about their grammar or vocabulary"}
+
+Be honest. Most learners who score 12/14 on MCQ are B2, not C1.`;
+
+
+    const res = await fetch('https://englisho-api.nilesh53333.workers.dev/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: evalPrompt }] }],
+        generationConfig: { maxOutputTokens: 150, temperature: 0.3 }
+      })
+    });
+    const data = await res.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    finalLevel = parsed.confirmed_level || level;
+    writingFeedback = parsed.feedback || '';
+  } catch(e) {
+    // If Gemini eval fails, just use MCQ score
+    finalLevel = level;
+  }
+
+  document.getElementById('statLevel').textContent = finalLevel;
+  document.getElementById('statScore').textContent = score + ' / 12';
+  document.getElementById('statAnswered').textContent = '15 / 15';
+  if (writingFeedback) {
+    document.getElementById('writingFeedbackText').textContent = '✍️ ' + writingFeedback;
+    document.getElementById('writingFeedback').style.display = 'block';
+  }
+
+  // Store level for redirect
+  window._finalLevel = finalLevel;
+
+  document.getElementById('q16').classList.remove('active');
+  const tc = document.getElementById('thanksCard');
+  tc.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressLabel').textContent = '17 / 17';
+}
+
+function startLearning() {
+  const level = window._finalLevel || document.getElementById('statLevel').textContent || 'A1';
+  const params = new URLSearchParams({
+    level: level,
+    name: userName || 'there',
+    lang: userLang || 'Marathi'
+  });
+  window.location.href = 'chat.html?' + params.toString();
+}
+
+// ── RECORDING ──
+async function toggleRecord() {
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    stopRecording();
+  } else {
+    await startRecording();
+  }
+}
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recordedChunks = [];
+    recSeconds = 0;
+    recHasData = false;
+    speechTranscript = '';
+
+    // Start speech recognition to capture transcript for Gemini eval
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    if (SR) {
+      recognition = new SR();
+      recognition.lang = 'en-US';
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.onresult = (e) => {
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          if (e.results[i].isFinal) speechTranscript += e.results[i][0].transcript + ' ';
+        }
+      };
+      try { recognition.start(); } catch(e) {}
+    }
+
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = e => {
+      if (e.data && e.data.size > 0) { recordedChunks.push(e.data); recHasData = true; }
+    };
+    mediaRecorder.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      if (recognition) { try { recognition.stop(); } catch(e) {} }
+      if (recHasData) {
+        recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+        recordedAudio = new Audio(URL.createObjectURL(recordedBlob));
+        showRecordingComplete();
+      } else {
+        resetRecording();
+      }
+    };
+
+    mediaRecorder.start();
+    document.getElementById('recordBtn').classList.add('recording');
+    document.getElementById('recordBtn').textContent = '⏹';
+    document.getElementById('recordingStatus').classList.add('show');
+
+    recordTimer = setInterval(() => {
+      recSeconds++;
+      document.getElementById('recordTimer').textContent = 'Recording... ' + recSeconds + 's';
+      if (recSeconds >= 120) stopRecording();
+    }, 1000);
+  } catch(e) {
+    alert('Microphone access denied. Please allow mic access to record.');
+  }
+}
+
+function stopRecording() {
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    mediaRecorder.stop();
+  }
+  clearInterval(recordTimer);
+  document.getElementById('recordBtn').classList.remove('recording');
+  document.getElementById('recordBtn').textContent = '🎤';
+  document.getElementById('recordingStatus').classList.remove('show');
+}
+
+function showRecordingComplete() {
+  document.getElementById('recordingComplete').classList.add('show');
+  document.getElementById('recDur').textContent = 'Duration: ' + recSeconds + ' seconds';
+  document.getElementById('next15').classList.add('enabled');
+}
+
+function playRecording() {
+  if (recordedAudio) {
+    recordedAudio.currentTime = 0;
+    recordedAudio.play();
+  }
+}
+
+function deleteRecording() {
+  recordedBlob = null;
+  recordedAudio = null;
+  recHasData = false;
+  recordedChunks = [];
+  recSeconds = 0;
+  document.getElementById('recordingComplete').classList.remove('show');
+  document.getElementById('next15').classList.remove('enabled');
+  document.getElementById('recordBtn').textContent = '🎤';
+  document.getElementById('recordBtn').classList.remove('recording');
+}
+
+function resetRecording() {
+  document.getElementById('recordBtn').textContent = '🎤';
+  document.getElementById('recordingStatus').classList.remove('show');
+}
+
+// Init
+updateProgress();
 </script>
 </body>
 </html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nilesh's Garden — Englisho</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #1a7a3c;
+    --green-mid: #25a855;
+    --green-light: #4cce78;
+    --green-pale: #e8f7ee;
+    --green-bg: #f0faf4;
+    --circle-empty: #e0ede5;
+    --circle-text: #4a9e66;
+    --white: #ffffff;
+    --text-dark: #1a2e22;
+    --text-mid: #4a7a5c;
+    --text-light: #7aab8a;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--green-bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 16px 40px;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: 375px;
+    background: var(--white);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(26,122,60,0.18);
+  }
+
+  /* Top bar */
+  .topbar {
+    background: var(--white);
+    padding: 20px 20px 8px;
+    border-bottom: 1px solid #e8f0eb;
+  }
+  .topbar h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+  }
+
+  /* Stats row */
+  .stats {
+    display: flex;
+    gap: 32px;
+    padding: 14px 20px 16px;
+    border-bottom: 1px solid #e8f0eb;
+    background: var(--white);
+  }
+  .stat-item label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .stat-item .val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+  }
+
+  /* Content area */
+  .content { padding: 20px; }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    background: var(--green-pale);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .empty-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .empty-state h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .empty-state p {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--green-dark);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(26,122,60,0.3);
+  }
+  .cta-btn:active { transform: scale(0.97); }
+
+  /* GARDEN GRID */
+  .garden-grid {
+    background: var(--green-pale);
+    border-radius: 20px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .day-cell {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .day-empty {
+    background: var(--white);
+    color: var(--circle-text);
+  }
+  .day-plant {
+    background: transparent;
+    font-size: 26px;
+  }
+
+  /* Bottom nav */
+  .bottomnav {
+    display: flex;
+    border-top: 1px solid #e8f0eb;
+    background: var(--white);
+    padding: 10px 0 20px;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .nav-icon { font-size: 20px; }
+  .nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+  .nav-item.active .nav-label { color: var(--green-dark); }
+  .nav-item.active .nav-icon { filter: drop-shadow(0 0 0 var(--green-dark)); }
+
+  /* Toggle */
+  .toggle-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .toggle-btn {
+    background: none;
+    border: 2px solid var(--circle-empty);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .toggle-btn.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: white;
+  }
+
+  /* Streak bar */
+  .streak-bar {
+    background: var(--green-pale);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .streak-icon { font-size: 28px; }
+  .streak-text strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+  .streak-text span {
+    font-size: 12px;
+    color: var(--text-mid);
+    font-weight: 600;
+  }
+  .streak-dots {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--circle-empty);
+  }
+  .dot.done { background: var(--green-light); }
+
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+
+  <div class="topbar">
+    <h1>Garden</h1>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <label>Words learned</label>
+      <div class="val" id="wordsCount">0</div>
+    </div>
+    <div class="stat-item">
+      <label>Days active</label>
+      <div class="val" id="daysCount">0</div>
+    </div>
+    <div class="stat-item">
+      <label>Streak</label>
+      <div class="val" id="streakCount">0 🔥</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Streak bar (hidden when empty) -->
+    <div class="streak-bar" id="streakBar" style="display:none">
+      <div class="streak-icon">🌱</div>
+      <div class="streak-text">
+        <strong id="streakLabel">8 day streak!</strong>
+        <span>Keep going — you're building a forest</span>
+      </div>
+      <div class="streak-dots" id="streakDots"></div>
+    </div>
+
+    <!-- Month toggle (hidden when empty) -->
+    <div class="toggle-row" id="toggleRow" style="display:none">
+      <button class="toggle-btn active" onclick="showMonth('april')">April</button>
+      <button class="toggle-btn" onclick="showMonth('march')">March</button>
+    </div>
+
+    <div class="section-title">This month</div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState">
+      <span class="empty-icon">🌱</span>
+      <h3>Your English garden is empty</h3>
+      <p>Start your first lesson on WhatsApp<br>to plant your first tree!</p>
+      <a class="cta-btn" href="https://wa.me/919822253333">Plant My First Tree 🌱</a>
+    </div>
+
+    <!-- GARDEN GRID (hidden by default) -->
+    <div class="garden-grid" id="gardenGrid" style="display:none">
+      <!-- filled by JS -->
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottomnav">
+    <div class="nav-item">
+      <div class="nav-icon">🏠</div>
+      <div class="nav-label">Home</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">📖</div>
+      <div class="nav-label">Record</div>
+    </div>
+    <div class="nav-item active">
+      <div class="nav-icon">🌿</div>
+      <div class="nav-label">Garden</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">👤</div>
+      <div class="nav-label">Profile</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── CONFIG ──
+const FIREBASE_URL = "https://englisho-b7465-default-rtdb.asia-southeast1.firebasedatabase.app";
+
+// Get username from URL path — englisho.in/garden/nilesh
+const pathParts = window.location.pathname.split('/');
+const username = pathParts[pathParts.length - 1] || 'demo';
+
+// Plant emoji based on what user did that day
+function getPlantEmoji(dayData) {
+  if (!dayData) return null;
+  const w = dayData.words;
+  const g = dayData.grammar;
+  const pr = dayData.practice;
+  const rv = dayData.review;
+  if (rv || (w && g && pr)) return '🌳'; // all done
+  if (w && g) return '🌻';               // words + grammar
+  if (pr) return '🌸';                   // practice
+  if (g) return '🌴';                    // grammar only
+  if (w) return '🌿';                    // words only
+  return '🌱';                           // just started
+}
+
+function getDaysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function buildGrid(gardenData, year, month) {
+  const grid = document.getElementById('gardenGrid');
+  grid.innerHTML = '';
+  const days = getDaysInMonth(year, month);
+  const today = new Date();
+
+  for (let d = 1; d <= days; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayData = gardenData[dateStr];
+    const plant = getPlantEmoji(dayData);
+    const isPast = new Date(year, month, d) <= today;
+
+    const cell = document.createElement('div');
+    cell.className = 'day-cell ' + (plant ? 'day-plant' : 'day-empty');
+
+    if (plant) {
+      cell.textContent = plant;
+      cell.title = dateStr;
+    } else if (isPast) {
+      cell.textContent = d;
+    } else {
+      cell.textContent = d;
+      cell.style.opacity = '0.4';
+    }
+    grid.appendChild(cell);
+  }
+}
+
+async function loadGarden() {
+  // Try to get phone from URL param or use demo data
+  const params = new URLSearchParams(window.location.search);
+  const phone = params.get('phone');
+
+  let gardenData = {};
+  let wordsLearned = 0;
+  let streak = 0;
+
+  if (phone) {
+    try {
+      // Load real Firebase data
+      const [gRes, pRes, wRes] = await Promise.all([
+        fetch(`${FIREBASE_URL}/garden/${phone}.json`),
+        fetch(`${FIREBASE_URL}/profiles/${phone}.json`),
+        fetch(`${FIREBASE_URL}/words/${phone}.json`)
+      ]);
+      gardenData = await gRes.json() || {};
+      const profile = await pRes.json() || {};
+      const words = await wRes.json() || {};
+      streak = profile.streak || 0;
+      wordsLearned = (words.learned || []).length;
+    } catch(e) {
+      console.log('Firebase load failed, using demo');
+    }
+  } else {
+    // Demo data — show what it looks like with some activity
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth()+1).padStart(2,'0');
+    // seed 8 days of activity
+    for (let i = 0; i < 8; i++) {
+      const d = now.getDate() - i;
+      if (d < 1) break;
+      const ds = `${y}-${m}-${String(d).padStart(2,'0')}`;
+      if (i === 0) gardenData[ds] = {words:true, grammar:true, practice:true, review:true};
+      else if (i % 3 === 0) gardenData[ds] = {words:true, grammar:true};
+      else if (i % 2 === 0) gardenData[ds] = {practice:true};
+      else gardenData[ds] = {words:true};
+    }
+    streak = 8;
+    wordsLearned = 24;
+  }
+
+  const activeDays = Object.keys(gardenData).length;
+  document.getElementById('wordsCount').textContent = wordsLearned;
+  document.getElementById('daysCount').textContent = activeDays;
+  document.getElementById('streakCount').textContent = streak + (streak >= 30 ? ' 🔥🔥🔥' : streak >= 7 ? ' 🔥🔥' : ' 🔥');
+
+  if (activeDays === 0) {
+    // Show empty state
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('gardenGrid').style.display = 'none';
+    document.getElementById('streakBar').style.display = 'none';
+    document.getElementById('toggleRow').style.display = 'none';
+  } else {
+    // Show garden
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('gardenGrid').style.display = 'grid';
+    document.getElementById('streakBar').style.display = 'flex';
+    document.getElementById('toggleRow').style.display = 'flex';
+
+    // Streak bar
+    document.getElementById('streakLabel').textContent = streak + ' day streak!';
+    const dots = document.getElementById('streakDots');
+    dots.innerHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i < Math.min(streak, 7) ? ' done' : '');
+      dots.appendChild(dot);
+    }
+
+    const now = new Date();
+    window._gardenData = gardenData;
+    buildGrid(gardenData, now.getFullYear(), now.getMonth());
+  }
+}
+
+function showMonth(month) {
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const now = new Date();
+  const offset = month === 'march' ? -1 : 0;
+  const d = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+  buildGrid(window._gardenData || {}, d.getFullYear(), d.getMonth());
+}
+
+loadGarden();
+</script>
+
+</body>
+</html>

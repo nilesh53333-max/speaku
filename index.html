@@ -669,6 +669,27 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 }
 .cta-banner-btn:hover { opacity: 0.9; }
 
+/* ══ BUSINESS INFO BLOCK (for Meta verification) ══ */
+.business-info {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 40px;
+  text-align: center;
+}
+.business-info-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.bi-block { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.bi-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+.bi-value { font-size: 14px; color: var(--text); font-weight: 500; }
+.bi-value a { color: var(--text); text-decoration: none; }
+.bi-value a:hover { color: var(--green); }
+
 /* ══ FOOTER ══ */
 .footer {
   background: #0d1117;
@@ -715,6 +736,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 .footer-links li { margin-bottom: 8px; }
 .footer-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
 .footer-links a:hover { color: var(--green); }
+.footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -750,6 +772,8 @@ textarea.form-input { resize: vertical; min-height: 100px; }
   .contact-inner { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .footer-grid > div:first-child { grid-column: span 2; }
+  .business-info { padding: 32px 20px; }
+  .business-info-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
 
 @media (max-width: 600px) {
@@ -758,6 +782,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > div:first-child { grid-column: span 1; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .business-info-inner { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -795,7 +820,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 
   <div class="hero-btns">
     <a class="btn-primary" href="placement.html">🎯 Take Free Level Test</a>
-    <a class="btn-secondary" href="https://wa.me/919822253333" target="_blank">💬 Chat on WhatsApp</a>
+    <a class="btn-secondary" href="https://wa.me/919923099230" target="_blank">💬 Chat on WhatsApp</a>
   </div>
   <div class="hero-note">✓ Free · <span>No credit card</span> · Works on any phone</div>
 
@@ -1052,7 +1077,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
         <li>No URL or app required for learners</li>
       </ul>
       <span class="sol-tag">Perfect for: Schools, colleges, corporate teams, NGOs</span>
-      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank" style="display:inline-flex; margin-top:0; padding:11px 20px; border-radius:10px; background:var(--green); color:white; border:none; font-weight:700; font-size:14px; text-decoration:none;">Contact Us →</a>
+      <a href="https://wa.me/919923099230" target="_blank" style="display:inline-flex; align-items:center; gap:6px; margin-top:0; padding:11px 20px; border-radius:10px; background:var(--green); color:white; border:none; font-weight:700; font-size:14px; text-decoration:none;">Contact Us →</a>
     </div>
   </div>
 </section>
@@ -1062,7 +1087,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
   <div class="story-inner text-center">
     <div class="section-label">Our Journey</div>
     <div class="section-title">The <span class="accent">Englisho</span> Story</div>
-    <div class="section-sub">Built in Pune, for India — because everyone deserves to speak English confidently.</div>
+    <div class="section-sub">Built in Maharashtra, for India — because everyone deserves to speak English confidently.</div>
 
     <div class="vision-mission">
       <div class="vm-card vision">
@@ -1162,19 +1187,19 @@ textarea.form-input { resize: vertical; min-height: 100px; }
     </div>
 
     <div class="contact-options-box">
-      <a class="contact-opt" href="https://wa.me/919822253333" target="_blank">
+      <a class="contact-opt" href="https://wa.me/919923099230" target="_blank">
         <div class="contact-opt-icon" style="background:#dcfce7;">💬</div>
         <div>
           <div class="contact-opt-title">Chat on WhatsApp</div>
-          <div class="contact-opt-sub">Get instant replies from our team</div>
+          <div class="contact-opt-sub">+91 99230 99230 · Instant replies</div>
         </div>
         <span style="margin-left:auto; color:var(--green);">→</span>
       </a>
-      <a class="contact-opt" href="/cdn-cgi/l/email-protection#dab2bfb6b6b59abfb4bdb6b3a9b2b5f4b3b4">
+      <a class="contact-opt" href="mailto:nilesh53333@gmail.com">
         <div class="contact-opt-icon" style="background:#dbeafe;">📧</div>
         <div>
           <div class="contact-opt-title">Email Us</div>
-          <div class="contact-opt-sub"><span class="__cf_email__" data-cfemail="452d2029292a05202b22292c362d2a6b2c2b">[email&#160;protected]</span></div>
+          <div class="contact-opt-sub">nilesh53333@gmail.com</div>
         </div>
         <span style="margin-left:auto; color:var(--green);">→</span>
       </a>
@@ -1190,8 +1215,33 @@ textarea.form-input { resize: vertical; min-height: 100px; }
       <div class="cta-banner">
         <h3>Ready to Transform<br>Your English?</h3>
         <p>Join learners across Maharashtra improving their English every day on WhatsApp.</p>
-        <a class="cta-banner-btn" href="https://wa.me/919822253333" target="_blank">🚀 Start Free on WhatsApp</a>
+        <a class="cta-banner-btn" href="https://wa.me/919923099230" target="_blank">🚀 Start Free on WhatsApp</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUSINESS INFO BLOCK (visible to Meta reviewers) ══ -->
+<section class="business-info" aria-label="Business Information">
+  <div class="business-info-inner">
+    <div class="bi-block">
+      <div class="bi-label">Business Name</div>
+      <div class="bi-value">ENGLISHO</div>
+    </div>
+    <div class="bi-block">
+      <div class="bi-label">Registered Address</div>
+      <div class="bi-value">117 A Shukrawar Peth,<br>Amrai Apartment,<br>Satara, Maharashtra<br>415002, India</div>
+    </div>
+    <div class="bi-block">
+      <div class="bi-label">Contact</div>
+      <div class="bi-value">
+        <a href="tel:+919923099230">+91 99230 99230</a><br>
+        <a href="mailto:nilesh53333@gmail.com">nilesh53333@gmail.com</a>
+      </div>
+    </div>
+    <div class="bi-block">
+      <div class="bi-label">MSME Registration</div>
+      <div class="bi-value">UDYAM-MH-30-0190090</div>
     </div>
   </div>
 </section>
@@ -1201,8 +1251,8 @@ textarea.form-input { resize: vertical; min-height: 100px; }
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name">English<span>o</span> 🗣️</div>
-      <div class="footer-brand-desc">AI-powered English learning on WhatsApp. Built in Pune for India. Teaching English in your language — no shame, no app, no coaching class.</div>
-      <a class="footer-wa-btn" href="https://wa.me/919822253333" target="_blank">💬 Chat Now</a>
+      <div class="footer-brand-desc">AI-powered English learning on WhatsApp. Built in Maharashtra for India. Teaching English in your language — no shame, no app, no coaching class.</div>
+      <a class="footer-wa-btn" href="https://wa.me/919923099230" target="_blank">💬 Chat Now</a>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
@@ -1234,24 +1284,47 @@ textarea.form-input { resize: vertical; min-height: 100px; }
     </div>
     <div>
       <div class="footer-col-title">Contact Us</div>
-      <ul class="footer-links">
-        <li><a href="/cdn-cgi/l/email-protection#0e666b6262614e6b606962677d6661206760"><span class="__cf_email__" data-cfemail="93fbf6fffffcd3f6fdf4fffae0fbfcbdfafd">[email&#160;protected]</span></a></li>
-        <li><a href="https://wa.me/919822253333" target="_blank">+91 98222 53333</a></li>
-        <li><a href="#">Pune, Maharashtra, India</a></li>
-        <li><a href="#">UDYAM-MH-30-0190090</a></li>
-      </ul>
+      <div class="footer-text">
+        <strong style="color:white;">ENGLISHO</strong><br>
+        117 A Shukrawar Peth,<br>
+        Amrai Apartment,<br>
+        Satara, Maharashtra 415002<br>
+        India<br><br>
+        <a href="tel:+919923099230" style="color:rgba(255,255,255,0.6);">+91 99230 99230</a><br>
+        <a href="mailto:nilesh53333@gmail.com" style="color:rgba(255,255,255,0.6);">nilesh53333@gmail.com</a><br><br>
+        <span style="color:rgba(255,255,255,0.4); font-size:11px;">UDYAM-MH-30-0190090</span>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 Englisho. All rights reserved. | Registered under MSME India</div>
+    <div>© 2026 ENGLISHO. All rights reserved. | Registered under MSME India · UDYAM-MH-30-0190090</div>
     <div class="footer-social">
       <a href="#" title="Instagram">📷</a>
-      <a href="https://wa.me/919822253333" target="_blank" title="WhatsApp">💬</a>
-      <a href="/cdn-cgi/l/email-protection#98f0fdf4f4f7d8fdf6fff4f1ebf0f7b6f1f6" title="Email">📧</a>
+      <a href="https://wa.me/919923099230" target="_blank" title="WhatsApp">💬</a>
+      <a href="mailto:nilesh53333@gmail.com" title="Email">📧</a>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleNav() {
-  document.getElementById('navLinks').c
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function toggleFAQ(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+function filterFAQ(query) {
+  query = query.toLowerCase().trim();
+  const items = document.querySelectorAll('#faqList .faq-item');
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = (query === '' || text.includes(query)) ? 'block' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>

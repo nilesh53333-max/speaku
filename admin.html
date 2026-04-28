@@ -438,6 +438,89 @@
   }
   .breadcrumb a:hover { text-decoration: underline; }
 
+  /* ─── AI GENERATOR PANEL ────────────────────────────────── */
+  .ai-panel {
+    background: linear-gradient(135deg, rgba(110, 231, 183, 0.06) 0%, rgba(52, 211, 153, 0.03) 100%);
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .ai-panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .ai-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .ai-icon {
+    font-size: 18px;
+    filter: drop-shadow(0 0 6px rgba(110, 231, 183, 0.5));
+  }
+  .ai-panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ai-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ai-hint {
+    font-size: 11px;
+    color: var(--fg-dim);
+    font-style: italic;
+  }
+  .ai-status {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .ai-status.loading {
+    background: rgba(110, 231, 183, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(110, 231, 183, 0.3);
+  }
+  .ai-status.error {
+    background: rgba(248, 113, 113, 0.08);
+    color: var(--danger);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+  }
+  .ai-status.success {
+    background: rgba(110, 231, 183, 0.12);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  #ai-generate-btn:disabled .spinner-inline {
+    display: inline-block;
+  }
+  .spinner-inline {
+    display: none;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top-color: var(--bg);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
   /* ─── RESPONSIVE ───────────────────────────────────────── */
   @media (max-width: 768px) {
     main { padding: 16px; }
@@ -491,6 +574,41 @@
     <div id="edit-screen" class="edit-screen">
       <div class="breadcrumb">
         <a onclick="showList()">← Back to scenarios</a>
+      </div>
+
+      <!-- AI Generator panel — only visible for new scenarios -->
+      <div id="ai-generator-panel" class="ai-panel" style="display:none;">
+        <div class="ai-panel-header">
+          <span class="ai-icon">✨</span>
+          <span>Generate Draft from One-Liner</span>
+        </div>
+        <div class="ai-panel-body">
+          <div class="ai-row">
+            <select id="ai-level" style="width:auto;min-width:170px;">
+              <option value="beginner">🟢 Beginner</option>
+              <option value="pre_intermediate">🟡 Pre-Intermediate</option>
+              <option value="intermediate">🟠 Intermediate</option>
+              <option value="upper_intermediate">🔵 Upper-Intermediate</option>
+              <option value="advanced">🔴 Advanced</option>
+            </select>
+            <select id="ai-category" style="width:auto;min-width:180px;">
+              <option value="restaurants">🍽️ Restaurants</option>
+              <option value="travel">✈️ Travel</option>
+              <option value="shopping">🛍️ Shopping</option>
+              <option value="daily_interaction">🤝 Daily Interaction</option>
+              <option value="social_dynamics">💬 Social Dynamics</option>
+              <option value="free_discussion">🗣️ Free Discussion</option>
+              <option value="job_interviews">💼 Job Interviews</option>
+              <option value="life_in_india">🇮🇳 Life in India</option>
+            </select>
+          </div>
+          <input id="ai-oneliner" type="text" placeholder="Describe the scenario in 1 line — e.g. 'User books a flight, asks about luggage and seat selection'">
+          <div class="ai-row" style="justify-content:space-between;">
+            <div class="ai-hint">⚡ Generates character, 3 tasks with ~25 patterns each, system prompt. ~10-15 sec.</div>
+            <button class="primary" id="ai-generate-btn" onclick="generateDraft()">✨ Generate Draft</button>
+          </div>
+          <div id="ai-status" class="ai-status" style="display:none;"></div>
+        </div>
       </div>
 
       <div class="section-title">Basic Info</div>
@@ -866,6 +984,15 @@ function enterEditMode() {
   document.getElementById("edit-screen").classList.add("active");
   document.getElementById("btn-delete").style.display = isNewScenario ? "none" : "inline-block";
   document.getElementById("f-id").disabled = !isNewScenario;
+  // AI generator only useful for brand new scenarios
+  document.getElementById("ai-generator-panel").style.display = isNewScenario ? "block" : "none";
+  // Pre-fill AI dropdowns from form values if available
+  if (isNewScenario) {
+    document.getElementById("ai-level").value = document.getElementById("f-level").value;
+    document.getElementById("ai-category").value = document.getElementById("f-category").value;
+    document.getElementById("ai-oneliner").value = "";
+    document.getElementById("ai-status").style.display = "none";
+  }
   window.scrollTo(0, 0);
 }
 
@@ -1078,6 +1205,64 @@ function testPatterns() {
     result.className = "tester-result match";
     result.textContent = "✓ " + matches.join("\n");
   }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  AI GENERATOR
+// ═══════════════════════════════════════════════════════════
+
+async function generateDraft() {
+  const oneLiner = document.getElementById("ai-oneliner").value.trim();
+  const level = document.getElementById("ai-level").value;
+  const category = document.getElementById("ai-category").value;
+
+  if (!oneLiner) {
+    showAiStatus("error", "Type a one-line description first.");
+    return;
+  }
+  if (oneLiner.length < 15) {
+    showAiStatus("error", "Description too short — give Gemini something to work with (15+ chars).");
+    return;
+  }
+
+  const btn = document.getElementById("ai-generate-btn");
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-inline"></span>Generating…';
+  showAiStatus("loading", "⚡ Calling Gemini... (10-15 sec)");
+
+  try {
+    const r = await fetch(CONFIG.WORKER_URL + "/admin/generate-scenario", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ oneLiner, level, category })
+    });
+    const data = await r.json();
+    if (!r.ok || !data.ok) {
+      throw new Error(data.error || `HTTP ${r.status}`);
+    }
+
+    // Load the generated scenario into the form
+    populateForm(data.scenario);
+    // Hide AI panel after successful generation (form is now filled)
+    document.getElementById("ai-generator-panel").style.display = "none";
+    showAiStatus("success", "✓ Draft loaded — review the form below, then Save.");
+    toast("Draft generated! Review carefully before saving.");
+    // Scroll to form
+    document.querySelector(".section-title").scrollIntoView({ behavior: "smooth" });
+  } catch (e) {
+    showAiStatus("error", "✗ " + e.message);
+    toast("Generation failed: " + e.message, "error");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = "✨ Generate Draft";
+  }
+}
+
+function showAiStatus(type, msg) {
+  const el = document.getElementById("ai-status");
+  el.className = "ai-status " + type;
+  el.textContent = msg;
+  el.style.display = "block";
 }
 
 // ═══════════════════════════════════════════════════════════
